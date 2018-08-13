@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> C&#43;&#43;多线程与同步(Linux) - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="C&#43;&#43;多线程与同步(Linux)" />
+  <meta name="twitter:title" content="C&#43;&#43;多线程与同步(Linux)" />
+  <meta name="description" content="C&#43;&#43;多线程与同步(Linux) 1 利用系统API实现多线程（POSIX） C&#43;&#43;11以前不包含多线程应用程序的任何内置支持。相反，它完全依赖于">
+  <meta property="og:description" content="C&#43;&#43;多线程与同步(Linux) 1 利用系统API实现多线程（POSIX） C&#43;&#43;11以前不包含多线程应用程序的任何内置支持。相反，它完全依赖于">
+  <meta name="twitter:description" content="C&#43;&#43;多线程与同步(Linux) 1 利用系统API实现多线程（POSIX） C&#43;&#43;11以前不包含多线程应用程序的任何内置支持。相反，它完全依赖于">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io/">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/microservices">Microservices</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/devops">Devops</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/github">Github</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/serverless">Serverless</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/service-mesh">Service Mesh</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/kubernetes-handbook">Kubernetes handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/docker-handbook">Docker handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/hugo-handbook">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/migrating-to-cloud-native-application-architectures">Migrating to Cloud Native</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster">k8s all-in-one</a>
+                
+                
+                  <a href="https://flhonker.github.io/spark-on-k8s">Spark on kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/yarn-on-docker">Magpie</a>
+                
+                
+                  <a href="https://flhonker.github.io/cheatsheets">Cheatsheets</a>
+                
+                
+                  <a href="https://github.com/rootsongjc/beautifulhugo">Beautifulhugo</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">C&#43;&#43;多线程与同步(Linux)</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri May 4, 2018</h4>
+    </section>
+    <h5 id="wc">4700 Words|Read in about 10 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/linux/">Linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/thread/">thread</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/mutex/">mutex</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/sync/">sync</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#c-多线程与同步-linux">C++多线程与同步(Linux)</a>
+<ul>
+<li><a href="#1-利用系统api实现多线程-posix">1 利用系统API实现多线程（POSIX）</a>
+<ul>
+<li><a href="#1-创建线程">(1) 创建线程</a></li>
+<li><a href="#2-终止线程">(2) 终止线程</a></li>
+<li><a href="#3-向线程传递参数">(3) 向线程传递参数</a></li>
+<li><a href="#4-连接和分离线程">(4) 连接和分离线程</a>
+<ul>
+<li><a href="#5-互斥锁的实现">(5) 互斥锁的实现</a></li>
+</ul></li>
+<li><a href="#6-信号量的实现">(6) 信号量的实现</a></li>
+</ul></li>
+<li><a href="#2-c-11中的多线程技术">2 C++11中的多线程技术</a>
+<ul>
+<li><a href="#注意事项">注意事项</a></li>
+</ul></li>
+<li><a href="#3-c-使用thread类多线程编程">3 C++使用thread类多线程编程</a>
+<ul>
+<li><a href="#1-thread类">(1) thread类</a></li>
+<li><a href="#2-detach">(2) detach</a></li>
+<li><a href="#3-带参子线程">(3) 带参子线程</a></li>
+<li><a href="#4-多线程数据竞争-线程同步">(4) 多线程数据竞争——线程同步</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="c-多线程与同步-linux">C++多线程与同步(Linux)</h1>
+
+<h2 id="1-利用系统api实现多线程-posix">1 利用系统API实现多线程（POSIX）</h2>
+
+<p>C++11以前不包含多线程应用程序的任何内置支持。相反，它完全依赖于操作系统来提供此功能。</p>
+
+<p>本教程假设您使用的是 Linux 操作系统，我们要使用 POSIX 编写多线程 C++ 程序。<code>POSIX Threads</code> 或 <code>Pthreads</code> 提供的 API 可在多种类 Unix POSIX 系统上可用，比如 FreeBSD、NetBSD、GNU/Linux、Mac OS X 和 Solaris。</p>
+
+<h3 id="1-创建线程">(1) 创建线程</h3>
+
+<p>下面的程序，我们可以用它来创建一个 POSIX 线程：</p>
+
+<pre><code class="language-c++">#include &lt;pthread.h&gt;
+pthread_create (thread, attr, start_routine, arg);
+</code></pre>
+
+<p>在这里，<code>pthread_create</code> 创建一个新的线程，并让它可执行。下面是关于参数的说明：</p>
+
+<ul>
+<li><strong>参数说明</strong></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">thread</td>
+<td align="left">指向线程标识符指针。</td>
+</tr>
+
+<tr>
+<td align="center">attr</td>
+<td align="left">一个不透明的属性对象，可以被用来设置线程属性。您可以指定线程属性对象，也可以使用默认值 NULL。</td>
+</tr>
+
+<tr>
+<td align="center">start_routine</td>
+<td align="left">线程运行函数起始地址，一旦线程被创建就会执行。</td>
+</tr>
+
+<tr>
+<td align="center">arg</td>
+<td align="left">运行函数的参数。它必须通过把引用作为指针强制转换为 void 类型进行传递。如果没有传递参数，则使用 NULL。</td>
+</tr>
+</tbody>
+</table>
+
+<p>创建线程成功时，函数返回 0，若返回值不为 0 则说明创建线程失败。</p>
+
+<h3 id="2-终止线程">(2) 终止线程</h3>
+
+<p>使用下面的程序，我们可以用它来终止一个 POSIX 线程：</p>
+
+<pre><code class="language-c++">#include &lt;pthread.h&gt;
+pthread_exit(status);
+</code></pre>
+
+<p>在这里，<code>pthread_exit</code> 用于显式地退出一个线程。通常情况下，pthread_exit() 函数是在线程完成工作后无需继续存在时被调用。</p>
+
+<p>如果 main() 是在它所创建的线程之前结束，并通过 pthread_exit() 退出，那么其他线程将继续执行。否则，它们将在 main() 结束时自动被终止。</p>
+
+<p>[实例1]：</p>
+
+<p>以下简单的实例代码使用 pthread_create() 函数创建了 8 个线程，每个线程输出&rdquo;Hello pthread！&rdquo;:</p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;pthread.h&gt;
+#define NUM_THREADS 8
+
+using namespace std;
+
+//线程运行函数，函数返回的是函数指针，便于后面作为参数
+void* say_hello(void* args)
+{
+    cout &lt;&lt; &quot;Hello pthread!&quot; &lt;&lt;endl;
+}
+
+int main()
+{
+    pthread_t tids[NUM_THREADS];
+    for(int i=0; i &lt; NUM_THREADS; ++i)
+    {
+        //参数：线程id、线程参数、调用的函数、传入函数的参数
+        int ret = pthread_create(&amp;tids[i], NULL, say_hello, NULL);
+        if(ret != 0)
+            cout &lt;&lt; &quot;pthread_create error: error_code=&quot; &lt;&lt; ret &lt;&lt;endl;
+    }
+    //等待线程退出后，进程才结束：
+    pthread_exit(NULL);
+
+    return 0;
+}
+</code></pre>
+
+<p>使用 lpthread 库编译程序：
+&gt; g++ pthread_test1.cpp -lpthread -o pthread_test1</p>
+
+<p>[实例2]：</p>
+
+<p>以下简单的实例代码使用 pthread_create() 函数创建了 8 个线程，并接收传入的参数。每个线程打印一个 &ldquo;Hello pthread!&rdquo; 消息，并输出接收的参数，然后调用 pthread_exit() 终止线程。为缓解多线程的资源争夺，采用sleep(1)使之睡眠1秒钟再开启新线程。</p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;pthread.h&gt;
+#include &lt;unistd.h&gt;
+#define NUM_THREADS 8
+
+using namespace std;
+
+//线程运行函数，函数返回的是函数指针，便于后面作为参数
+void* say_hello(void* args)
+{
+    int tid = *((int*)args);  //对传入的参数强制类型转换
+    cout &lt;&lt; &quot;Hello pthread! thread_ID: &quot; &lt;&lt; tid &lt;&lt;endl;
+    pthread_exit(NULL);
+}
+
+int main()
+{
+    pthread_t tids[NUM_THREADS];
+    for(int i=0; i &lt; NUM_THREADS; ++i)
+    {
+        cout &lt;&lt; &quot;main():创建线程,&quot; &lt;&lt; i &lt;&lt;endl;
+        //参数：线程id、线程参数、调用的函数、传入函数的参数
+        int ret = pthread_create(&amp;tids[i], NULL, say_hello, (void*)&amp;i);
+        sleep(1);   //sleep 1s
+        if(ret != 0)
+        {
+            cout &lt;&lt; &quot;pthread_create error: error_code=&quot; &lt;&lt; ret &lt;&lt;endl;
+            exit(-1);
+        }
+    }
+    //等待线程退出后，进程才结束：
+    pthread_exit(NULL);
+
+    return 0;
+}
+</code></pre>
+
+<p>[运行结果2]：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683011/githubio/C-img/pthread_test2.png" alt="pthread_test2" /></p>
+
+<h3 id="3-向线程传递参数">(3) 向线程传递参数</h3>
+
+<p>这个实例演示了如何通过结构传递多个参数。您可以在线程回调中传递任意的数据类型，因为它指向 void，如下面的实例所示：</p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;pthread.h&gt;
+#include &lt;cstdlib&gt;
+#include &lt;unistd.h&gt;
+#define NUM_THREADS 8
+
+using namespace std;
+
+typedef struct thread_data
+{
+	int thread_id;
+	char *message;
+}thread_data;
+
+//线程运行函数，函数返回的是函数指针，便于后面作为参数
+void* printMsg(void* args)
+{
+    thread_data *my_data = (thread_data*)args;;  //对传入的参数强制类型转换
+    cout &lt;&lt; &quot;thread_ID: &quot; &lt;&lt; my_data-&gt;thread_id &lt;&lt; &quot;, Message:&quot; &lt;&lt; my_data-&gt;message &lt;&lt;endl;
+    pthread_exit(NULL);
+}
+
+int main()
+{
+    pthread_t tids[NUM_THREADS];
+    thread_data mydatas[NUM_THREADS];
+    for(int i=0; i &lt; NUM_THREADS; ++i)
+    {
+        cout &lt;&lt; &quot;main():创建线程,&quot; &lt;&lt; i &lt;&lt;endl;
+        mydatas[i].thread_id = i;
+        mydatas[i].message = &quot;Hello,pthread!&quot;;
+        //参数：线程id、线程参数、调用的函数、传入函数的参数
+        int ret = pthread_create(&amp;tids[i], NULL, printMsg, (void*)&amp;mydatas[i]);
+        sleep(1);   //sleep 1s
+        if(ret != 0)
+        {
+            cout &lt;&lt; &quot;pthread_create error: error_code=&quot; &lt;&lt; ret &lt;&lt;endl;
+            exit(-1);
+        }
+    }
+    //等待线程退出后，进程才结束：
+    pthread_exit(NULL);
+
+    return 0;
+}
+</code></pre>
+
+<p>[运行结果3]：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683011/githubio/C-img/pthread_test3.png" alt="pthread_test3" /></p>
+
+<h3 id="4-连接和分离线程">(4) 连接和分离线程</h3>
+
+<p>我们可以使用以下两个函数来连接或分离线程：</p>
+
+<blockquote>
+<p>pthread_join (threadid, status);
+pthread_detach (threadid);</p>
+</blockquote>
+
+<p><code>pthread_join()</code>子程序阻碍调用程序，直到指定的threadid 线程终止为止。当创建一个线程时，它的某个属性会定义它是否是可连接的（joinable）或可分离的（detached）。只有创建时定义为可连接的线程才可以被连接。如果线程创建时被定义为可分离的，则它永远也不能被连接。
+这个实例演示了如何使用 pthread_join() 函数来等待线程的完成。</p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;pthread.h&gt;
+#include &lt;cstdlib&gt;
+#include &lt;unistd.h&gt;
+#define NUM_THREADS 8
+
+using namespace std;
+
+//线程运行函数，函数返回的是函数指针，便于后面作为参数
+void* say_hello(void* args)
+{
+    int tid = *((int*)args);  //对传入的参数强制类型转换
+    sleep(1);
+    cout &lt;&lt; &quot;Sleeping inthread...&quot; &lt;&lt;endl;
+    cout &lt;&lt; &quot;Hello pthread! thread_ID: &quot; &lt;&lt; tid &lt;&lt; &quot;...exiting.&quot; &lt;&lt;endl;
+    pthread_exit(NULL);
+}
+
+int main()
+{
+    pthread_t tids[NUM_THREADS];
+    pthread_attr_t attr;
+    void *status;
+    //初始化并设置为可连接的(joinable)
+    pthread_attr_init(&amp;attr);
+    pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_JOINABLE);
+    for(int i=0; i &lt; NUM_THREADS; ++i)
+    {
+        cout &lt;&lt; &quot;main():创建线程,&quot; &lt;&lt; i &lt;&lt;endl;
+        //参数：线程id、线程参数、调用的函数、传入函数的参数
+        int ret = pthread_create(&amp;tids[i], NULL, say_hello, (void*)&amp;i);
+        if(ret != 0)
+        {
+            cout &lt;&lt; &quot;pthread_create error: error_code=&quot; &lt;&lt; ret &lt;&lt;endl;
+            exit(-1);
+        }
+    }
+
+    pthread_attr_destroy(&amp;attr);  //删除属性，并等待其他线程
+    for(int i=0; i &lt; NUM_THREADS; ++i)
+    {
+    	int ret = pthread_join(tids[i], &amp;status);
+    	if(ret)
+        {
+            cout &lt;&lt; &quot;Error:unable to join,&quot; &lt;&lt; ret &lt;&lt;endl;
+            exit(-1);
+        }
+        cout &lt;&lt; &quot;Main: completed thread id :&quot; &lt;&lt; i;
+        cout &lt;&lt; &quot;, exiting with status:&quot; &lt;&lt; status &lt;&lt; endl;
+    }
+    cout &lt;&lt; &quot;Main: program exiting.&quot; &lt;&lt; endl;
+    //等待线程退出后，进程才结束：
+    pthread_exit(NULL);
+
+    return 0;
+}
+</code></pre>
+
+<p>[运行结果4]：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683011/githubio/C-img/pthread_test4.png" alt="pthread_test4" /></p>
+
+<h4 id="5-互斥锁的实现">(5) 互斥锁的实现</h4>
+
+<p>互斥锁是实现线程同步的一种机制，只要在临界区前后对资源加锁就能阻塞其他进程的访问。
+[实例5]：</p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;pthread.h&gt;
+#include &lt;cstdlib&gt;
+#include &lt;unistd.h&gt;
+#define NUM_THREADS 8
+
+using namespace std;
+
+int sum = 0; //定义全局变量，让所有线程同时写，这样就需要锁机制
+pthread_mutex_t sum_mutex; //互斥锁
+
+//线程运行函数，函数返回的是函数指针，便于后面作为参数
+void* say_hello(void* args)
+{
+    int tid = *((int*)args);  //对传入的参数强制类型转换
+    cout &lt;&lt; &quot;Hello pthread! thread_ID: &quot; &lt;&lt; tid &lt;&lt;endl;
+    pthread_mutex_lock( &amp;sum_mutex ); //先加锁，再修改sum的值，锁被占用就阻塞，直到拿到锁再修改sum
+    cout &lt;&lt; &quot;before sum is &quot; &lt;&lt; sum;
+    sum += tid; 
+    cout &lt;&lt; &quot;, after sum is &quot; &lt;&lt; sum &lt;&lt; endl; 	
+    pthread_mutex_unlock( &amp;sum_mutex ); //释放锁，供其他线程使用
+    pthread_exit(0);
+}
+
+int main()
+{
+    pthread_t tids[NUM_THREADS];
+    pthread_attr_t attr;  //线程属性结构体，创建线程时加入的参数
+    void *status;
+    //初始化并设置为可连接的(joinable)
+    pthread_attr_init(&amp;attr);
+    pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_JOINABLE);
+    pthread_mutex_init( &amp;sum_mutex, NULL ); //对锁进行初始化
+    for(int i=0; i &lt; NUM_THREADS; ++i)
+    {
+        //参数：线程id、线程参数、调用的函数、传入函数的参数
+        int ret = pthread_create(&amp;tids[i], NULL, say_hello, (void*)&amp;i);
+        if(ret != 0)
+        {
+            cout &lt;&lt; &quot;pthread_create error: error_code=&quot; &lt;&lt; ret &lt;&lt;endl;
+            exit(-1);
+        }
+    }
+    
+    pthread_attr_destroy(&amp;attr);  //删除属性，并等待其他线程
+    for(int i=0; i &lt; NUM_THREADS; ++i)
+    {
+    	int ret = pthread_join(tids[i], &amp;status);
+    	if(ret)
+        {
+            cout &lt;&lt; &quot;Error:unable to join,&quot; &lt;&lt; ret &lt;&lt;endl;
+            exit(-1);
+        }
+        cout &lt;&lt; &quot;Main: completed thread id :&quot; &lt;&lt; i;
+        cout &lt;&lt; &quot;, exiting with status:&quot; &lt;&lt; status &lt;&lt; endl;
+    }
+    cout &lt;&lt; &quot;Main: program exiting.&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;finally sum is &quot; &lt;&lt; sum &lt;&lt; endl;
+    pthread_mutex_destroy( &amp;sum_mutex ); //注销锁
+    //等待线程退出后，进程才结束：
+    pthread_exit(NULL);
+
+    return 0;
+}
+</code></pre>
+
+<p>[运行结果5]：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683011/githubio/C-img/pthread_test5.png" alt="pthread_test5" /></p>
+
+<p>可知，sum的访问和修改顺序是正常的，这就达到了多线程的目的了，但是线程的运行顺序是混乱的，混乱就是正常？</p>
+
+<h3 id="6-信号量的实现">(6) 信号量的实现</h3>
+
+<p>信号量是线程同步的另一种实现机制，信号量的操作有<code>signal</code>和<code>wait</code>，本例子采用条件信号变量
+&gt; pthread_cond_t tasks_cond;</p>
+
+<p>信号量的实现也要给予锁机制。</p>
+
+<pre><code class="language-c++">/*************************************************************************
+	&gt; File Name: pthread_test6.cpp
+	&gt; Author: Frank Liu
+	&gt; Mail: frankliu624@gmail.com
+	&gt; Created Time: 2018年05月04日 星期五 14时53分57秒
+ ************************************************************************/
+
+#include &lt;iostream&gt;
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#define BOUNDARY 5
+using namespace std;
+
+int tasks = 10;
+pthread_mutex_t tasks_mutex; //互斥锁
+pthread_cond_t tasks_cond; //条件信号变量，处理两个线程间的条件关系，当task&gt;5，hello2处理，反之hello1处理，直到task减为0
+
+void* say_hello2(void* args)
+{
+	pthread_t pid = pthread_self(); //获取当前线程id
+	cout &lt;&lt; &quot;[&quot; &lt;&lt; pid &lt;&lt; &quot;] hello in thread &quot; &lt;&lt; *((int*)args) &lt;&lt; endl;
+	bool is_signaled = false; //sign
+	while(1)
+	{
+		pthread_mutex_lock( &amp;tasks_mutex ); //加锁
+		if( tasks &gt; BOUNDARY )
+		{
+			cout &lt;&lt; &quot;[&quot; &lt;&lt; pid &lt;&lt; &quot;] take task: &quot; &lt;&lt; tasks &lt;&lt; &quot; in thread &quot; &lt;&lt; *((int*)args) &lt;&lt; endl;
+			--tasks; //modify
+		}
+		else if( !is_signaled )
+		{
+			cout &lt;&lt; &quot;[&quot; &lt;&lt; pid &lt;&lt; &quot;] pthread_cond_signal in thread &quot; &lt;&lt; *((int*)args) &lt;&lt; endl;
+			pthread_cond_signal( &amp;tasks_cond ); //signal:向hello1发送信号，表明已经&gt;5
+			is_signaled = true; //表明信号已发送，退出此线程
+		}        
+		pthread_mutex_unlock( &amp;tasks_mutex ); //解锁
+		if( tasks == 0 )
+			break;
+	}
+}
+
+void* say_hello1(void* args)
+{
+	pthread_t pid = pthread_self(); //获取当前线程id
+	cout &lt;&lt; &quot;[&quot; &lt;&lt; pid &lt;&lt; &quot;] hello in thread &quot; &lt;&lt; *((int*)args) &lt;&lt; endl;
+	while(1)
+	{
+		pthread_mutex_lock( &amp;tasks_mutex ); //加锁
+		if( tasks &gt; BOUNDARY )
+		{
+			cout &lt;&lt; &quot;[&quot; &lt;&lt; pid &lt;&lt; &quot;] pthread_cond_signal in thread &quot; &lt;&lt; *((int*)args) &lt;&lt; endl;
+			pthread_cond_wait( &amp;tasks_cond, &amp;tasks_mutex ); //wait:等待信号量生效，接收到信号，向hello2发出信号，跳出wait,执行后续
+		}else{
+			cout &lt;&lt; &quot;[&quot; &lt;&lt; pid &lt;&lt; &quot;] take task: &quot; &lt;&lt; tasks &lt;&lt; &quot; in thread &quot; &lt;&lt; *((int*)args) &lt;&lt; endl;
+			--tasks;
+		}
+		pthread_mutex_unlock( &amp;tasks_mutex ); //解锁
+		if( tasks == 0 )
+			break;
+	}
+}
+
+int main()
+{
+	pthread_attr_t attr; //线程属性结构体，创建线程时加入的参数
+	pthread_attr_init( &amp;attr ); //初始化
+	pthread_attr_setdetachstate( &amp;attr, PTHREAD_CREATE_JOINABLE ); //是设置你想要指定线程属性参数，这个参数表明这个线程是可以join连接的，join功能表示主程序可以等线程结束后再去做某事，实现了主程序和线程同步功能
+	pthread_cond_init( &amp;tasks_cond, NULL ); //初始化条件信号量
+	pthread_mutex_init( &amp;tasks_mutex, NULL ); //初始化互斥量
+	pthread_t tid1, tid2; //保存两个线程id
+	int index1 = 1, index2 = 2;
+	int ret = pthread_create( &amp;tid1, &amp;attr, say_hello1, (void*)&amp;index1);
+	if( ret != 0 )
+	{
+		cout &lt;&lt; &quot;pthread_create error:error_code=&quot; &lt;&lt; ret &lt;&lt; endl;
+	}
+	ret = pthread_create( &amp;tid2, &amp;attr, say_hello2, (void*)&amp;index2);
+	if( ret != 0 )
+	{
+		cout &lt;&lt; &quot;pthread_create error:error_code=&quot; &lt;&lt; ret &lt;&lt; endl;
+	}
+	pthread_join( tid1, NULL ); //连接两个线程
+	pthread_join( tid2, NULL );
+	pthread_attr_destroy( &amp;attr ); //释放内存
+	pthread_mutex_destroy( &amp;tasks_mutex ); //注销锁
+	pthread_cond_destroy( &amp;tasks_cond ); //正常退出
+
+	return 0;
+}
+</code></pre>
+
+<p>[运行结果6]：</p>
+
+<p>先在线程2中执行say_hello2，再跳转到线程1中执行say_hello1，直到tasks减到0为止。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683011/githubio/C-img/pthread_test6.png" alt="pthread_test6" /></p>
+
+<h2 id="2-c-11中的多线程技术">2 C++11中的多线程技术</h2>
+
+<p>C++11 新标准中引入了四个头文件来支持多线程编程，他们分别是 <atomic> ,<thread>,<mutex>,<condition_variable>和<future>。</p>
+
+<p><code>&lt;atomic&gt;</code>：提供原子操作功能，该头文主要声明了两个类, std::atomic 和 std::atomic_flag，另外还声明了一套 C 风格的原子类型和与 C 兼容的原子操作的函数。</p>
+
+<p><code>&lt;thread&gt;</code>：线程模型封装，该头文件主要声明了 std::thread 类，另外 std::this_thread 命名空间也在该头文件中。</p>
+
+<p><code>&lt;mutex&gt;</code>：互斥量封装，该头文件主要声明了与互斥量(mutex)相关的类，包括 std::mutex 系列类，std::lock_guard, std::unique_lock, 以及其他的类型和函数。</p>
+
+<p><code>&lt;condition_variable&gt;</code>：条件变量，该头文件主要声明了与条件变量相关的类，包括 std::condition_variable 和 std::condition_variable_any。</p>
+
+<p><code>&lt;future&gt;</code>：实现了对指定数据提供者提供的数据进行异步访问的机制。该头文件主要声明了 std::promise, std::package_task 两个 Provider 类，以及 std::future 和 std::shared_future 两个 Future 类，另外还有一些与之相关的类型和函数，std::async() 函数就声明在此头文件中。</p>
+
+<h3 id="注意事项">注意事项</h3>
+
+<ol>
+<li>若线程调用到的函数在一个类中，则必须将该函数声明为静态函数函数，因为静态成员函数属于静态全局区，线程可以共享这个区域，故可以各自调用。</li>
+<li>代码中如果没有pthread_join主线程会很快结束从而使整个进程结束，从而使创建的线程没有机会开始执行就结束了。加入pthread_join后，主线程会一直等待直到等待的线程结束自己才结束，使创建的线程有机会执行。</li>
+<li>线程创建时属性参数的设置pthread_attr_t及join功能的使用，线程的属性由结构体pthread_attr_t进行管理。</li>
+</ol>
+
+<h2 id="3-c-使用thread类多线程编程">3 C++使用thread类多线程编程</h2>
+
+<h3 id="1-thread类">(1) thread类</h3>
+
+<p>C++11中引入了一个用于多线程操作的thread类，简单多线程示例：</p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;unistd.h&gt;
+using namespace std;
+
+void thread01()
+{
+    for(int i=0; i &lt; 5; ++i)
+    {
+        cout &lt;&lt; &quot;Thread 01 is working!&quot; &lt;&lt;endl;
+        sleep(1);
+    }
+}
+
+void thread02()
+{
+    for(int i=0; i &lt; 5; ++i)
+    {
+        cout &lt;&lt; &quot;Thread 02 is working!&quot; &lt;&lt;endl;
+        sleep(1);
+    }
+}
+
+int main()
+{
+    thread task01(thread01);
+    thread task02(thread02);
+    task01.join();
+    task02.join();
+    for(int i=0; i &lt; 5; ++i)
+    {
+        cout &lt;&lt; &quot;Main thread is working.&quot; &lt;&lt;endl;
+        sleep(1);
+    }
+
+    return 0;
+}
+</code></pre>
+
+<p>[运行结果]：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683012/githubio/C-img/thread_ex1.png" alt="thread_ex1" /></p>
+
+<h3 id="2-detach">(2) detach</h3>
+
+<p>两个子线程并行执行，join函数会阻塞主流程，所以子线程都执行完成之后才继续执行主线程。可以使用detach将子线程从主流程中分离，独立运行，不会阻塞主线程：
+&gt; task01.detach();
+&gt; task02.detach();
+[运行结果]：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683011/githubio/C-img/thread_ex2.png" alt="thread_ex2" />
+使用detach的主线程和两个子线程并行执行。</p>
+
+<h3 id="3-带参子线程">(3) 带参子线程</h3>
+
+<p>函数和上面类似，只是带参，调用方式如下：（从略）
+&gt; thread task01(thread01, 5);  //带参数子线程</p>
+
+<h3 id="4-多线程数据竞争-线程同步">(4) 多线程数据竞争——线程同步</h3>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683013/githubio/C-img/thread_ex3.png" alt="thread_ex3" /></p>
+
+<p>多线程对同一数据操作时，会出现两个问题，一是有很多变量被重复输出了，而有的变量没有被输出；二是正常情况下每个线程输出的数据后应该紧跟一个换行符，但这里大部分却是另一个线程的输出。</p>
+
+<p>这是由于第一个线程对变量操作的过程中，第二个线程也对同一个变量进行各操作，导致第一个线程处理完后的输出有可能是线程二操作的结果。针对这种数据竞争的情况，可以使用线程互斥对象mutex保持数据同步。
+mutex类的使用需要包含头文件mutex：</p>
+
+<pre><code class="language-c++">#include &lt;mutex&gt;
+mutex mu;  //线程互斥对象
+int num = 100;  //全局变量
+
+void thread01()
+{
+    while(num &gt; 0)
+    {
+    	mu.lock();
+    	cout &lt;&lt; num &lt;&lt;endl;
+    	--num;
+    	sleep(1);
+    	mu.unlock();
+    }
+}
+</code></pre>
+
+<p>[mutex运行结果]：
+多线程中加入mutex互斥对象之后输出正常：</p>
+
+<p>![thread_ex4]()
+&gt; 当然，本文作者一直在Linux平台开发，对Windows恶心透了，没有对win32下的C++多线程同步进行讲解，读者可以自行参考:
+&gt; <a href="https://blog.csdn.net/s_lisheng/article/details/74278765">C++线程同步的四种方式(Windows)</a>
+&gt; 在WIN32中，同步机制主要有以下几种：
+（1）事件(Event);
+（2）信号量(semaphore);
+（3）互斥量(mutex);
+（4）临界区(Critical section)。</p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/" data-toggle="tooltip" data-placement="top" title="文艺程序员">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-05-06-ipc-linux%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/" data-toggle="tooltip" data-placement="top" title="Linux进程间通信（IPC）机制总结"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-04-30-alg-kmp/">字符串朴素匹配算法和KMP</a></li>
+                    
+                    <li><a href="/posts/frank_model/"></a></li>
+                    
+                    <li><a href="/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">C&#43;&#43;内存管理（内存模型）</a></li>
+                    
+                    <li><a href="/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/">C&#43;&#43;的TCP通信（多线程）</a></li>
+                    
+                    <li><a href="/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/">Linux 常用命令基础</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri May 4, 2018</h4>
+    </section>
+    <h5 id="wc">4700 Words|Read in about 10 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/linux/">Linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/thread/">thread</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/mutex/">mutex</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/sync/">sync</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/jimmysongio" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io/">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

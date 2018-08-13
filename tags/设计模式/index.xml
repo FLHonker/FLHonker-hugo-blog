@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on Frank Liu</title>
+    <link>https://flhonker.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on Frank Liu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>frankliu624@gmail.com (Frank Liu(flhonker))</managingEditor>
+    <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
+    <lastBuildDate>Sun, 22 Apr 2018 18:45:07 +0800</lastBuildDate>
+    
+	<atom:link href="https://flhonker.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C&#43;&#43;单例模式实现</title>
+      <link>https://flhonker.github.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 22 Apr 2018 18:45:07 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>单例模式实现 参考: C++的单例模式与线程目录安全单例模式（懒汉/饿汉） (1) 教科书里的单例模式(懒汉式) 我们都很清楚一个简单的单例模式该怎样去实</description>
+    </item>
+    
+  </channel>
+</rss>

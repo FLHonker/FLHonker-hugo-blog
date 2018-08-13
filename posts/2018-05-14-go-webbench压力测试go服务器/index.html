@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> 使用webbench压力测试Go服务器 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="使用webbench压力测试Go服务器" />
+  <meta name="twitter:title" content="使用webbench压力测试Go服务器" />
+  <meta name="description" content="使用webbench压力测试Go服务器 1. Webbench Webbench是Radim Kolar在1997年写的一个在Linux下使用的非常简单的网站压测工">
+  <meta property="og:description" content="使用webbench压力测试Go服务器 1. Webbench Webbench是Radim Kolar在1997年写的一个在Linux下使用的非常简单的网站压测工">
+  <meta name="twitter:description" content="使用webbench压力测试Go服务器 1. Webbench Webbench是Radim Kolar在1997年写的一个在Linux下使用的非常简单的网站压测工">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io/">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/microservices">Microservices</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/devops">Devops</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/github">Github</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/serverless">Serverless</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/service-mesh">Service Mesh</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/kubernetes-handbook">Kubernetes handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/docker-handbook">Docker handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/hugo-handbook">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/migrating-to-cloud-native-application-architectures">Migrating to Cloud Native</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster">k8s all-in-one</a>
+                
+                
+                  <a href="https://flhonker.github.io/spark-on-k8s">Spark on kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/yarn-on-docker">Magpie</a>
+                
+                
+                  <a href="https://flhonker.github.io/cheatsheets">Cheatsheets</a>
+                
+                
+                  <a href="https://github.com/rootsongjc/beautifulhugo">Beautifulhugo</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">使用webbench压力测试Go服务器</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon May 14, 2018</h4>
+    </section>
+    <h5 id="wc">1500 Words|Read in about 3 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/webbench/">webbench</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/go/">Go</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/server/">server</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#使用webbench压力测试go服务器">使用webbench压力测试Go服务器</a>
+<ul>
+<li><a href="#1-webbench">1. Webbench</a>
+<ul>
+<li><a href="#依赖">依赖</a></li>
+<li><a href="#安装">安装</a></li>
+<li><a href="#使用方式">使用方式</a></li>
+</ul></li>
+<li><a href="#2-使用webbench测试迷你go服务器">2. 使用webbench测试迷你Go服务器</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="使用webbench压力测试go服务器">使用webbench压力测试Go服务器</h1>
+
+<h2 id="1-webbench">1. Webbench</h2>
+
+<p>Webbench是Radim Kolar在1997年写的一个在Linux下使用的非常简单的网站压测工具。它使用fork()模拟多个客户端同时访问我们设定的URL，测试网站在压力下工作的性能，最多可以模拟3万个并发连接去测试网站的负载能力。官网地址:<a href="http://home.tiscali.cz/~cz210552/webbench.html">http://home.tiscali.cz/~cz210552/webbench.html</a></p>
+
+<h3 id="依赖">依赖</h3>
+
+<p>ctags</p>
+
+<h3 id="安装">安装</h3>
+
+<p>Webbench是一个命令行工具，需要自行下载源码编译安装，
+源码地址：
+[1]github: <a href="https://github.com/EZLippi/WebBench.git">https://github.com/EZLippi/WebBench.git</a>
+[2]<a href="http://www.ha97.com/code/webbench-1.5.tar.gz">http://www.ha97.com/code/webbench-1.5.tar.gz</a></p>
+
+<p>安装命令：</p>
+
+<pre><code class="language-bash">wget http://www.ha97.com/code/webbench-1.5.tar.gz
+tar zxvf webbench-1.5.tar.gz
+cd webbench-1.5
+make
+make install
+</code></pre>
+
+<h3 id="使用方式">使用方式</h3>
+
+<p>1.最常用命令：</p>
+
+<blockquote>
+<p>webbench -c 1000 -t 60 http:/127.0.0.1/phpinfo.php
+webbench -c 并发数 -t 运行测试时间 URL</p>
+</blockquote>
+
+<p>2.其他命令：
+可以根据<code>webbench -h</code>查看，
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1526265119/githubio/go/goServer/webbench-h.png" alt="webbench-h" /></p>
+
+<p>3.命令行选项：</p>
+
+<table>
+<thead>
+<tr>
+<th>短参</th>
+<th align="center">长参数</th>
+<th align="right">作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-f</td>
+<td align="center">&ndash;force</td>
+<td align="right">不需要等待服务器响应</td>
+</tr>
+
+<tr>
+<td>-r</td>
+<td align="center">&ndash;reload</td>
+<td align="right">发送重新加载请求</td>
+</tr>
+
+<tr>
+<td>-t</td>
+<td align="center">&ndash;time <sec></td>
+<td align="right">运行多长时间，单位：秒&rdquo;</td>
+</tr>
+
+<tr>
+<td>-p</td>
+<td align="center">&ndash;proxy <a href="server:port">server:port</a></td>
+<td align="right">使用代理服务器来发送请求</td>
+</tr>
+
+<tr>
+<td>-c</td>
+<td align="center">&ndash;clients <n></td>
+<td align="right">创建多少个客户端，默认1个&rdquo;</td>
+</tr>
+
+<tr>
+<td>-9</td>
+<td align="center">&ndash;http09</td>
+<td align="right">使用 HTTP/0.9</td>
+</tr>
+
+<tr>
+<td>-1</td>
+<td align="center">&ndash;http10</td>
+<td align="right">使用 HTTP/1.0 协议</td>
+</tr>
+
+<tr>
+<td>-2</td>
+<td align="center">&ndash;http11</td>
+<td align="right">使用 HTTP/1.1 协议</td>
+</tr>
+
+<tr>
+<td></td>
+<td align="center">&ndash;get</td>
+<td align="right">使用 GET请求方法</td>
+</tr>
+
+<tr>
+<td></td>
+<td align="center">&ndash;head</td>
+<td align="right">使用 HEAD请求方法</td>
+</tr>
+
+<tr>
+<td></td>
+<td align="center">&ndash;options</td>
+<td align="right">使用 OPTIONS请求方法</td>
+</tr>
+
+<tr>
+<td></td>
+<td align="center">&ndash;trace</td>
+<td align="right">使用 TRACE请求方法</td>
+</tr>
+
+<tr>
+<td>-?/-h</td>
+<td align="center">&ndash;help</td>
+<td align="right">打印帮助信息</td>
+</tr>
+
+<tr>
+<td>-V</td>
+<td align="center">&ndash;version</td>
+<td align="right">显示版本号</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="2-使用webbench测试迷你go服务器">2. 使用webbench测试迷你Go服务器</h2>
+
+<p>我们使用Webbench对上一节100行代码写的迷你Go服务器上运行的&rdquo;模拟购物网站&rdquo;的首页index.html进行压力测试。goServer和webbench都是运行在以下环境中：
+&gt; CPU: Intel Core-i5 4x2.2GHz
+&gt; memory: 8GB
+&gt; OS: Ubuntu 18.04 LTS
+&gt; WLAN: 50M campus-wlan</p>
+
+<p>(1) 把<code>goServer</code>程序文件放到web的根目录下，命令行中运行服务。</p>
+
+<p>(2) 先开2000 clinets运行20s试探一下。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526264089/githubio/go/goServer/goSrv-webbench1.png" alt="2000clients" />
+可以看到：
+每秒钟响应请求数：Speed=349806 pages/min，每秒钟传输数据量81409488 bytes/sec.
+请求数Requests=116602 succeed,0 failed.   毫无压力。</p>
+
+<p>(3)加到4000 clients,每秒钟响应数提升至359298 pages/min，但是每秒钟传输量下降至77539696，请求数Requests有所增加119766 succeed， 0failed。再大胆加到8000 clients，每秒钟响应数提升至361326 pages/min，每秒钟传输量下降至7700080，请求成功数增加至120442，仍未出现failed。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526264089/githubio/go/goServer/goSrv-webbench3.png" alt="4000clients" /></p>
+
+<p>(5) 那么，加到10000 clients呢？
+每秒钟响应请求数：Speed=357678 pages/min，每秒钟传输数据量仍下降：74558376 bytes/sec.
+请求数相比8000 clients下降但仍未出翔failed：Requests=119226 succeed,0 failed。此时，测试机器应该已经达到了并发访问瓶颈，因为Request有所减少，可能是fork()线程数有限，并且出现资源争夺。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526264088/githubio/go/goServer/goSrv-webbench5.png" alt="10000clients" /></p>
+
+<p>(6) 再大胆一点，加到12000 clients。
+完了，<code>problem forking worker no. 10356</code>，测试机器已经撑不住了，无法获取到耕读资源用于访问测试。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526264083/githubio/go/goServer/goSrv-webbench6.png" alt="12000clients" /></p>
+
+<p>服务器端日志显示开始出现“Accept error”：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526264084/githubio/go/goServer/goSrv-webbench7.png" alt="server" /></p>
+
+<p>然而，后面我再把clients数降到10001、10000，都是同样获取不到足够资源了，使用<code>ps aux |grep webbench</code>一查进程，全是后台的webbench进程!也许是僵尸进程，我也没看清楚，因为后面再也不敢开到12000 clients了，一开我的ubuntu就直接黑屏退出到注销后的登录界面，应该是本用户fork过多资源被清理了。好了，方式就到这里吧，我么主要是熟悉一下webebnch的使用方式和增量试探式的测试方法，另外顺便检验一下我们的迷你Go服务器。怎么样，还可以吧，没有自己写任何多线程的处理代码，内置高并发帮你轻松实现1w+的并发访问量。要知道我之前用的双核1GHz，1GB内存的阿里云CentOS7运行Tomcat8.0才达到1500-2000的并发量，逼着差远了。</p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-toggle="tooltip" data-placement="top" title="迷你Go服务器">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-toggle="tooltip" data-placement="top" title="bochs环境搭建"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/">迷你Go服务器</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon May 14, 2018</h4>
+    </section>
+    <h5 id="wc">1500 Words|Read in about 3 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/webbench/">webbench</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/go/">Go</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/server/">server</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/jimmysongio" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io/">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

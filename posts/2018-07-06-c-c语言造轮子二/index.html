@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> C语言造轮子（二）——CMake打包 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="C语言造轮子（二）——CMake打包" />
+  <meta name="twitter:title" content="C语言造轮子（二）——CMake打包" />
+  <meta name="description" content="C语言造轮子（二）——CMake打包 “爱而得其人，为至幸；爱而失其人，为次幸。”——《jojo的奇妙冒险》 这句话饱含历经重重磨难却最终还是不">
+  <meta property="og:description" content="C语言造轮子（二）——CMake打包 “爱而得其人，为至幸；爱而失其人，为次幸。”——《jojo的奇妙冒险》 这句话饱含历经重重磨难却最终还是不">
+  <meta name="twitter:description" content="C语言造轮子（二）——CMake打包 “爱而得其人，为至幸；爱而失其人，为次幸。”——《jojo的奇妙冒险》 这句话饱含历经重重磨难却最终还是不">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io/">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/microservices">Microservices</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/devops">Devops</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/github">Github</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/serverless">Serverless</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/service-mesh">Service Mesh</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/kubernetes-handbook">Kubernetes handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/docker-handbook">Docker handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/hugo-handbook">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/migrating-to-cloud-native-application-architectures">Migrating to Cloud Native</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster">k8s all-in-one</a>
+                
+                
+                  <a href="https://flhonker.github.io/spark-on-k8s">Spark on kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/yarn-on-docker">Magpie</a>
+                
+                
+                  <a href="https://flhonker.github.io/cheatsheets">Cheatsheets</a>
+                
+                
+                  <a href="https://github.com/rootsongjc/beautifulhugo">Beautifulhugo</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">C语言造轮子（二）——CMake打包</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Jul 6, 2018</h4>
+    </section>
+    <h5 id="wc">3300 Words|Read in about 7 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/c/">C</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/cmake/">CMake</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#c语言造轮子-二-cmake打包">C语言造轮子（二）——CMake打包</a></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="c语言造轮子-二-cmake打包">C语言造轮子（二）——CMake打包</h1>
+
+<p>“爱而得其人，为至幸；爱而失其人，为次幸。”——《jojo的奇妙冒险》</p>
+
+<p>这句话饱含历经重重磨难却最终还是不得不向命运妥协的美。犹如肉身即将灰飞烟灭也要给这个时代留下证明它确凿地存在过的印记。一如SNAKE脸上那性感的刀疤，证明过他也曾向命运倒塌的方向伸出紧握的拳头“老铁，救救你爹”。慢慢长大，我们会了解到不是卖力哭泣就一定会有人来为你剥糖，世上有太多的即便努力也无能为力，比如即将倒下的墙，比如顺流而下的溪流，比如那个你一直苦苦追求而不得的女孩，比如在一线城市买个卧榻之所，比如那天一顿猛如虎的操作却依然在河道怒送一血，比如学C语言能不能找到工作，又比如像我这种智障怎么都学不会automake……好在这个世界的精彩和多元就在于你总是有更多的选择——cmake。在介绍cmake之前我们还是来以上一篇博客中那个“你姥姥家的锅铲”（gtlib）为例，回顾一下软件编译构建的过程。</p>
+
+<p>gtlib库很小，只有一个gtstack的接口和实现。你可以要求调用方背着你到处跑，把gtlib源码文件直接copy到调用方的工程目录中去。随着“你姥姥的锅铲”规模的逐渐膨胀和作为一个有服务意识的serviceboy，我们不能加重调用方的代码管理负担和编译负担吧？既然作为轮子要提供“令人愉悦的调用”方式，我们不妨先来体会一下作为调用方我们是如何调用轮子的。</p>
+
+<pre><code class="language-c">//testmath.c
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main(){
+  float s = sin(0.666); //sin函数在math库中
+  printf(&quot;result:%f\n&quot;, s);
+  return 0;
+}
+</code></pre>
+
+<p>如果直接编译会发生:</p>
+
+<pre><code>$/&gt; clang testmath.c 
+/tmp/testmath-3d24d8.o：在函数‘main’中：
+testmath.c:(.text+0x26)：对‘sin’未定义的引用
+</code></pre>
+
+<p>由于引入了math.h库，所以编译的时候需要告诉编译器去哪找math的头文件（接口）和源文件（实现）。那有人可能会问了，我写的程序里基本都有include <stdio.h>（用的libc库），我为什么编译不需要加任何参数，包括有些gcc编译器连math库都不需要参数？不需要加编译参数说明编译器默认把这个路径加进去了或者干脆是这个编译器自己就用到了这个库，所以它知道去哪找这些库。编译这个文件完整的命令应该是</p>
+
+<blockquote>
+<p>clang testmath.c -I/usr/include -L/usr/lib -lm</p>
+</blockquote>
+
+<p>-I（大写的i）是告诉编译器头文件的目录，-L是告诉编译器源码文件的目录，-l（小写的L）是告诉编译器使用libm.so动态库文件。而像math库这种方式基本上就是Linux里面最常见的库的调用方式了。所以我们期待gtlib也是以这种方式</p>
+
+<blockquote>
+<p>clang test.c -I/usr/include -L/usr/lib -lgt</p>
+</blockquote>
+
+<p>所以接下来，我们只需要编译一个so共享库文件出来，然后把头文件扔进/usr/include目录就好了。是的，单纯就调用这个动作来说，没有问题，问题出在调用方拿到源码要怎么知道，哦，卧槽，我首先要编译出so库文件然后再把so扔到/usr/lib里面再把.h文件扔到/usr/include里呀。这种库也太没有“服务意识”了吧，我常说，我们造轮子的一定要有服务意识，这么搞调用方还要对着你长长的编译文档来step by step。会吐的。那么业界通行的方式是哪些？如果你安装过开源软件，那么90%以上的套路是这样，首先是解压，然后进入目录，发现如果是存在Makefile文件，那么你连文档都不用看，直接使用</p>
+
+<pre><code>$ make
+$ sudo make install
+</code></pre>
+
+<p>两条命令解决战斗，如果里面有什么Makefile.am，configure.sh，那么就多加一条</p>
+
+<pre><code>$ ./configure
+$ make
+$ sudo make install
+</code></pre>
+
+<p>但是如果里面有CMakeLists.txt，套路就是建立一个build目录，然后3条命令</p>
+
+<pre><code>$ mkdir build
+$ cd build
+$ cmake ..
+$  make
+$ sudo make install
+</code></pre>
+
+<p>第一种方式呢，基本上就是手写Makefile的玩法，也有一小部分是工具生成。而Makefile是什么呢，基本上是一种描述编译打包安装方式的语言，也是Linux通行的标准。即使你把各种gcc编译，链接，创建目录，拖动文件等等操作写成shell脚本也不如它方便（因为它会比对判断那些文件需要重新编译，从而加速编译过程），但是如果你是个tab就一定得4个空格的unix原教旨主义强迫症晚期患者，那你怕是写不了Makefile，因为它里面在一些地方只认tab，一部分地方只认空格。（来吧，异教徒，点火吧）</p>
+
+<p>第二种方式呢，就是autotools工具集生成的Makefile的方式，由于makefile语法还是过于复杂了，特别是在需要跨平台编译，需要写大量的脚本if else来判断当前平台以选择一些合适的变量。于是这两个刚需催生了自动写Makefile的工具automake，那有没有自动写automake的呢？有的，autoconfig，那有没有自动写autoconfig的呢？有的autoscan，那有没有。。。。。。有NMLGB，像我这种智障表示永远也学不会autotools工具集了。</p>
+
+<p>第三种方式，就是gtlib主要采纳的方案——cmake。这种方式相对于前两种，需要额外安装cmake工具，由cmake工具生成makefile。cmake的语法简练精确，跨平台。</p>
+
+<p>好，确认了cmake，首先确保机器上安装了cmake</p>
+
+<blockquote>
+<p>$ sudo pacman -S cmake</p>
+</blockquote>
+
+<p>项目根目录下编辑CMakeLists.txt，通常我们需要指定编译此工程最低的cmake版本</p>
+
+<blockquote>
+<p>cmake_minimum_required(VERSION 3.7)</p>
+
+<p>接下来我们可以干预一下cmake的install目录前缀因为它默认安装目录前缀是“/usr/local/”，我们需要让它指向/usr，也可以安装到/usr/local里面，不过在执行的时候某些linux没有把/usr/local/lib加入到LDPATH变量中来，致使即便能编译通过却无法执行，找不到依赖，你可以手动把这个目录加进来，确保程序在执行的时候能够找到so库，怎么加呢？使用sudo编辑/etc/ld.so.conf，另起一行写入/usr/local/lib，之后再执行sudo ldconfig -v刷新ld依赖路径。</p>
+
+<p>set(CMAKE_INSTALL_PREFIX /usr)</p>
+</blockquote>
+
+<p>设置工程名称（gtlib）以及属性（版本：0.0.1，语言：C）</p>
+
+<blockquote>
+<p>project(gtlib VERSION 0.0.1 LANGUAGES C)</p>
+</blockquote>
+
+<p>then，添加一个编译目标，把哪些文件编译成STATIC | SHARED | MODULE（MODULE是mac系统的概念）</p>
+
+<pre><code>add_library(${PROJECT_NAME} SHARED
+        src/gtstack.c
+    )
+</code></pre>
+
+<p>${PROJECT_NAME}在上一条语句中已经定义过了，值得一说的是cmake语法是大小写不敏感的，所以这里大写仅仅是环境变量的习惯性写法。再然后设置编译目标的属性</p>
+
+<pre><code>set_target_properties(${PROJECT_NAME} PROPERTIES
+        SOVERSION 0.0.1
+        PUBLIC_HEADER &quot;include/gtstack.h;include/gttypes.h&quot;
+	)
+</code></pre>
+
+<p>SOVERSION代表生成so的版本，如果你有关注过你系统的/usr/lib或者/usr/local/lib，可以看到许多so库后面跟着版本。比如 libxxx.so.0.1 实际上还会有一个libxxx.so的link，我们在使用这个库的时候用的是那个link，未来升级库文件，只需要改动这个link到libxxx.so.0.2就好了，是不是很方便的做法呢？最后就是把编译好的so库和头文件安装到对应的目录中去了</p>
+
+<pre><code>install(TARGETS gtlib
+        LIBRARY DESTINATION lib
+        PUBLIC_HEADER DESTINATION include/gt
+    )
+</code></pre>
+
+<p>由于已经设置过安装目录前缀，这里的lib就代表/usr/lib，这里的include/gt就代表/usr/include/gt。然后用开头介绍过的cmake安装套路，安装一遍，如无意外，我们就可以在/usr/include发现gt目录并且里面是我们的头文件，/usr/lib里面还有libgtlib.so.0.0.1和libgtlib.so的link。如果库的安装正确无误的话。我们就可以在任意地方写一个测试代码来测试一下。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1530962450/githubio/C-img/Cwheel/Cwheel_part2-gtlib.png" alt="test gtlib" /></p>
+
+<p>且看，Vim已经顺利提示出来了。注意include的时候用尖括号而非引号，这就说明的确是使用的系统库中的头文件。</p>
+
+<pre><code class="language-c">// main.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;gt/gtstack.h&gt;
+
+int main(){
+    GtStack* stack = gt_stack_create(10);
+    gt_stack_push(stack, &quot;顺丰&quot;);
+    gt_stack_push(stack, &quot;韵达&quot;);
+    gt_stack_push(stack, &quot;申通&quot;);
+    gt_stack_push(stack, &quot;圆通&quot;);
+    char* p;
+    int err;
+    while((err=gt_stack_pop(stack, (void**)&amp;p))==GT_OK){
+        printf(&quot;pop:%s\n&quot;, p);
+    }
+    gt_stack_destroy(&amp;stack);
+    return EXIT_SUCCESS;
+}
+</code></pre>
+
+<p>编译：</p>
+
+<blockquote>
+<p>clang main.c -I/usr/include -L/usr/lib -lgtlib</p>
+</blockquote>
+
+<p>由于/usr/include 和/usr/lib是系统默认侦察路径，所以可以省略，只有一个-lgtlib参数就可以了。</p>
+
+<pre><code>$./a.out
+pop:圆通
+pop:申通
+pop:韵达
+pop:顺丰
+$ 
+</code></pre>
+
+<p>做到这里已经可以，但是有追求的serviceboy可能会想提供一个pkgconfig文件来描述编译参数。在工程根目录下编辑 <code>gtlib.pc.in</code>：</p>
+
+<pre><code>libdir=&quot;@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@&quot;
+includedir=&quot;@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_INCLUDEDIR@gt&quot;
+
+Name: @PROJECT_NAME@
+Description: @PROJECT_DESCRIPTION@
+Version: @PROJECT_VERSION@
+
+Libs: -L${libdir} -lgtlib
+Cflags: -I${includedir}
+</code></pre>
+
+<p>然后在CMakeLists.txt加入:</p>
+
+<pre><code>configure_file(gtlib.pc.in gtlib.pc @ONLY)
+install(FILES ${CMAKE_BINARY_DIR}/gtlib.pc
+        DESTINATION lib/pkgconfig)
+</code></pre>
+
+<p>重新安装测试一下看看gtlib.pc是否已经在/usr/lib/pkconfig或者/usr/local/lib/pkgconfig下。然后使用pkg-config命令检查一下gtlib的编译参数：</p>
+
+<pre><code>$ pkg-config --cflags --libs gtlib
+-I/usr/include -L/usr/lib -lgtlib
+$ clang main.c `pkg-config --cflags --libs gtlib`
+</code></pre>
+
+<p>某些系统可能没有把/usr/local/lib/pkgconfig路径加入到 PKG_CONFIG_PATH 环境变量中来，需要手动export一下，可以直接把这句话写到~/.zshrc或者/etc/profile里面去。</p>
+
+<p>大功告成了。属于我们自己的编译链已经打造好了，接下来总算可以安安静静的写代码了。</p>
+
+<p>附源码：<strong><a href="https://github.com/FLHonker/Cwheel/tree/part_2">Source part_2</a></strong></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/" data-toggle="tooltip" data-placement="top" title="用Go打造区块链（4）—— 交易记录（一）">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/" data-toggle="tooltip" data-placement="top" title="C语言造轮子（三）——Trie树及应用"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/">C语言造轮子（一）——stack</a></li>
+                    
+                    <li><a href="/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">面试精选：链表问题集锦</a></li>
+                    
+                    <li><a href="/posts/2018-04-30-alg-kmp/">字符串朴素匹配算法和KMP</a></li>
+                    
+                    <li><a href="/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">八大排序算法</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Jul 6, 2018</h4>
+    </section>
+    <h5 id="wc">3300 Words|Read in about 7 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/c/">C</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/cmake/">CMake</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/jimmysongio" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io/">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

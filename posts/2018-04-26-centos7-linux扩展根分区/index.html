@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> CentOS7 分区硬盘扩容 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="CentOS7 分区硬盘扩容" />
+  <meta name="twitter:title" content="CentOS7 分区硬盘扩容" />
+  <meta name="description" content="CentOS7 分区硬盘扩容 Tag：centos7 分区 硬盘扩容 fdisk LVM 运用虚拟机经常会出现硬盘容量不足的情况，在不改变配置的要求下，直接对根目录增加容量。 ce">
+  <meta property="og:description" content="CentOS7 分区硬盘扩容 Tag：centos7 分区 硬盘扩容 fdisk LVM 运用虚拟机经常会出现硬盘容量不足的情况，在不改变配置的要求下，直接对根目录增加容量。 ce">
+  <meta name="twitter:description" content="CentOS7 分区硬盘扩容 Tag：centos7 分区 硬盘扩容 fdisk LVM 运用虚拟机经常会出现硬盘容量不足的情况，在不改变配置的要求下，直接对根目录增加容量。 ce">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io/">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/microservices">Microservices</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/devops">Devops</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/github">Github</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/serverless">Serverless</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/service-mesh">Service Mesh</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/kubernetes-handbook">Kubernetes handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/docker-handbook">Docker handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/hugo-handbook">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/migrating-to-cloud-native-application-architectures">Migrating to Cloud Native</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster">k8s all-in-one</a>
+                
+                
+                  <a href="https://flhonker.github.io/spark-on-k8s">Spark on kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/yarn-on-docker">Magpie</a>
+                
+                
+                  <a href="https://flhonker.github.io/cheatsheets">Cheatsheets</a>
+                
+                
+                  <a href="https://github.com/rootsongjc/beautifulhugo">Beautifulhugo</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">CentOS7 分区硬盘扩容</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Wed Apr 25, 2018</h4>
+    </section>
+    <h5 id="wc">1700 Words|Read in about 4 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/linux/">Linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/centos7/">centos7</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/fdisk/">fdisk</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/lvm/">LVM</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#centos7-分区硬盘扩容">CentOS7 分区硬盘扩容</a>
+<ul>
+<li>
+<ul>
+<li><a href="#1-新加硬盘">1. 新加硬盘</a></li>
+<li><a href="#2-fdisk分区">2. fdisk分区</a></li>
+<li><a href="#3-格式化分区">3. 格式化分区</a></li>
+<li><a href="#4-pvcreate建物理卷">4. pvcreate建物理卷</a></li>
+<li><a href="#5-扩容逻辑卷">5. 扩容逻辑卷</a></li>
+<li><a href="#5-磁盘工具查看扩容">5. 磁盘工具查看扩容</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="centos7-分区硬盘扩容">CentOS7 分区硬盘扩容</h1>
+
+<p>Tag：<code>centos7</code> <code>分区</code> <code>硬盘扩容</code> <code>fdisk</code> <code>LVM</code></p>
+
+<p>运用虚拟机经常会出现硬盘容量不足的情况，在不改变配置的要求下，直接对根目录增加容量。</p>
+
+<p>centos7的默认安装已经把磁盘管理成LVM的卷形式，可以比较容易扩展磁盘容量。但是centos7在拓展文件分区的时候，很多文章用resize2fs命令，就会报错，LVM使用了XFS的分区文件格式，就不能用该命令了。</p>
+
+<p>目前还有很多使用的硬盘是MBR模式，主分区只能有4个。安装的时候用了2个，一个是swap一个是root，分别使用了两个分区。这样就只能分2个，如果对未来的使用不确定，那么扩展的时候，就不要分主分区，而是扩展分区，为了以后可以多次扩展硬盘容量。</p>
+
+<h3 id="1-新加硬盘">1. 新加硬盘</h3>
+
+<p>此处有两种操作,后续步骤一致:
+(1) 首先是在虚拟机的管理界面，扩大硬盘容量，此处省略，启动机器。
+(2) 查看物理机是否有<code>未分配的分区</code>,或者新加硬盘。
+作者采用的时直接使用原来500GB硬盘上未分配的40GB空间进行扩展(当时装双系统预留的空间,本打算还还给windows的,结果windows不兼容xfs格式,就分给CentOS使用吧)。</p>
+
+<p>然后先看看自己的容量:
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1525683025/githubio/fdisk-img/df-h.png" alt="df -h" /></p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683025/githubio/fdisk-img/fdisk-l.png" alt="fdsik -l" /></p>
+
+<h3 id="2-fdisk分区">2. fdisk分区</h3>
+
+<p>(1) 选择对硬盘sda进行分区:
+&gt; fdisk /dev/sda</p>
+
+<p>(2) 使用n命令;
+(3) 会让选第几分区，一般顺序排，就是11(因为我的硬盘之前已经有10个分区了)。然后根据提示创建10G的分区。
+&gt; 此处还可能会让选择新建主分区or逻辑分区：
+&gt; Partition type:
+   p   primary (2 primary, 0 extended, 1 free)
+   e   extended
+   如果就扩展一次的话，用p选项，如果以后可能多次扩容，选e，我们这里为了简单用了p，建立了一个主分区，然后可以用p命令查看结果。作者的硬盘已经建立了4个主分区，此处就默认只能新建逻辑分区了。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683027/githubio/fdisk-img/new-disk.png" alt="fdsik" /></p>
+
+<p>创建分区后，用<code>w</code>命令保存。</p>
+
+<h3 id="3-格式化分区">3. 格式化分区</h3>
+
+<p>使用<code>mkfs.xfs</code>对分区sda11进行格式化，由于作者的root和home分区都是使用的最新的xfs格式，因此此处也格式化为xfs格式；如果你的是ext4，那就格式化为ext4。命令都差不多，都是mkfs.后面加格式：<code>mkfs.[xfs/ext4]</code>。</p>
+
+<blockquote>
+<p>mkfs.sfx /dev/sda11</p>
+</blockquote>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683027/githubio/fdisk-img/mkfs-xfs.png" alt="mkfs.xfs" /></p>
+
+<h3 id="4-pvcreate建物理卷">4. pvcreate建物理卷</h3>
+
+<p>在sda11上创建物理卷：
+&gt; pvcreate /dev/sda11</p>
+
+<p>查看物理卷状态：
+&gt; vgs</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683027/githubio/fdisk-img/pvcreate.png" alt="pvcrate" /></p>
+
+<p>显示一下看看物理卷：
+&gt; vgdisplay</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683028/githubio/fdisk-img/vgdisplay.png" alt="vgdisplay" /></p>
+
+<h3 id="5-扩容逻辑卷">5. 扩容逻辑卷</h3>
+
+<p>把新做的sda11分区加入卷，从上面显示 VG Name        centos，卷名是centos：</p>
+
+<blockquote>
+<p>vgextend centos /dev/sda11</p>
+</blockquote>
+
+<p>再查看一下：
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1525683028/githubio/fdisk-img/vgextend.png" alt="vdextend" /></p>
+
+<p>发现centos物理卷组已经从67.75GB扩展到77.75G。</p>
+
+<p>查看一下逻辑区的情况：
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1525683025/githubio/fdisk-img/lvdisplay.png" alt="lvdisplay" />
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1525683027/githubio/fdisk-img/lvdisplay-2.png" alt="lvdisplay" /></p>
+
+<p>发现有3个逻辑卷组：root、home和swap，作者想要对home进行扩展。
+输入扩展卷组的大小、路径（就是上面LV Path                /dev/centos/home），这里有两种命令：
+* &gt; lvextend -L +9.96G /dev/centos/home
+* &gt; lvextend -l +100%FREE /dev/centos/home</p>
+
+<p>一个是按大小，一个是按比例，作者采用按比例将10GB的空间全部给home扩容。另外，使用<code>+10G</code>的话可能会失败，毕竟着一块空间创建物理卷组后就不会达到10G了，可以使用接近于10G的小数表示。
+有些文章里用的是<code>/dev/mapper/centos-home</code>，其实都是指向home逻辑卷，都可以。因为我们通过<code>df -h</code>查看分区的时候就是显示的<code>/dev/mapper/centos-home</code>。</p>
+
+<p>再查看一下逻辑区的情况：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683027/githubio/fdisk-img/lvdisplay-3.png" alt="lvdisplay-3" />
+LV Size已经从30.00GB扩展到40.00GB。</p>
+
+<p>下面就是扩展文件系统的尺寸，因为这时候用<code>df -h</code>是看不到变大的。</p>
+
+<p>网上文章大多用了<code>resize2fs</code>，很遗憾，会显示：
+&gt; resize2fs: Bad magic number in super-block</p>
+
+<p>这个命令已经不适应新的系统要求了,应该使用：</p>
+
+<blockquote>
+<p>xfs_growfs  /dev/centos/home</p>
+</blockquote>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1525683028/githubio/fdisk-img/xfs_growfs.png" alt="xfs_growfs" />
+显示的最后一行:</p>
+
+<blockquote>
+<p>data blocks changed from xxxxxx to xxxxxx</p>
+</blockquote>
+
+<p>表明已经扩展了。
+这时候再用df -h就可以看见容量变大了。</p>
+
+<h3 id="5-磁盘工具查看扩容">5. 磁盘工具查看扩容</h3>
+
+<p>使用CentOS7的磁盘管理工具可视化查看分区情况，可以看到11GB的分区11（之前使用fdisk创建的是10G，是按1GB=1024KB，这个磁盘工具是按1GB=1000KB，所以会是11GB,计算法嗯是的差别）。而且侧边栏显示有一个43GB的块设备，之前是和centos-root一样，都是32GB的，现在扩容了。
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1525683025/githubio/fdisk-img/diskplay.png" alt="diskplay" /></p>
+
+<p><strong>至此，一个完整的Linux分区扩容方案交到你的手上，如果不了解Linux的物理卷、逻辑卷、卷组的概念，请google一下。全程所有操作均在root权限下进行，全程高能！请谨慎操作！本教程有可能针对不同机器、不同Linux发行版本有差异，欢迎补充改正，如根据本教程操作个人计算机进行分区前误请做好数据备份，出现任何严重失误均由操作着个人承担。</strong></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" data-toggle="tooltip" data-placement="top" title="C&#43;&#43;运算符重载">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/" data-toggle="tooltip" data-placement="top" title="C&#43;&#43;内存对齐"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Wed Apr 25, 2018</h4>
+    </section>
+    <h5 id="wc">1700 Words|Read in about 4 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/linux/">Linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/centos7/">centos7</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/fdisk/">fdisk</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/lvm/">LVM</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/jimmysongio" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io/">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

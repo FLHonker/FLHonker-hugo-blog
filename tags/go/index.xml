@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Frank Liu</title>
+    <link>https://flhonker.github.io/tags/go/</link>
+    <description>Recent content in Go on Frank Liu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>frankliu624@gmail.com (Frank Liu(flhonker))</managingEditor>
+    <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
+    <lastBuildDate>Fri, 06 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://flhonker.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用Go打造区块链（4）—— 交易记录（一）</title>
+      <link>https://flhonker.github.io/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</link>
+      <pubDate>Fri, 06 Jul 2018 00:00:00 +0000</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</guid>
+      <description>用Go打造区块链（4）——交易记录（一）</description>
+    </item>
+    
+    <item>
+      <title>用Go打造区块链（3）—— 数据存储及命令行（CLI）</title>
+      <link>https://flhonker.github.io/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</link>
+      <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</guid>
+      <description>用Go打造区块链（3）——数据存储及命令行（CLI） 这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学</description>
+    </item>
+    
+    <item>
+      <title>用Go打造区块链（2）—— 工作证明机制（PoW）</title>
+      <link>https://flhonker.github.io/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</link>
+      <pubDate>Wed, 04 Jul 2018 00:00:00 +0000</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</guid>
+      <description>用Go打造区块链（2）——工作证明机制（PoW） 这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学习学</description>
+    </item>
+    
+    <item>
+      <title>用Go打造区块链（1）—— 基础原型</title>
+      <link>https://flhonker.github.io/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</link>
+      <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</guid>
+      <description>用Go打造区块链（1）——基础原型 这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学习学习再学习首发，</description>
+    </item>
+    
+    <item>
+      <title>使用webbench压力测试Go服务器</title>
+      <link>https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Mon, 14 May 2018 22:10:22 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>使用webbench压力测试Go服务器 1. Webbench Webbench是Radim Kolar在1997年写的一个在Linux下使用的非常简单的网站压测工</description>
+    </item>
+    
+  </channel>
+</rss>

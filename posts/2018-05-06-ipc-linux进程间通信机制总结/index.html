@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Linux进程间通信（IPC）机制总结 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="Linux进程间通信（IPC）机制总结" />
+  <meta name="twitter:title" content="Linux进程间通信（IPC）机制总结" />
+  <meta name="description" content="Linux进程间通信（IPC）机制总结 在linux下的多个进程间的通信机制叫做IPC(Inter-Process Communication)">
+  <meta property="og:description" content="Linux进程间通信（IPC）机制总结 在linux下的多个进程间的通信机制叫做IPC(Inter-Process Communication)">
+  <meta name="twitter:description" content="Linux进程间通信（IPC）机制总结 在linux下的多个进程间的通信机制叫做IPC(Inter-Process Communication)">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-05-06-ipc-linux%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-05-06-ipc-linux%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io/">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/microservices">Microservices</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/devops">Devops</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/github">Github</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/serverless">Serverless</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/service-mesh">Service Mesh</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/kubernetes-handbook">Kubernetes handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/docker-handbook">Docker handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/hugo-handbook">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/migrating-to-cloud-native-application-architectures">Migrating to Cloud Native</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster">k8s all-in-one</a>
+                
+                
+                  <a href="https://flhonker.github.io/spark-on-k8s">Spark on kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/yarn-on-docker">Magpie</a>
+                
+                
+                  <a href="https://flhonker.github.io/cheatsheets">Cheatsheets</a>
+                
+                
+                  <a href="https://github.com/rootsongjc/beautifulhugo">Beautifulhugo</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">Linux进程间通信（IPC）机制总结</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Sun May 6, 2018</h4>
+    </section>
+    <h5 id="wc">6500 Words|Read in about 13 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/linux/">Linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/ipc/">IPC</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/">进程通信</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#linux进程间通信-ipc-机制总结">Linux进程间通信（IPC）机制总结</a>
+<ul>
+<li><a href="#1-管道-pipe">1. 管道（PIPE）</a></li>
+<li><a href="#2-命名管道-fifo">2. 命名管道（FIFO）</a></li>
+<li><a href="#3-信号-signal">3.信号（signal）</a></li>
+<li><a href="#4-消息队列-message-queues">4.消息队列（Message queues）</a></li>
+<li><a href="#5-信号量-semaphore">5. 信号量（Semaphore）</a></li>
+<li><a href="#6-共享内存-share-memory">6. 共享内存（Share Memory）</a></li>
+<li><a href="#7-内存映射-memory-map">7. 内存映射（Memory Map）</a></li>
+<li><a href="#8-套接字-socket">8. 套接字(Socket)</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="linux进程间通信-ipc-机制总结">Linux进程间通信（IPC）机制总结</h1>
+
+<p>　　在linux下的多个进程间的通信机制叫做IPC(Inter-Process Communication)，它是多个进程之间相互沟通的一种方法。在linux下有多种进程间通信的方法：<code>半双工管道</code>、<code>命名管道</code>、<code>消息队列</code>、<code>信号</code>、<code>信号量</code>、<code>共享内存</code>、<code>内存映射文件</code>、<code>套接字</code>等等。使用这些机制可以为linux下的网络服务器开发提供灵活而又坚固的框架。</p>
+
+<h2 id="1-管道-pipe">1. 管道（PIPE）</h2>
+
+<p>　　管道实际是用于进程间通信的一段共享内存，创建管道的进程称为<code>管道服务器</code>，连接到一个管道的进程为<code>管道客户机</code>。一个进程在向管道写入数据后，另一进程就可以从管道的另一端将其读取出来。</p>
+
+<p><strong>管道的特点：</strong></p>
+
+<p>(1) 管道是半双工的，数据只能向一个方向流动；需要双方通信时，需要建立起两个管道；
+(2) 只能用于父子进程或者兄弟进程之间（具有亲缘关系的进程）。比如fork或exec创建的新进程，在使用exec创建新进程时，需要将管道的文件描述符作为参数传递给exec创建的新进程。当父进程与使用fork创建的子进程直接通信时，发送数据的进程关闭读端，接受数据的进程关闭写端。
+(3) 单独构成一种独立的文件系统：管道对于管道两端的进程而言，就是一个文件，但它不是普通的文件，它不属于某种文件系统，而是自立门户，单独构成一种文件系统，并且_只存在于内存中_。
+(4) 数据的读出和写入：一个进程向管道中写的内容被管道另一端的进程读出。写入的内容每次都添加在管道缓冲区的末尾，并且每次都是从缓冲区的头部读出数据。</p>
+
+<p><strong>管道的实现机制：</strong></p>
+
+<p>　　管道是由内核管理的一个缓冲区，相当于我们放入内存中的一个纸条。管道的一端连接一个进程的输出。这个进程会向管道中放入信息。管道的另一端连接一个进程的输入，这个进程取出被放入管道的信息。一个缓冲区不需要很大，它被设计成为环形的数据结构，以便管道可以被循环利用。当管道中没有信息的话，从管道中读取的进程会等待，直到另一端的进程放入信息。当管道被放满信息的时候，尝试放入信息的进程会等待，直到另一端的进程取出信息。当两个进程都终结的时候，管道也自动消失。</p>
+
+<p>管道只能在本地计算机中使用，而不可用于网络间的通信。</p>
+
+<p><strong>pipe函数原型：</strong></p>
+
+<pre><code>#include &lt;unistd.h&gt;
+int pipe(int file_descriptor[2]);//建立管道，该函数在数组上填上两个新的文件描述符后返回0，失败返回-1。
+eg.int fd[2];
+int result = pipe(fd);
+</code></pre>
+
+<p>通过使用底层的read和write调用来访问数据。 向file_descriptor[1]写数据，从file_descriptor[0]中读数据。写入与读取的顺序原则是&rdquo;先进先出&rdquo;。</p>
+
+<p><strong>管道读写规则</strong></p>
+
+<p>当没有数据可读时,
+　　O_NONBLOCK disable：read调用阻塞，即进程暂停执行，一直等到有数据来到为止；
+　　O_NONBLOCK enable：read调用返回-1，errno值为EAGAIN。
+当管道满的时候,
+　　O_NONBLOCK disable： write调用阻塞，直到有进程读走数据；
+　　O_NONBLOCK enable：调用返回-1，errno值为EAGAIN。
+如果所有管道写端对应的文件描述符被关闭，则read返回0;
+如果所有管道读端对应的文件描述符被关闭，则write操作会产生信号SIGPIPE;
+当要写入的数据量不大于PIPE_BUF（Posix.1要求PIPE_BUF至少512字节）时，linux将保证写入的原子性。
+当要写入的数据量大于PIPE_BUF时，linux将不再保证写入的原子性。</p>
+
+<h2 id="2-命名管道-fifo">2. 命名管道（FIFO）</h2>
+
+<p>　　命名管道是一种特殊类型的文件，它在系统中以文件形式存在。这样克服了管道的弊端，它可以允许没有亲缘关系的进程间通信。
+　　创建管道的两个系统调用原型：</p>
+
+<pre><code>#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+//建立一个名字为filename的命名管道，参数mode为该文件的权限（mode%~umask），
+//若成功则返回0，否则返回-1，错误原因存于errno中。
+int mkfifo(const char *filename,mode_t mode);
+eg.mkfifo( &quot;/tmp/cmd_pipe&quot;, S_IFIFO | 0666 );
+</code></pre>
+
+<p><strong>管道和命名管道的区别：</strong></p>
+
+<p>　　对于命名管道FIFO来说，IO操作和普通管道IO操作基本一样，但是两者有一个主要的区别，在命名管道中，管道可以是事先已经创建好的，比如我们在命令行下执行
+&gt; mkfifo myfifo</p>
+
+<p>　　就是创建一个命名通道，我们必须用open函数来显示地建立连接到管道的通道；而在管道中，管道已经在主进程里创建好了，然后在fork时直接复制相关数据或者是用exec创建的新进程时把管道的文件描述符当参数传递进去。
+　　一般来说FIFO和PIPE一样总是处于阻塞状态。也就是说如果命名管道FIFO打开时设置了读权限，则读进程将一直阻塞，一直到其他进程打开该FIFO并向管道写入数据。这个阻塞动作反过来也是成立的。如果不希望命名管道操作的时候发生阻塞，可以在open的时候使用O_NONBLOCK标志，以关闭默认的阻塞操作。</p>
+
+<h2 id="3-信号-signal">3.信号（signal）</h2>
+
+<p>　　信号机制是unix系统中最为古老的进程之间的通信机制，用于一个或几个进程之间传递异步信号。信号可以有各种异步事件产生，比如键盘中断等。shell也可以使用信号将作业控制命令传递给它的子进程。
+在此列出几个简单使用方法定义：</p>
+
+<pre><code>#include &lt;sys/types.h&gt;
+#include &lt;signal.h&gt;
+void (*signal(int sig,void (*func)(int)))(int); //用于截取系统信号，第一个参数为信号，第二个参数为对此信号挂接用户自己的处理函数指针。返回值为以前信号处理程序的指针。
+eg.int ret = signal(SIGSTOP, sig_handle);
+</code></pre>
+
+<p>由于signal不够健壮，推荐使用<code>sigaction</code>函数。</p>
+
+<pre><code>int kill(pid_t pid,int sig); //kill函数向进程号为pid的进程发送信号，信号值为sig。当pid为0时，向当前系统的所有进程发送信号sig。
+int raise(int sig);//向当前进程中自举一个信号sig, 即向当前进程发送信号。
+#include &lt;unistd.h&gt;
+unsigned int alarm(unsigned int seconds); //alarm()用来设置信号SIGALRM在经过参数seconds指定的秒数后传送给目前的进程。如果参数seconds为0,则之前设置的闹钟会被取消,并将剩下的时间返回。使用alarm函数的时候要注意alarm函数的覆盖性，即在一个进程中采用一次alarm函数则该进程之前的alarm函数将失效。
+int pause(void); //使调用进程（或线程）睡眠状态，直到接收到信号，要么终止，或导致它调用一个信号捕获函数。
+</code></pre>
+
+<h2 id="4-消息队列-message-queues">4.消息队列（Message queues）</h2>
+
+<p>　　消息队列是内核地址空间中的内部链表，通过linux内核在各个进程直接传递内容，消息顺序地发送到消息队列中，并以几种不同的方式从队列中获得，每个消息队列可以用<code>IPC标识符</code>唯一地进行识别。内核中的消息队列是通过IPC的标识符来区别，不同的消息队列直接是相互独立的。每个消息队列中的消息，又构成一个独立的链表。
+　　消息队列克服了信号承载信息量少，管道只能承载无格式字符流。
+消息队列头文件：</p>
+
+<pre><code>#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;sys/msg.h&gt;
+</code></pre>
+
+<ul>
+<li>消息缓冲区结构：</li>
+</ul>
+
+<pre><code>struct msgbuf{
+    long mtype;
+    char mtext[1]; //柔性数组
+}
+</code></pre>
+
+<p>在结构中有两个成员，mtype为消息类型，用户可以给某个消息设定一个类型，可以在消息队列中正确地发送和接受自己的消息。mtext为消息数据，采用柔性数组，用户可以重新定义msgbuf结构。当然用户不可随意定义msgbuf结构，因为在linux中消息的大小是有限制的，在linux/msg.h中定义如下：
+&gt;#define MSGMAX 8192</p>
+
+<p>消息总的大小不能超过8192个字节，包括mtype成员（4个字节）。</p>
+
+<p>Linux内核中，每个消息队列都维护一个结构体<code>msqid_ds</code>，此结构体保存着消息队列当前状态信息，该结构体在头文件linux/msg.h中定义。
+* ipc_perm内核数据结构</p>
+
+<pre><code>struct ipc_perm{
+  key_t key;
+  uid_t uid;
+  gid_t gid;
+  .......
+};
+</code></pre>
+
+<p>结构体ipc_perm保存着消息队列的一些重要的信息，比如说消息队列关联的键值，消息队列的用户id组id等。它定义在头文件linux/ipc.h中。</p>
+
+<p><strong>消息队列的本质</strong></p>
+
+<p>　　Linux的消息队列(queue)实质上是一个链表，它有消息队列标识符(queue ID)。 msgget创建一个新队列或打开一个存在的队列；msgsnd向队列末端添加一条新消息；msgrcv从队列中取消息， 取消息是不一定遵循先进先出的， 也可以按消息的类型字段取消息。</p>
+
+<p><strong>消息队列与命名管道的比较</strong></p>
+
+<p>　　消息队列跟命名管道有不少的相同之处，通过与命名管道一样，消息队列进行通信的进程可以是不相关的进程，同时它们都是通过发送和接收的方式来传递数据的。在命名管道中，发送数据用write，接收数据用read，则在消息队列中，发送数据用msgsnd，接收数据用msgrcv。而且它们对每个数据都有一个最大长度的限制。
+与命名管道相比，消息队列的优势在于，1、消息队列也可以独立于发送和接收进程而存在，从而消除了在同步命名管道的打开和关闭时可能产生的困难。2、同时通过发送消息还可以避免命名管道的同步和阻塞问题，不需要由进程自己来提供同步方法。3、接收程序可以通过消息类型有选择地接收数据，而不是像命名管道中那样，只能默认地接收。</p>
+
+<h2 id="5-信号量-semaphore">5. 信号量（Semaphore）</h2>
+
+<p>　　信号量是一种计数器，用于控制对多个进程共享的资源进行的访问。它们常常被用作一个锁机制，在某个进程正在对特定的资源进行操作时，信号量可以防止另一个进程去访问它。
+　　信号量是特殊的变量，它只取正整数值并且只允许对这个值进行两种操作：等待（wait）和信号（signal）。（P、V操作，P用于等待，V用于信号）
+* p(sv):如果sv的值大于0，就给它减1；如果它的值等于0，就挂起该进程的执行
+* V(sv):如果有其他进程因等待sv而被挂起，就让它恢复运行；如果没有其他进程因等待sv而挂起，则给它加1
+简单理解就是P相当于申请资源，V相当于释放资源。</p>
+
+<p>信号量头文件：</p>
+
+<pre><code>#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;sys/sem.h&gt;
+</code></pre>
+
+<p>内核为每个信号量集合都维护一个semid_ds结构：</p>
+
+<pre><code>struct semid_ds{
+    struct ipc_perm sem_perm;
+    unsigned short sem_nsems;
+    time_t sem_otime;
+    time_t sem_ctime;
+    ...
+}
+</code></pre>
+
+<h2 id="6-共享内存-share-memory">6. 共享内存（Share Memory）</h2>
+
+<p>　　共享内存是在多个进程之间共享内存区域的一种进程间的通信方式，由IPC为进程创建的一个特殊地址范围，它将出现在该进程的地址空间（这里的地址空间具体是哪个地方？）中。其他进程可以将同一段共享内存连接到自己的地址空间中。所有进程都可以访问共享内存中的地址，就好像它们是malloc分配的一样。如果一个进程向共享内存中写入了数据，所做的改动将立刻被其他进程看到。
+　　共享内存是IPC最快捷的方式，因为共享内存方式的通信没有中间过程，而管道、消息队列等方式则是需要将数据通过中间机制进行转换。共享内存方式直接将某段内存段进行映射，多个进程间的共享内存是同一块的物理空间，仅仅映射到各进程的地址不同而已，因此不需要进行复制，可以直接使用此段空间。
+　　<em>注意：共享内存本身并没有同步机制，需要程序员自己控制。</em>
+共享内存头文件：</p>
+
+<pre><code>#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;sys/shm.h&gt;
+</code></pre>
+
+<p>结构shmid_ds结构体（是不是很眼熟，看消息队列的msgid_ds结构体）：</p>
+
+<pre><code>strcut shmid_ds{
+    struct ipc_perm shm_perm;
+    size_t    shm_segsz;
+    time_t    shm_atime;
+    time_t    shm_dtime;
+    ......
+}
+</code></pre>
+
+<p>消息队列、信号量以及共享内存的相似之处：</p>
+
+<p>　　它们被统称为XSI IPC，它们在内核中有相似的IPC结构（消息队列的msgid_ds，信号量的semid_ds，共享内存的shmid_ds），而且都用一个非负整数的标识符加以引用（消息队列的msg_id，信号量的sem_id，共享内存的shm_id，分别通过msgget、semget以及shmget获得），标志符是IPC对象的内部名，每个IPC对象都有一个键（key_t key）相关联，将这个键作为该对象的外部名。</p>
+
+<p>XSI IPC和PIPE、FIFO的区别：</p>
+
+<p>(1) XSI IPC的IPC结构是在系统范围内起作用，没有使用引用计数。如果一个进程创建一个消息队列，并在消息队列中放入几个消息，进程终止后，即使现在已经没有程序使用该消息队列，消息队列及其内容依然保留。而PIPE在最后一个引用管道的进程终止时，管道就被完全删除了。对于FIFO最后一个引用FIFO的进程终止时，虽然FIFO还在系统，但是其中的内容会被删除。
+(2) 和PIPE、FIFO不一样，XSI IPC不使用文件描述符，所以不能用ls查看IPC对象，不能用rm命令删除，不能用chmod命令删除它们的访问权限。只能使用ipcls和ipcrm来查看可以删除它们。</p>
+
+<h2 id="7-内存映射-memory-map">7. 内存映射（Memory Map）</h2>
+
+<p>　　内存映射文件，是由一个文件到一块内存的映射。内存映射文件与<code>虚拟内存</code>有些类似，通过内存映射文件可以保留一个地址的区域，同时将物理存储器提交给此区域，内存文件映射的物理存储器来自一个已经存在于磁盘上的文件，而且在对该文件进行操作之前必须首先对文件进行映射。使用内存映射文件处理存储于磁盘上的文件时，将不必再对文件执行I/O操作。每一个使用该机制的进程通过把同一个共享的文件映射到自己的进程地址空间来实现多个进程间的通信（这里类似于共享内存，只要有一个进程对这块映射文件的内存进行操作，其他进程也能够马上看到）。
+　　使用内存映射文件不仅可以实现多个进程间的通信，还可以用于处理大文件提高效率。因为我们普通的做法是把磁盘上的文件先拷贝到内核空间的一个缓冲区再拷贝到用户空间（内存），用户修改后再将这些数据拷贝到缓冲区再拷贝到磁盘文件，一共四次拷贝。如果文件数据量很大，拷贝的开销是非常大的。那么问题来了，系统在在进行内存映射文件就不需要数据拷贝？mmap()确实没有进行数据拷贝，真正的拷贝是在在缺页中断处理时进行的，由于mmap()将文件直接映射到用户空间，所以中断处理函数根据这个映射关系，直接将文件从硬盘拷贝到用户空间，所以只进行一次数据拷贝。效率高于read/write。</p>
+
+<p><strong>共享内存和内存映射文件的区别：</strong></p>
+
+<p>　　内存映射文件是利用虚拟内存把文件映射到进程的地址空间中去，在此之后进程操作文件，就像操作进程空间里的地址一样了，比如使用c语言的memcpy等内存操作的函数。这种方法能够很好的应用在需要频繁处理一个文件或者是一个大文件的场合，这种方式处理IO效率比普通IO效率要高。
+　　共享内存是内存映射文件的一种特殊情况，内存映射的是一块内存，而非磁盘上的文件。共享内存的主语是进程（Process），操作系统默认会给每一个进程分配一个内存空间，每一个进程只允许访问操作系统分配给它的哪一段内存，而不能访问其他进程的。而有时候需要在不同进程之间访问同一段内存，怎么办呢？操作系统给出了 创建访问共享内存的API，需要共享内存的进程可以通过这一组定义好的API来访问多个进程之间共有的内存，各个进程访问这一段内存就像访问一个硬盘上的文件一样。</p>
+
+<p>** 内存映射文件与虚拟内存的区别和联系：**</p>
+
+<p>　　内存映射文件和虚拟内存都是操作系统内存管理的重要部分，两者有相似点也有不同点。
+* 联系：虚拟内存和内存映射都是将一部分内容加载到内存，另一部放在磁盘上的一种机制。对于用户而言都是透明的。
+* 区别：虚拟内存是硬盘的一部分，是内存和硬盘的数据交换区，许多程序运行过程中把暂时不用的程序数据放入这块虚拟内存，节约内存资源。内存映射是一个文件到一块内存的映射，这样程序通过内存指针就可以对文件进行访问。</p>
+
+<p>　　虚拟内存的硬件基础是<code>分页机制</code>，另外一个基础就是<code>局部性原理</code>（时间局部性和空间局部性），这样就可以将程序的一部分装入内存，其余部分留在外存，当访问信息不存在，再将所需数据调入内存。而内存映射文件并不是局部性，而是使虚拟地址空间的某个区域银蛇磁盘的全部或部分内容，通过该区域对被映射的磁盘文件进行访问，不必进行文件I/O也不需要对文件内容进行缓冲处理。</p>
+
+<h2 id="8-套接字-socket">8. 套接字(Socket)</h2>
+
+<p>　　套接字机制不但可以单机的不同进程通信，而且使得跨网机器间进程可以通信。套接字的创建和使用与管道是有区别的，套接字明确地将客户端与服务器区分开来，可以实现多个客户端连到同一服务器。</p>
+
+<p>**服务器套接字连接过程描述： **</p>
+
+<p>首先，服务器应用程序用socket创建一个套接字，它是系统分配服务器进程的类似文件描述符的资源。 接着，服务器调用bind给套接字命名。这个名字是一个标示符，它允许linux将进入的针对特定端口的连接转到正确的服务器进程。 然后，系统调用listen函数开始接听，等待客户端连接。listen创建一个队列并将其用于存放来自客户端的进入连接。 当客户端调用connect请求连接时，服务器调用accept接受客户端连接，accept此时会创建一个新套接字，用于与这个客户端进行通信。</p>
+
+<p>**客户端套接字连接过程描述： **</p>
+
+<p>客户端首先调用socket创建一个未命名套接字，让后将服务器的命名套接字作为地址来调用connect与服务器建立连接。</p>
+
+<p>只要双方连接建立成功，我们就可以像操作底层文件一样来操作socket套接字实现通信。
+详细实现教程请见作者另一篇文章：<a href="https://flhonker.github.io/2018/04/28/TCP-%E5%88%A9%E7%94%A8windows-API%E5%AE%9E%E7%8E%B0TCP%E9%80%9A%E4%BF%A1/">2018-04-28-TCP-利用windows API实现TCP通信</a></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/" data-toggle="tooltip" data-placement="top" title="C&#43;&#43;多线程与同步(Linux)">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-toggle="tooltip" data-placement="top" title="C&#43;&#43;11智能指针理解与应用"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/">C&#43;&#43;多线程与同步(Linux)</a></li>
+                    
+                    <li><a href="/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/">Linux 常用命令基础</a></li>
+                    
+                    <li><a href="/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/">CentOS7 分区硬盘扩容</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Sun May 6, 2018</h4>
+    </section>
+    <h5 id="wc">6500 Words|Read in about 13 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/linux/">Linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/ipc/">IPC</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/">进程通信</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/jimmysongio" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io/">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

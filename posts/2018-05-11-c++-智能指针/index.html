@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> C&#43;&#43;11智能指针理解与应用 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="C&#43;&#43;11智能指针理解与应用" />
+  <meta name="twitter:title" content="C&#43;&#43;11智能指针理解与应用" />
+  <meta name="description" content="C&#43;&#43;11智能指针理解与应用 智能指针的作用 C&#43;&#43;11中引入了智能指针的概念，方便管理堆内存。使用普通指针，容易造成堆内存泄露（忘记释放），二">
+  <meta property="og:description" content="C&#43;&#43;11智能指针理解与应用 智能指针的作用 C&#43;&#43;11中引入了智能指针的概念，方便管理堆内存。使用普通指针，容易造成堆内存泄露（忘记释放），二">
+  <meta name="twitter:description" content="C&#43;&#43;11智能指针理解与应用 智能指针的作用 C&#43;&#43;11中引入了智能指针的概念，方便管理堆内存。使用普通指针，容易造成堆内存泄露（忘记释放），二">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io/">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/microservices">Microservices</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/devops">Devops</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/github">Github</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/serverless">Serverless</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/service-mesh">Service Mesh</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/kubernetes-handbook">Kubernetes handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/docker-handbook">Docker handbook</a>
+                
+                
+                  <a href="https://flhonker.github.io/hugo-handbook">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/migrating-to-cloud-native-application-architectures">Migrating to Cloud Native</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster">k8s all-in-one</a>
+                
+                
+                  <a href="https://flhonker.github.io/spark-on-k8s">Spark on kubernetes</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/yarn-on-docker">Magpie</a>
+                
+                
+                  <a href="https://flhonker.github.io/cheatsheets">Cheatsheets</a>
+                
+                
+                  <a href="https://github.com/rootsongjc/beautifulhugo">Beautifulhugo</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">C&#43;&#43;11智能指针理解与应用</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri May 11, 2018</h4>
+    </section>
+    <h5 id="wc">4600 Words|Read in about 10 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/pointer/">pointer</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/memory/">memory</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#c-11智能指针理解与应用">C++11智能指针理解与应用</a>
+<ul>
+<li><a href="#智能指针的作用">智能指针的作用</a></li>
+<li><a href="#智能指针的使用">智能指针的使用</a>
+<ul>
+<li><a href="#1-auto-ptr">1. auto_ptr</a>
+<ul>
+<li><a href="#1-1-用法">1.1 用法</a></li>
+<li><a href="#1-4-auto-ptr例子">1.4 auto_ptr例子</a></li>
+<li><a href="#1-3-注意事项">1.3 注意事项</a></li>
+</ul></li>
+<li><a href="#2-unique-ptr">2. unique_ptr</a></li>
+<li><a href="#3-shared-ptr">3. shared_ptr</a>
+<ul>
+<li><a href="#3-1-shared-ptr用法">3.1 shared_ptr用法</a></li>
+<li><a href="#3-2-例子">3.2 例子</a></li>
+<li><a href="#3-3-注意事项">3.3 注意事项</a></li>
+</ul></li>
+<li><a href="#4-weak-ptr">4. weak_ptr</a>
+<ul>
+<li><a href="#4-1-例子">4.1 例子</a></li>
+<li><a href="#4-2-循环引用">4.2 循环引用</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="c-11智能指针理解与应用">C++11智能指针理解与应用</h1>
+
+<h2 id="智能指针的作用">智能指针的作用</h2>
+
+<p>C++11中引入了智能指针的概念，方便管理堆内存。使用普通指针，容易造成堆内存泄露（忘记释放），二次释放，程序发生异常时内存泄露等问题等，使用智能指针能更好的管理堆内存。其核心思想就是：<font color="#ff00ee"><b>栈上对象在离开作用范围时会自动析构。</b></font>
+我们使用智能指针的原因至少有以下三点：</p>
+
+<p>　　1）智能指针能够帮助我们处理资源泄露问题；</p>
+
+<p>　　2）它也能够帮我们处理空悬指针的问题；</p>
+
+<p>　　3）它还能够帮我们处理比较隐晦的由异常造成的资源泄露。</p>
+
+<h2 id="智能指针的使用">智能指针的使用</h2>
+
+<h3 id="1-auto-ptr">1. auto_ptr</h3>
+
+<p>字面意义上看，auto_ptr 就是自动指针的意思，当分配的内存不需要使用了，它可以自动回收。</p>
+
+<h4 id="1-1-用法">1.1 用法</h4>
+
+<p><strong>(1) 构造函数</strong></p>
+
+<pre><code class="language-c++">explicit auto_ptr(_Ty *_Ptr = 0) _THROW0(): _Myptr(_Ptr) // 将指针交由auto_ptr托管
+{
+	// construct from object pointer
+}
+</code></pre>
+
+<p><strong>(2) 析构函数</strong></p>
+
+<pre><code class="language-c++">// 释放了托管的对象所占用的内存空间
+~auto_ptr()
+{
+    delete _Myptr;  // destroy the object
+}
+</code></pre>
+
+<p><strong>(3) get方法</strong></p>
+
+<pre><code class="language-c++">// 返回保存的指针
+_Ty *get() const _THROW0()
+{
+    return (_Myptr);  // return wrapped pointer
+}
+</code></pre>
+
+<p><strong>(4) release方法</strong>
+可调用release函数放弃托管，放弃托管意味着又需要自己手动释放内存了。</p>
+
+<pre><code class="language-c++">_Ty *release() _THROW0()
+{    // return wrapped pointer and give up ownership  返回保存的指针，对象中不保留原来的指针，原来的指针直接赋值为0
+    _Ty *_Tmp = _Myptr;
+    _Myptr = 0;
+    return (_Tmp);
+}
+</code></pre>
+
+<p><strong>(5) reset方法</strong>
+重置auto_ptr使之拥有另一个对象。如果这个auto_ptr已经拥有了一个对象，那么它会先删除已经拥有的对象，因此调用reset()就如同销毁这个auto_ptr，然后新建一个并拥有一个新对象&gt;</p>
+
+<pre><code class="language-c++">void reset(_Ty* _Ptr = 0)
+{   // destroy designated object and store new pointer
+    if (_Ptr != _Myptr)
+        delete _Myptr;
+    _Myptr = _Ptr;
+}
+</code></pre>
+
+<p><strong>(6) 拷贝构造函数</strong></p>
+
+<pre><code class="language-c++">// 明显可看出会发生托管权的转移
+auto_ptr(auto_ptr&lt;_Ty&gt;&amp; _Right) _THROW0()
+        : _Myptr(_Right.release())
+{    // construct by assuming pointer from _Right auto_ptr
+}
+</code></pre>
+
+<p><strong>(7) 赋值运算符</strong></p>
+
+<pre><code class="language-c++">// 很明显也发生了托管权的转移
+template&lt;class _Other&gt;
+auto_ptr&lt;_Ty&gt;&amp; operator=(auto_ptr&lt;_Other&gt;&amp; _Right) _THROW0()
+{   // assign compatible _Right (assume pointer)
+    reset(_Right.release());
+    return (*this);
+}
+</code></pre>
+
+<h4 id="1-4-auto-ptr例子">1.4 auto_ptr例子</h4>
+
+<pre><code class="language-c++">#include &lt;memory&gt;
+
+void fun2()
+{
+   T *pt = new T();
+   std::auto_ptr apt(pt);   // 将分配的堆内存指针交由auto_ptr托管
+   *apt = 10;     // 像正常使用指针一样使用，相当于*pt= 10
+   apt-&gt;memFunc();     // 相当于 pt-&gt;memFunc()
+   T *pt2 = apt.get();      // 使用get函数可获取它托管的指针
+   apt.reset(new T());     // 可调用reset函数更改托管对象,这里删除了之前托管的 pt
+   T *pt3 = apt.release();     // 可调用release函数放弃托管
+   // 放弃托管意味着又需要自己手动释放内存了
+   delete pt3;
+   pt3 = NULL;
+
+   return;
+}
+</code></pre>
+
+<h4 id="1-3-注意事项">1.3 注意事项</h4>
+
+<p>(1) auto_ptr没有使用引用计数，如果多个auto_ptr指向同一个对象，就会造成对象被删除一次以上的错误。因此一个对象只能由一个auto_ptr所拥有，在给其他auto_ptr赋值的时候，会转移这种拥有关系。所以，在赋值、参数传递的时候会转移所有权，因此不要轻易进行此类操作，详见下面代码：</p>
+
+<pre><code class="language-c++">/* 1. 演示转移所有权 */
+std::auto_ptr&lt;int&gt; aptr1(new int(3));
+
+// 执行后aptr1不再有效
+std::auto_ptr&lt;int&gt; aptr2 = aptr1;  // or aptr2(aptr1)
+
+// 强行访问会发生不可预料的问题
+*aptr1 = 4;
+
+// --------------------------------------------------------
+
+/* 2. 演示参数传递的所有权转移 */
+void lose(std::auto_ptr&lt;int&gt; a)
+{
+    // 空函数，仅仅为了演示参数传递
+}
+
+std::auto_ptr&lt;int&gt; aptr3(new int(4));
+
+// 所有权转移，aptr3不再有效,因为发生了参数传递（赋值）
+lose(aptr3);
+
+// 强行访问会发生不可预料的问题
+*aptr3 = 10;
+</code></pre>
+
+<p>(2) auto_ptr的析构函数内部释放资源时调用的是delete而不是delete[]，因此不要让auto_ptr托管数组。</p>
+
+<pre><code class="language-c++">// 类似这样的代码是个很糟糕的用法
+std::auto_ptr&lt;int&gt; aptr(new int[10]);
+</code></pre>
+
+<p>(3) auto_ptr不能作为容器对象，因为容器中的元素经常要进行拷贝，赋值等操作，在这过程中auto_ptr会失去所有权。</p>
+
+<h3 id="2-unique-ptr">2. unique_ptr</h3>
+
+<p>unique_ptr“唯一”拥有其所指对象，同一时刻只能有一个unique_ptr指向给定对象（通过禁止拷贝语义、只有移动语义来实现）。相比与原始指针unique_ptr用于其<code>RAII</code>（资源获取即初始化）的特性，使得在出现异常的情况下，动态资源能得到释放。unique_ptr指针本身的生命周期：从unique_ptr指针创建时开始，直到离开作用域。离开作用域时，若其指向对象，则将其所指对象销毁(默认使用delete操作符，用户可指定其他操作)。unique_ptr指针与其所指对象的关系：在智能指针生命周期内，可以改变智能指针所指对象，如创建智能指针时通过构造函数指定、通过reset方法重新指定、通过release方法释放所有权、通过移动语义转移所有权。</p>
+
+<p>与auto_ptr相比，有以下几个不同:</p>
+
+<p>(1) 可以间接方式用于容器</p>
+
+<pre><code class="language-c++">unique_ptr&lt;int&gt; sp(new int(10));  //绑定动态对象
+vector&lt;unique_ptr&lt;int&gt; &gt; vec;
+vec.push_back(std::move(sp));   // 通过这种移动语义来实现在容器中使用
+vec.push_back(sp);  // 这样直接使用不行，会报错
+cout &lt;&lt; *sp &lt;&lt; end; // 这样也不行，因为sp添加到容器中后，它自己就报废了
+</code></pre>
+
+<p>(2) 无法直接进行复制构造与赋值操作，要使用<code>move</code>函数进行所有权的转移</p>
+
+<pre><code class="language-c++">std::unique_ptr&lt;int&gt; uptr2 = uptr;  //不能賦值
+std::unique_ptr&lt;int&gt; uptr2(uptr);  //不能拷贝
+std::unique_ptr&lt;int&gt; uptr2 = std::move(uptr); //转换所有权，可以的
+uptr2.release(); //释放所有权
+</code></pre>
+
+<p>(3) 可以用于函数的返回值</p>
+
+<pre><code class="language-c++">// 函数定义
+unique_ptr&lt;int&gt; myFunc()
+{
+    unique_ptr&lt;int&gt; up(new int(10));
+    return up;
+}
+
+// 函数使用
+unique_ptr&lt;int&gt; upRet = myFunc();
+</code></pre>
+
+<p>(4)支持管理数组</p>
+
+<pre><code class="language-c++">std::unique_ptr&lt;A[]&gt; ups(new A[10]);
+printf(&quot;sizeof(ups) = %d\n&quot;, sizeof(ups));
+for (int i = 0; i &lt; 10; i++)
+{
+　　ups[i] = i;
+　　printf(&quot;ups[i] = %d\n&quot;, ups[i]);
+}
+</code></pre>
+
+<h3 id="3-shared-ptr">3. shared_ptr</h3>
+
+<p>shared_ptr表明它是一种共享型的指针,多个指针指向相同的对象。shared_ptr使用引用计数，每一个shared_ptr的拷贝都指向相同的内存。每使用他一次，内部的引用计数加1，每析构一次，内部的引用计数减1，减为0时，自动删除所指向的堆内存。shared_ptr内部的引用计数是线程安全的，但是对象的读取需要加锁。可以自由的拷贝和赋值，并且可以用在容器对象中；复制构造与赋值操作符除了提供复制功能之外，还将引用计数加1。</p>
+
+<h4 id="3-1-shared-ptr用法">3.1 shared_ptr用法</h4>
+
+<ul>
+<li><p>初始化。智能指针是个模板类，可以指定类型，传入指针通过构造函数初始化。也可以使用make_shared函数初始化。不能将指针直接赋值给一个智能指针，一个是类，一个是指针。例如std::shared_ptr<int> p4 = new int(1);的写法是错误的。</p></li>
+
+<li><p>拷贝和赋值。拷贝使得对象的引用计数增加1，赋值使得原对象引用计数减1，当计数为0时，自动释放内存。后来指向的对象引用计数加1，指向后来的对象。</p></li>
+
+<li><p>get函数获取原始指针。</p></li>
+
+<li><p>注意不要用一个原始指针初始化多个shared_ptr，否则会造成二次释放同一内存。</p></li>
+
+<li><p>注意避免循环引用，shared_ptr的一个最大的陷阱是循环引用，循环，循环引用会导致堆内存无法正确释放，导致内存泄漏。循环引用在weak_ptr中介绍。</p></li>
+</ul>
+
+<h4 id="3-2-例子">3.2 例子</h4>
+
+<p><strong>(1)普通使用方式</strong></p>
+
+<pre><code class="language-c++">// 1. 构造方法
+// 将指针交由shared_ptr托管  还有一种方式也可以创建shared_ptr对象，且比较常用，
+// 是通过make_shared函数： shared_ptr&lt;int&gt; shPtr = make_shared&lt;int&gt;(10); 
+shared_ptr&lt;int&gt; shPtr(new int(10));
+int num = *shPtr;   // 像使用正常指针一样使用它，此时num == 10
+
+// 2. 复制构造函数
+shared_ptr&lt;int&gt; shPtr2(shPtr);    // 复制构造，此时引用计数会增加
+// 两个shared_ptr相等，指向同一个对象，引用计数为2
+assert(shPtr == shPtr2 &amp;&amp; shPtr.use_count() == 2);
+// 原先的shPtr还可以继续使用，如果是auto_ptr，是不能使用的，因为有所有权的转移
+num = *shPtr;
+*shPtr = 20;
+assert(*shPtr2 == 20);  // 在改一个shared_ptr的同时，另一个也会更改
+
+// 3. 赋值运算符
+shared_ptr&lt;int&gt; shPtr3 = shPtr2;  // 赋值操作符
+
+// 4. 停止使用
+shPtr.reset();
+assert(!shPtr);   // shPtr停止使用后会变成空指针
+</code></pre>
+
+<p><strong>(2)类中的使用方式</strong></p>
+
+<pre><code class="language-c++">class myClass
+{
+    public:
+        // 构造函数
+        myClass(shared_ptr&lt;int&gt; shp_): m_shpMem(shp_) {}
+
+        // 回显函数
+        void print()
+        {
+              printf(&quot;count: %d, v= %d \n&quot;, m_shpMem.use_count(), *m_shpMem);
+         }
+
+    private:
+       shared_ptr&lt;int&gt; m_shpMem;
+};
+</code></pre>
+
+<p><strong>(3)容器中的使用方式</strong>
+* 第一种方式：<code>shared_ptr&lt;vector&lt;T&gt; &gt;</code>, 将容器作为shared_ptr管理的对象，可以使得容器被安全的共享。
+* 第二种方式：<code>vector&lt;shrared_ptr&lt;T&gt; &gt;</code>, 将shared_ptr作为容器的中的元素。</p>
+
+<pre><code class="language-c++">vector&lt;shared_ptr&lt;int&gt; &gt; v(10);   // 声明一个拥有10个元素的容器，元素被初始化为空指针
+int i = 0;
+for ( vector&lt;shared_ptr&lt;int&gt; &gt;::iterator it = v.begin(); it != v.end(); ++it)
+{
+    *pos = make_shared&lt;int&gt;(++i);  // 给容器中的元素赋值
+    cout &lt;&lt; *(*pos) &lt;&lt; &quot;,&quot;;    // 输出刚赋给它的值
+}
+</code></pre>
+
+<h4 id="3-3-注意事项">3.3 注意事项</h4>
+
+<ol>
+<li>不能再对shared_ptr所管理的对象再进行一些直接的内存管理操作，会造成对象的重复释放，导致崩溃。
+<code>
+int *p = new int(10)
+{
+// 将p交由shared_ptr托管，则在此作用域后，就把它所托管的对象的内存释放掉了
+shared_ptr&lt;int&gt; shp(p);
+}
+delete p;  // 又去释放该对象的内存，会崩溃
+</code></li>
+<li>shared_ptr不能对循环引用的对象的内存进行自动管理。
+详情请见4.2。</li>
+<li>不要构造一个临时的shared_ptr作为函数的参数，存在内存泄漏的风险。</li>
+</ol>
+
+<pre><code class="language-c++">void  f(shared_ptr&lt;int&gt;, int);
+int g();
+
+// 正确的使用方式
+void OK()
+{
+    shared_ptr&lt;int&gt; p(new int(2));
+    f(p, g());
+}
+
+// 错误的使用方式
+void Bad()
+{
+    // 如果执行顺序是先 new int(2), 然后g(), 
+    // 最后将 new int(2) 的指针给shared_ptr的构造函数的话，
+    // 当g()中抛出异常的时候， 第一个new int(2)就造成了内存泄漏了
+    f(shared_ptr&lt;int&gt;(new int(2)), g());
+}
+</code></pre>
+
+<h3 id="4-weak-ptr">4. weak_ptr</h3>
+
+<p>相对于shared_ptr这种强引用类型的智能指针， weak_ptr是一种弱引用型的指针，是为了配合shared_ptr而引入的一种智能指针，可以看成是shared_ptr的助手而不是真正的智能指针，因为它不会托管资源，<u>它的构造也不会引起引用计数的增加</u>。
+* 它没有重载 operator* 和 operator-&gt;，不具有普通指针的行为。
+* 它只有资源的观察权，没有资源的托管权。获取资源观察权的方法是使用另一个 shared_ptr 或者 weak_ptr 去构造。
+* 其成员函数<code>use_count</code>可以获取被观察资源的引用计数，expire函数表示被观察的资源已经不复存在，lock成员用于获取被观察的shared_ptr对象，如果expire()==true，则lock函数将返回一个存储空指针的shared_ptr。</p>
+
+<h4 id="4-1-例子">4.1 例子</h4>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+int main() {
+    {
+        std::shared_ptr&lt;int&gt; sh_ptr = std::make_shared&lt;int&gt;(10);
+        std::cout &lt;&lt; sh_ptr.use_count() &lt;&lt; std::endl;
+
+        std::weak_ptr&lt;int&gt; wp(sh_ptr);
+        std::cout &lt;&lt; wp.use_count() &lt;&lt; std::endl;
+
+        if(!wp.expired()){
+            std::shared_ptr&lt;int&gt; sh_ptr2 = wp.lock(); //get another shared_ptr
+            *sh_ptr = 100;
+            std::cout &lt;&lt; wp.use_count() &lt;&lt; std::endl;
+        }
+    }
+    //delete memory
+}
+</code></pre>
+
+<h4 id="4-2-循环引用">4.2 循环引用</h4>
+
+<p>考虑一个简单的对象建模——家长与子女：a Parent has a Child, a Child knowshis/her Parent。在Java 里边很好写，不用担心内存泄漏，也不用担心空悬指针，只要正确初始化myChild 和myParent，那么Java 程序员就不用担心出现访问错误。一个handle 是否有效，只需要判断其是否non null。</p>
+
+<pre><code class="language-java">public class Parent
+{
+　　private Child myChild;
+}
+public class Child
+{
+　　private Parent myParent;
+}
+</code></pre>
+
+<p>在C++ 里边就要为资源管理费一番脑筋。如果使用原始指针作为成员，Child和Parent由谁释放？那么如何保证指针的有效性？如何防止出现空悬指针？这些问题是C++面向对象编程麻烦的问题，现在可以借助smart pointer把对象语义（pointer）转变为值（value）语义，shared_ptr轻松解决生命周期的问题，不必担心空悬指针。但是这个模型存在循环引用的问题，注意其中一个指针应该为weak_ptr。</p>
+
+<p><strong>(1) 原始指针的做法，容易出错</strong></p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+class Child;
+class Parent;
+
+class Parent {
+private:
+    Child* myChild;
+public:
+    void setChild(Child* ch) {
+        this-&gt;myChild = ch;
+    }
+
+    void doSomething() {
+        if (this-&gt;myChild) {
+
+        }
+    }
+
+    ~Parent() {
+        delete myChild;
+    }
+};
+
+class Child {
+private:
+    Parent* myParent;
+public:
+    void setPartent(Parent* p) {
+        this-&gt;myParent = p;
+    }
+    void doSomething() {
+        if (this-&gt;myParent) {
+
+        }
+    }
+    ~Child() {
+        delete myParent;
+    }
+};
+
+int main() {
+    {
+        Parent* p = new Parent;
+        Child* c =  new Child;
+        p-&gt;setChild(c);
+        c-&gt;setPartent(p);
+        delete c;  //only delete one
+    }
+    return 0;
+}
+</code></pre>
+
+<p><strong>(2) 循环引用内存泄露的问题</strong></p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+class Child;
+class Parent;
+
+class Parent {
+private:
+    std::shared_ptr&lt;Child&gt; ChildPtr;
+public:
+    void setChild(std::shared_ptr&lt;Child&gt; child) {
+        this-&gt;ChildPtr = child;
+    }
+
+    void doSomething() {
+        if (this-&gt;ChildPtr.use_count()) {
+
+        }
+    }
+
+    ~Parent() {
+    }
+};
+
+class Child {
+private:
+    std::shared_ptr&lt;Parent&gt; ParentPtr;
+public:
+    void setPartent(std::shared_ptr&lt;Parent&gt; parent) {
+        this-&gt;ParentPtr = parent;
+    }
+    void doSomething() {
+        if (this-&gt;ParentPtr.use_count()) {
+
+        }
+    }
+    ~Child() {
+    }
+};
+
+int main() {
+    std::weak_ptr&lt;Parent&gt; wpp;
+    std::weak_ptr&lt;Child&gt; wpc;
+    {
+        std::shared_ptr&lt;Parent&gt; p(new Parent); //new出来的p 此时引用计数为1
+        std::shared_ptr&lt;Child&gt; c(new Child); //new出来的c 此时引用计数为1
+        p-&gt;setChild(c);   //c的引用计数增加为2
+        c-&gt;setPartent(p); //p的引用计数增加为2
+        wpp = p;
+        wpc = c;
+        std::cout &lt;&lt; p.use_count() &lt;&lt; std::endl; // 2
+        std::cout &lt;&lt; c.use_count() &lt;&lt; std::endl; // 2
+    }
+    //出作用域，p和c 的use_count--，未完全析构，发生循环引用，内存泄漏！
+    std::cout &lt;&lt; wpp.use_count() &lt;&lt; std::endl;  // 1
+    std::cout &lt;&lt; wpc.use_count() &lt;&lt; std::endl;  // 1
+    return 0;
+}
+</code></pre>
+
+<p><strong>(3) 正确的做法</strong></p>
+
+<p>使用weak_ptr解决，他不会发生拷贝引用计数。</p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+class Child;
+class Parent;
+
+class Parent {
+private:
+    //std::shared_ptr&lt;Child&gt; ChildPtr;
+    std::weak_ptr&lt;Child&gt; ChildPtr;
+public:
+    void setChild(std::shared_ptr&lt;Child&gt; child) {
+        this-&gt;ChildPtr = child;
+    }
+
+    void doSomething() {
+        //new shared_ptr
+        if (this-&gt;ChildPtr.lock()) {
+
+        }
+    }
+
+    ~Parent() {
+    }
+};
+
+class Child {
+private:
+    std::shared_ptr&lt;Parent&gt; ParentPtr;
+public:
+    void setPartent(std::shared_ptr&lt;Parent&gt; parent) {
+        this-&gt;ParentPtr = parent;
+    }
+    void doSomething() {
+        if (this-&gt;ParentPtr.use_count()) {
+
+        }
+    }
+    ~Child() {
+    }
+};
+
+int main() {
+    std::weak_ptr&lt;Parent&gt; wpp;
+    std::weak_ptr&lt;Child&gt; wpc;
+    {
+        std::shared_ptr&lt;Parent&gt; p(new Parent);  //new出来的p 此时引用计数为1
+        std::shared_ptr&lt;Child&gt; c(new Child);   //new出来的c 此时引用计数为1
+        p-&gt;setChild(c);  //c.use_count不计数，因为在Parent类中是weak_ptr类型
+        c-&gt;setPartent(p); //p.use_count++
+        wpp = p;
+        wpc = c;
+        std::cout &lt;&lt; p.use_count() &lt;&lt; std::endl; // 2
+        std::cout &lt;&lt; c.use_count() &lt;&lt; std::endl; // 1
+    }
+    //出作用域，未发生循环引用，内存完全释放。
+    std::cout &lt;&lt; wpp.use_count() &lt;&lt; std::endl;  // 0
+    std::cout &lt;&lt; wpc.use_count() &lt;&lt; std::endl;  // 0
+    return 0;
+}
+</code></pre>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-05-06-ipc-linux%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/" data-toggle="tooltip" data-placement="top" title="Linux进程间通信（IPC）机制总结">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-toggle="tooltip" data-placement="top" title="迷你Go服务器"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/frank_model/"></a></li>
+                    
+                    <li><a href="/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">C&#43;&#43;内存管理（内存模型）</a></li>
+                    
+                    <li><a href="/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/">C&#43;&#43;内存对齐</a></li>
+                    
+                    <li><a href="/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/">C&#43;&#43;多线程与同步(Linux)</a></li>
+                    
+                    <li><a href="/posts/2018-04-30-alg-kmp/">字符串朴素匹配算法和KMP</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri May 11, 2018</h4>
+    </section>
+    <h5 id="wc">4600 Words|Read in about 10 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/pointer/">pointer</a> &nbsp;
+        
+        <a href="https://flhonker.github.io/tags/memory/">memory</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/jimmysongio" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io/">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+
