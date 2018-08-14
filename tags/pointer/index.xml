@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pointer on Frank Liu</title>
-    <link>https://flhonker.github.io/tags/pointer/</link>
+    <link>frankliu624.me/tags/pointer/</link>
     <description>Recent content in Pointer on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Fri, 11 May 2018 09:02:40 +0800</lastBuildDate>
     
-	<atom:link href="https://flhonker.github.io/tags/pointer/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="frankliu624.me/tags/pointer/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>C&#43;&#43;11智能指针理解与应用</title>
-      <link>https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <link>frankliu624.me/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
       <pubDate>Fri, 11 May 2018 09:02:40 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <guid>frankliu624.me/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
       <description>C++11智能指针理解与应用 智能指针的作用 C++11中引入了智能指针的概念，方便管理堆内存。使用普通指针，容易造成堆内存泄露（忘记释放），二</description>
     </item>
     

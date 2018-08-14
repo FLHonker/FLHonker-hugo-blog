@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Webbench on Frank Liu</title>
-    <link>https://flhonker.github.io/tags/webbench/</link>
+    <link>frankliu624.me/tags/webbench/</link>
     <description>Recent content in Webbench on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Mon, 14 May 2018 22:10:22 +0800</lastBuildDate>
     
-	<atom:link href="https://flhonker.github.io/tags/webbench/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="frankliu624.me/tags/webbench/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用webbench压力测试Go服务器</title>
-      <link>https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <link>frankliu624.me/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
       <pubDate>Mon, 14 May 2018 22:10:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <guid>frankliu624.me/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description>使用webbench压力测试Go服务器 1. Webbench Webbench是Radim Kolar在1997年写的一个在Linux下使用的非常简单的网站压测工</description>
     </item>
     

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tcp on Frank Liu</title>
-    <link>https://flhonker.github.io/categories/tcp/</link>
+    <link>frankliu624.me/categories/tcp/</link>
     <description>Recent content in Tcp on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Sat, 28 Apr 2018 15:22:00 +0800</lastBuildDate>
     
-	<atom:link href="https://flhonker.github.io/categories/tcp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="frankliu624.me/categories/tcp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>C&#43;&#43;的TCP通信（多线程）</title>
-      <link>https://flhonker.github.io/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</link>
+      <link>frankliu624.me/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</link>
       <pubDate>Sat, 28 Apr 2018 15:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</guid>
+      <guid>frankliu624.me/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</guid>
       <description>C++的TCP通信（多线程） 简述：TCP通信服务端和客户端代码是不同的。首先，服务端有一个ServerSocket，初始化以后（包括设置IP</description>
     </item>
     

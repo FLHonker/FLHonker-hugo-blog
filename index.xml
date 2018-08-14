@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Frank Liu</title>
-    <link>https://flhonker.github.io/</link>
+    <link>frankliu624.me/</link>
     <description>Recent content on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,366 +10,366 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Tue, 31 Jul 2018 20:30:04 +0800</lastBuildDate>
     
-	<atom:link href="https://flhonker.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="frankliu624.me/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>基于连通域检测的文本区域提取算法</title>
-      <link>https://flhonker.github.io/posts/2018-07-31-alg-%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E5%9F%9F%E6%A3%80%E6%B5%8B%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%BA%E5%9F%9F%E6%8F%90%E5%8F%96%E7%AE%97%E6%B3%95/</link>
+      <link>frankliu624.me/posts/2018-07-31-alg-%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E5%9F%9F%E6%A3%80%E6%B5%8B%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%BA%E5%9F%9F%E6%8F%90%E5%8F%96%E7%AE%97%E6%B3%95/</link>
       <pubDate>Tue, 31 Jul 2018 20:30:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-31-alg-%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E5%9F%9F%E6%A3%80%E6%B5%8B%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%BA%E5%9F%9F%E6%8F%90%E5%8F%96%E7%AE%97%E6%B3%95/</guid>
+      <guid>frankliu624.me/posts/2018-07-31-alg-%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E5%9F%9F%E6%A3%80%E6%B5%8B%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%BA%E5%9F%9F%E6%8F%90%E5%8F%96%E7%AE%97%E6%B3%95/</guid>
       <description>基于连通域检测的文本区域提取算法 1. 连通区域分析 连通区域（Connected Component）一般是指图像中具有相同像素值且位置相邻的前景像</description>
     </item>
     
     <item>
       <title>控件截图预处理与去边框算法</title>
-      <link>https://flhonker.github.io/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/</link>
+      <link>frankliu624.me/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/</link>
       <pubDate>Sat, 28 Jul 2018 20:30:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/</guid>
+      <guid>frankliu624.me/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/</guid>
       <description>控件截图预处理与去边框算法 恕我在该系列博客中不能粘贴大量代码和截图，该项目为公司内部模块开发实际案例，我们主要谈论问题的解决思路和算法设计方</description>
     </item>
     
     <item>
       <title>E2E软件自动化测试中的OCR功能</title>
-      <link>https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/</link>
+      <link>frankliu624.me/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/</link>
       <pubDate>Fri, 27 Jul 2018 20:30:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/</guid>
+      <guid>frankliu624.me/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/</guid>
       <description>E2E软件自动化测试中的OCR功能 Sikuli MIT的研究人员设计了一种新颖的图形脚本语言Sikuli，计算机用户只须有最基本的编程技能（比如会写pr</description>
     </item>
     
     <item>
       <title>ICBC广州研发部实习第一周经历</title>
-      <link>https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</link>
+      <link>frankliu624.me/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</link>
       <pubDate>Fri, 27 Jul 2018 19:30:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</guid>
+      <guid>frankliu624.me/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</guid>
       <description>ICBC广州研发部实习第一周经历 ICBC研发中心外景 ICBC开发中心前台 广研实习生概况 2018年中国工商银行广州研发部一共来了61名实习生，</description>
     </item>
     
     <item>
       <title>C语言造轮子（六）——哈希表</title>
-      <link>https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</link>
+      <link>frankliu624.me/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</link>
       <pubDate>Tue, 10 Jul 2018 11:08:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</guid>
+      <guid>frankliu624.me/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</guid>
       <description>C语言造轮子（六）——哈希表 如同“见字如晤”一般，我们通常用标签化的事物来抽象一个人，一件事，一段情……，比如迎面走来了一个女工妹子，你和工</description>
     </item>
     
     <item>
       <title>C语言造轮子（五）——List</title>
-      <link>https://flhonker.github.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</link>
+      <link>frankliu624.me/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</link>
       <pubDate>Mon, 09 Jul 2018 11:08:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</guid>
+      <guid>frankliu624.me/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</guid>
       <description>C语言造轮子（五）——List “如果你有能力选择，你是会选择扼住命运的咽喉还是躺下来接受命运的蹂躏” 链表是一种迷人的数据结构，就像因果关系一</description>
     </item>
     
     <item>
       <title>C语言造轮子（四）——单元测试</title>
-      <link>https://flhonker.github.io/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</link>
+      <link>frankliu624.me/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</link>
       <pubDate>Sun, 08 Jul 2018 12:00:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</guid>
+      <guid>frankliu624.me/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</guid>
       <description>C语言造轮子（四）——单元测试 人一旦上了年纪就变得容易追忆过去，这似乎是由于我们现在过于依赖电脑、手机把它们作为大脑最主要的外接存储器，往日</description>
     </item>
     
     <item>
       <title>C语言造轮子（三）——Trie树及应用</title>
-      <link>https://flhonker.github.io/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</link>
+      <link>frankliu624.me/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</link>
       <pubDate>Sat, 07 Jul 2018 12:00:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</guid>
+      <guid>frankliu624.me/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</guid>
       <description>C语言造轮子（三）——Trie树及应用 大脑的构造其实就像数据结构那么简单，它简明扼要的记录下来每一个事件，再找一个事物作为索引，映射到大脑中</description>
     </item>
     
     <item>
       <title>C语言造轮子（二）——CMake打包</title>
-      <link>https://flhonker.github.io/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/</link>
+      <link>frankliu624.me/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/</link>
       <pubDate>Fri, 06 Jul 2018 12:00:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/</guid>
+      <guid>frankliu624.me/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/</guid>
       <description>C语言造轮子（二）——CMake打包 “爱而得其人，为至幸；爱而失其人，为次幸。”——《jojo的奇妙冒险》 这句话饱含历经重重磨难却最终还是不</description>
     </item>
     
     <item>
       <title>用Go打造区块链（4）—— 交易记录（一）</title>
-      <link>https://flhonker.github.io/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</link>
+      <link>frankliu624.me/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</link>
       <pubDate>Fri, 06 Jul 2018 00:00:00 +0000</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</guid>
+      <guid>frankliu624.me/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</guid>
       <description>用Go打造区块链（4）——交易记录（一）</description>
     </item>
     
     <item>
       <title>用Go打造区块链（3）—— 数据存储及命令行（CLI）</title>
-      <link>https://flhonker.github.io/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</link>
+      <link>frankliu624.me/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</link>
       <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</guid>
+      <guid>frankliu624.me/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</guid>
       <description>用Go打造区块链（3）——数据存储及命令行（CLI） 这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学</description>
     </item>
     
     <item>
       <title>用Go打造区块链（2）—— 工作证明机制（PoW）</title>
-      <link>https://flhonker.github.io/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</link>
+      <link>frankliu624.me/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</link>
       <pubDate>Wed, 04 Jul 2018 00:00:00 +0000</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</guid>
+      <guid>frankliu624.me/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</guid>
       <description>用Go打造区块链（2）——工作证明机制（PoW） 这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学习学</description>
     </item>
     
     <item>
       <title>用Go打造区块链（1）—— 基础原型</title>
-      <link>https://flhonker.github.io/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</link>
+      <link>frankliu624.me/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</link>
       <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</guid>
+      <guid>frankliu624.me/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</guid>
       <description>用Go打造区块链（1）——基础原型 这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学习学习再学习首发，</description>
     </item>
     
     <item>
       <title>C语言造轮子（一）——stack</title>
-      <link>https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</link>
+      <link>frankliu624.me/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</link>
       <pubDate>Sun, 01 Jul 2018 15:05:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</guid>
+      <guid>frankliu624.me/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</guid>
       <description>C语言造轮子（一）——stack 先吹牛，嘿嘿某些面向对象 随着互联网技术的发展，尤其是人工智能、大数据（听这些词听得耳朵都烦了）的过度火热，还</description>
     </item>
     
     <item>
       <title>面试精选：链表问题集锦</title>
-      <link>https://flhonker.github.io/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</link>
+      <link>frankliu624.me/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</link>
       <pubDate>Sat, 30 Jun 2018 13:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</guid>
+      <guid>frankliu624.me/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</guid>
       <description>面试精选：链表问题集锦 链表问题在面试过程中也是很重要也很基础的一部分，链表本身很灵活，很考查编程功底，所以是很值得考的地方。我将复习过程中觉</description>
     </item>
     
     <item>
       <title>高效Linux命令</title>
-      <link>https://flhonker.github.io/posts/2018-06-15-%E9%AB%98%E6%95%88linux%E5%91%BD%E4%BB%A4/</link>
+      <link>frankliu624.me/posts/2018-06-15-%E9%AB%98%E6%95%88linux%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Fri, 15 Jun 2018 11:10:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-06-15-%E9%AB%98%E6%95%88linux%E5%91%BD%E4%BB%A4/</guid>
+      <guid>frankliu624.me/posts/2018-06-15-%E9%AB%98%E6%95%88linux%E5%91%BD%E4%BB%A4/</guid>
       <description>高效Linux命令 1. vim 命令 2. screen 功能：命令行终端切换，用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。 会话恢复 会话共享</description>
     </item>
     
     <item>
       <title>opencv实战：人脸关键点检测（FaceMark）</title>
-      <link>https://flhonker.github.io/posts/2018-06-04-cv-facemark/</link>
+      <link>frankliu624.me/posts/2018-06-04-cv-facemark/</link>
       <pubDate>Mon, 04 Jun 2018 22:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-06-04-cv-facemark/</guid>
+      <guid>frankliu624.me/posts/2018-06-04-cv-facemark/</guid>
       <description>opencv实战：人脸关键点检测（FaceMark） Summary：利用OpenCV中的LBF算法进行人脸关键点检测（Facial Landmark Dete</description>
     </item>
     
     <item>
       <title>IPFS入门笔记</title>
-      <link>https://flhonker.github.io/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</link>
+      <link>frankliu624.me/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Thu, 31 May 2018 22:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</guid>
+      <guid>frankliu624.me/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</guid>
       <description>IPFS入门笔记 1. IPFS 是什么？ IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是</description>
     </item>
     
     <item>
       <title>kernel的保护模式</title>
-      <link>https://flhonker.github.io/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</link>
+      <link>frankliu624.me/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Sat, 19 May 2018 10:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>frankliu624.me/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</guid>
       <description>kernel的保护模式 实模式与保护模式下的分段机制 程序想要在计算机上运行，就必须将源代码编译链接成二进制的可执行文件之后才可能被操作系统加载</description>
     </item>
     
     <item>
       <title>为自己的操作系统写MBR</title>
-      <link>https://flhonker.github.io/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</link>
+      <link>frankliu624.me/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</link>
       <pubDate>Thu, 17 May 2018 10:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</guid>
+      <guid>frankliu624.me/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</guid>
       <description>为自己的操作系统写MBR 接上一节，我们搭建起了bochs的模拟器环境，创建了硬盘，但是没有办法正常启动OS，就是因为缺少MBR主引导唤醒BI</description>
     </item>
     
     <item>
       <title>bochs环境搭建</title>
-      <link>https://flhonker.github.io/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <link>frankliu624.me/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Wed, 16 May 2018 11:10:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <guid>frankliu624.me/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
       <description>bochs环境搭建 Linux kernel学习专栏——1 项目源码和配置文件请移步github:https://github.com/FLHonker/</description>
     </item>
     
     <item>
       <title>使用webbench压力测试Go服务器</title>
-      <link>https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <link>frankliu624.me/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
       <pubDate>Mon, 14 May 2018 22:10:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <guid>frankliu624.me/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description>使用webbench压力测试Go服务器 1. Webbench Webbench是Radim Kolar在1997年写的一个在Linux下使用的非常简单的网站压测工</description>
     </item>
     
     <item>
       <title>迷你Go服务器</title>
-      <link>https://flhonker.github.io/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <link>frankliu624.me/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
       <pubDate>Sun, 13 May 2018 09:55:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <guid>frankliu624.me/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description>迷你Go服务器 Go语言里面提供了一个完善的net/http包，通过http包可以很方便的就搭建起来一个可以运行的Web服务。同时使用这个包能</description>
     </item>
     
     <item>
       <title>C&#43;&#43;11智能指针理解与应用</title>
-      <link>https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <link>frankliu624.me/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
       <pubDate>Fri, 11 May 2018 09:02:40 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <guid>frankliu624.me/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
       <description>C++11智能指针理解与应用 智能指针的作用 C++11中引入了智能指针的概念，方便管理堆内存。使用普通指针，容易造成堆内存泄露（忘记释放），二</description>
     </item>
     
     <item>
       <title>Linux进程间通信（IPC）机制总结</title>
-      <link>https://flhonker.github.io/posts/2018-05-06-ipc-linux%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/</link>
+      <link>frankliu624.me/posts/2018-05-06-ipc-linux%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/</link>
       <pubDate>Sun, 06 May 2018 23:22:50 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-06-ipc-linux%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/</guid>
+      <guid>frankliu624.me/posts/2018-05-06-ipc-linux%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/</guid>
       <description>Linux进程间通信（IPC）机制总结 在linux下的多个进程间的通信机制叫做IPC(Inter-Process Communication)</description>
     </item>
     
     <item>
       <title>C&#43;&#43;多线程与同步(Linux)</title>
-      <link>https://flhonker.github.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
+      <link>frankliu624.me/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
       <pubDate>Fri, 04 May 2018 13:02:55 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
+      <guid>frankliu624.me/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
       <description>C++多线程与同步(Linux) 1 利用系统API实现多线程（POSIX） C++11以前不包含多线程应用程序的任何内置支持。相反，它完全依赖于</description>
     </item>
     
     <item>
       <title>文艺程序员</title>
-      <link>https://flhonker.github.io/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</link>
+      <link>frankliu624.me/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</link>
       <pubDate>Fri, 04 May 2018 07:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</guid>
+      <guid>frankliu624.me/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</guid>
       <description>文艺程序员 大学本科计算机专业的优秀学生4年后毕业应该达到什么水平？ * 写得了算法翻的了墙; * 搭得了网站查得了bug; * 博客300篇，篇篇有心得</description>
     </item>
     
     <item>
       <title>字符串朴素匹配算法和KMP</title>
-      <link>https://flhonker.github.io/posts/2018-04-30-alg-kmp/</link>
+      <link>frankliu624.me/posts/2018-04-30-alg-kmp/</link>
       <pubDate>Mon, 30 Apr 2018 12:11:11 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-30-alg-kmp/</guid>
+      <guid>frankliu624.me/posts/2018-04-30-alg-kmp/</guid>
       <description>字符串朴素匹配算法和KMP KMP算法的核心思想是利用已经得到的部分匹配信息来进行后面的匹配过程。KMP算法分为两步，第一步是计算next数组</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://flhonker.github.io/posts/frank_model/</link>
+      <link>frankliu624.me/posts/frank_model/</link>
       <pubDate>Sun, 29 Apr 2018 22:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/frank_model/</guid>
+      <guid>frankliu624.me/posts/frank_model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理（内存模型）</title>
-      <link>https://flhonker.github.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>frankliu624.me/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sun, 29 Apr 2018 22:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>frankliu624.me/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>C++内存管理（内存模型） [导语] 内存管理是C++最令人切齿痛恨的问题，也是C++最有争议的问题，C++高手从中获得了更好的性能，更大的自由</description>
     </item>
     
     <item>
       <title>C&#43;&#43;的TCP通信（多线程）</title>
-      <link>https://flhonker.github.io/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</link>
+      <link>frankliu624.me/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</link>
       <pubDate>Sat, 28 Apr 2018 15:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</guid>
+      <guid>frankliu624.me/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</guid>
       <description>C++的TCP通信（多线程） 简述：TCP通信服务端和客户端代码是不同的。首先，服务端有一个ServerSocket，初始化以后（包括设置IP</description>
     </item>
     
     <item>
       <title>Linux 常用命令基础</title>
-      <link>https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/</link>
+      <link>frankliu624.me/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Fri, 27 Apr 2018 13:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/</guid>
+      <guid>frankliu624.me/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/</guid>
       <description>Linux 常用命令基础 1. vim 命令 不断更新。。。 2. screen 功能：命令行终端切换，用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。 会话恢</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存对齐</title>
-      <link>https://flhonker.github.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</link>
+      <link>frankliu624.me/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</link>
       <pubDate>Wed, 25 Apr 2018 13:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</guid>
+      <guid>frankliu624.me/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</guid>
       <description>6. 内存对齐 内存对齐的作用： &amp;gt;(1)平台原因：不是所有的硬件平台都能访问任意内存地址上的任意数据的；某些硬件平台只能在某些地址取得特定类</description>
     </item>
     
     <item>
       <title>CentOS7 分区硬盘扩容</title>
-      <link>https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</link>
+      <link>frankliu624.me/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</link>
       <pubDate>Wed, 25 Apr 2018 13:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</guid>
+      <guid>frankliu624.me/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</guid>
       <description>CentOS7 分区硬盘扩容 Tag：centos7 分区 硬盘扩容 fdisk LVM 运用虚拟机经常会出现硬盘容量不足的情况，在不改变配置的要求下，直接对根目录增加容量。 ce</description>
     </item>
     
     <item>
       <title>C&#43;&#43;运算符重载</title>
-      <link>https://flhonker.github.io/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</link>
+      <link>frankliu624.me/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</link>
       <pubDate>Tue, 24 Apr 2018 12:11:45 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</guid>
+      <guid>frankliu624.me/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</guid>
       <description>C++运算符重载 5.1 运算符重载的规则 运算符重载规则如下： ①、 C++中的运算符除了少数几个之外，全部可以重载，而且只能重载C++中已有的运算符。</description>
     </item>
     
     <item>
       <title>C&#43;&#43;拷贝构造函数</title>
-      <link>https://flhonker.github.io/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</link>
+      <link>frankliu624.me/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</link>
       <pubDate>Mon, 23 Apr 2018 10:01:45 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</guid>
+      <guid>frankliu624.me/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</guid>
       <description>1 C++拷贝构造函数 为什么复制构造函数的参数需要加const和引用? 1.1 首先跑一个小程序，看下调用关系。 #include &amp;lt;iostream&amp;gt; using namespace std; class CExample { public: CExample(int x) :m_nTest(x) //带参数构造</description>
     </item>
     
     <item>
       <title>C&#43;&#43;单例模式实现</title>
-      <link>https://flhonker.github.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <link>frankliu624.me/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Sun, 22 Apr 2018 18:45:07 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>frankliu624.me/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
       <description>单例模式实现 参考: C++的单例模式与线程目录安全单例模式（懒汉/饿汉） (1) 教科书里的单例模式(懒汉式) 我们都很清楚一个简单的单例模式该怎样去实</description>
     </item>
     
     <item>
       <title>八大排序算法</title>
-      <link>https://flhonker.github.io/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</link>
+      <link>frankliu624.me/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Sat, 21 Apr 2018 08:23:07 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</guid>
+      <guid>frankliu624.me/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</guid>
       <description>八大排序算法 参考： 1. CSDN八大经典排序算法 2. CSDN稳定与不稳定排序方法 1.0 排序算法分类 1.1 直接插入排序 基本思想: 将一个记录插入到已排序好的有</description>
     </item>
     
     <item>
       <title>About me</title>
-      <link>https://flhonker.github.io/about/</link>
+      <link>frankliu624.me/about/</link>
       <pubDate>Sun, 18 Mar 2018 20:53:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/about/</guid>
+      <guid>frankliu624.me/about/</guid>
       <description>Info Frank Liu(flhonker) Wuhan, China 🇨🇳 Career WHUT （WHUT) ICBC软件开发中心广州研发部 爱好：看书、逛技术论坛，写博客、浏览知乎，打篮球，游泳等，对新技术充满好奇。酷爱</description>
     </item>
     
     <item>
       <title>MFC连连看开发日志</title>
-      <link>https://flhonker.github.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</link>
+      <link>frankliu624.me/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</link>
       <pubDate>Sat, 27 May 2017 16:43:27 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</guid>
+      <guid>frankliu624.me/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</guid>
       <description>MFC连连看开发日志 卡通连连看项目[LLK-MFC]地址为：https://github.com/FLHonker/LLK-MFC 本文为作者</description>
     </item>
     

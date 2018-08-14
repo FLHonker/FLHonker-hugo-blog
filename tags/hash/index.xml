@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hash on Frank Liu</title>
-    <link>https://flhonker.github.io/tags/hash/</link>
+    <link>frankliu624.me/tags/hash/</link>
     <description>Recent content in Hash on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Tue, 10 Jul 2018 11:08:04 +0800</lastBuildDate>
     
-	<atom:link href="https://flhonker.github.io/tags/hash/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="frankliu624.me/tags/hash/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>C语言造轮子（六）——哈希表</title>
-      <link>https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</link>
+      <link>frankliu624.me/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</link>
       <pubDate>Tue, 10 Jul 2018 11:08:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</guid>
+      <guid>frankliu624.me/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</guid>
       <description>C语言造轮子（六）——哈希表 如同“见字如晤”一般，我们通常用标签化的事物来抽象一个人，一件事，一段情……，比如迎面走来了一个女工妹子，你和工</description>
     </item>
     

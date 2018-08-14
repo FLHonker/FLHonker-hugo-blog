@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Career on Frank Liu</title>
-    <link>https://flhonker.github.io/tags/career/</link>
+    <link>frankliu624.me/tags/career/</link>
     <description>Recent content in Career on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,24 +10,24 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Fri, 27 Jul 2018 19:30:04 +0800</lastBuildDate>
     
-	<atom:link href="https://flhonker.github.io/tags/career/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="frankliu624.me/tags/career/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ICBC广州研发部实习第一周经历</title>
-      <link>https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</link>
+      <link>frankliu624.me/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</link>
       <pubDate>Fri, 27 Jul 2018 19:30:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</guid>
+      <guid>frankliu624.me/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</guid>
       <description>ICBC广州研发部实习第一周经历 ICBC研发中心外景 ICBC开发中心前台 广研实习生概况 2018年中国工商银行广州研发部一共来了61名实习生，</description>
     </item>
     
     <item>
       <title>文艺程序员</title>
-      <link>https://flhonker.github.io/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</link>
+      <link>frankliu624.me/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</link>
       <pubDate>Fri, 04 May 2018 07:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</guid>
+      <guid>frankliu624.me/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</guid>
       <description>文艺程序员 大学本科计算机专业的优秀学生4年后毕业应该达到什么水平？ * 写得了算法翻的了墙; * 搭得了网站查得了bug; * 博客300篇，篇篇有心得</description>
     </item>
     

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Stack on Frank Liu</title>
-    <link>https://flhonker.github.io/tags/stack/</link>
+    <link>frankliu624.me/tags/stack/</link>
     <description>Recent content in Stack on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Sun, 01 Jul 2018 15:05:04 +0800</lastBuildDate>
     
-	<atom:link href="https://flhonker.github.io/tags/stack/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="frankliu624.me/tags/stack/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>C语言造轮子（一）——stack</title>
-      <link>https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</link>
+      <link>frankliu624.me/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</link>
       <pubDate>Sun, 01 Jul 2018 15:05:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</guid>
+      <guid>frankliu624.me/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</guid>
       <description>C语言造轮子（一）——stack 先吹牛，嘿嘿某些面向对象 随着互联网技术的发展，尤其是人工智能、大数据（听这些词听得耳朵都烦了）的过度火热，还</description>
     </item>
     
