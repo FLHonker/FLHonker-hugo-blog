@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bochs on Frank Liu</title>
-    <link>https://jimmysong.io/tags/bochs/</link>
+    <link>http://frankliu624.me/tags/bochs/</link>
     <description>Recent content in Bochs on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Wed, 16 May 2018 11:10:22 +0800</lastBuildDate>
     
-	<atom:link href="https://jimmysong.io/tags/bochs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://frankliu624.me/tags/bochs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>bochs环境搭建</title>
-      <link>https://jimmysong.io/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <link>http://frankliu624.me/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Wed, 16 May 2018 11:10:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://jimmysong.io/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <guid>http://frankliu624.me/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
       <description>bochs环境搭建 Linux kernel学习专栏——1 项目源码和配置文件请移步github:https://github.com/FLHonker/</description>
     </item>
     

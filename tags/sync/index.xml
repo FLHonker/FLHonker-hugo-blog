@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sync on Frank Liu</title>
-    <link>https://jimmysong.io/tags/sync/</link>
+    <link>http://frankliu624.me/tags/sync/</link>
     <description>Recent content in Sync on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Fri, 04 May 2018 13:02:55 +0800</lastBuildDate>
     
-	<atom:link href="https://jimmysong.io/tags/sync/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://frankliu624.me/tags/sync/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>C&#43;&#43;多线程与同步(Linux)</title>
-      <link>https://jimmysong.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
+      <link>http://frankliu624.me/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
       <pubDate>Fri, 04 May 2018 13:02:55 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://jimmysong.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
+      <guid>http://frankliu624.me/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
       <description>C++多线程与同步(Linux) 1 利用系统API实现多线程（POSIX） C++11以前不包含多线程应用程序的任何内置支持。相反，它完全依赖于</description>
     </item>
     

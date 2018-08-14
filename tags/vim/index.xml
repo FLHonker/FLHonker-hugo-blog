@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vim on Frank Liu</title>
-    <link>https://jimmysong.io/tags/vim/</link>
+    <link>http://frankliu624.me/tags/vim/</link>
     <description>Recent content in Vim on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Fri, 27 Apr 2018 13:22:00 +0800</lastBuildDate>
     
-	<atom:link href="https://jimmysong.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://frankliu624.me/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Linux 常用命令基础</title>
-      <link>https://jimmysong.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/</link>
+      <link>http://frankliu624.me/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Fri, 27 Apr 2018 13:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://jimmysong.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/</guid>
+      <guid>http://frankliu624.me/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/</guid>
       <description>Linux 常用命令基础 1. vim 命令 不断更新。。。 2. screen 功能：命令行终端切换，用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。 会话恢</description>
     </item>
     

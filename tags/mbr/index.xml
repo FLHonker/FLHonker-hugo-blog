@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mbr on Frank Liu</title>
-    <link>https://jimmysong.io/tags/mbr/</link>
+    <link>http://frankliu624.me/tags/mbr/</link>
     <description>Recent content in Mbr on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Thu, 17 May 2018 10:45:54 +0800</lastBuildDate>
     
-	<atom:link href="https://jimmysong.io/tags/mbr/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://frankliu624.me/tags/mbr/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>为自己的操作系统写MBR</title>
-      <link>https://jimmysong.io/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</link>
+      <link>http://frankliu624.me/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</link>
       <pubDate>Thu, 17 May 2018 10:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>https://jimmysong.io/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</guid>
+      <guid>http://frankliu624.me/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</guid>
       <description>为自己的操作系统写MBR 接上一节，我们搭建起了bochs的模拟器环境，创建了硬盘，但是没有办法正常启动OS，就是因为缺少MBR主引导唤醒BI</description>
     </item>
     
