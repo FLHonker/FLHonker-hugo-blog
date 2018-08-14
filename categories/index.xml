@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Frank Liu</title>
-    <link>flhonker.github.io/categories/</link>
+    <link>https://jimmysong.io/categories/</link>
     <description>Recent content in Categories on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,96 +10,96 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Tue, 10 Jul 2018 11:08:04 +0800</lastBuildDate>
     
-	<atom:link href="flhonker.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jimmysong.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Algorithm</title>
-      <link>flhonker.github.io/categories/algorithm/</link>
+      <link>https://jimmysong.io/categories/algorithm/</link>
       <pubDate>Tue, 10 Jul 2018 11:08:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/algorithm/</guid>
+      <guid>https://jimmysong.io/categories/algorithm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blockchain</title>
-      <link>flhonker.github.io/categories/blockchain/</link>
+      <link>https://jimmysong.io/categories/blockchain/</link>
       <pubDate>Thu, 31 May 2018 22:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/blockchain/</guid>
+      <guid>https://jimmysong.io/categories/blockchain/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43;</title>
-      <link>flhonker.github.io/categories/c&#43;&#43;/</link>
+      <link>https://jimmysong.io/categories/c&#43;&#43;/</link>
       <pubDate>Fri, 11 May 2018 09:02:40 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/c&#43;&#43;/</guid>
+      <guid>https://jimmysong.io/categories/c&#43;&#43;/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Career</title>
-      <link>flhonker.github.io/categories/career/</link>
+      <link>https://jimmysong.io/categories/career/</link>
       <pubDate>Fri, 27 Jul 2018 19:30:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/career/</guid>
+      <guid>https://jimmysong.io/categories/career/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>flhonker.github.io/categories/go/</link>
+      <link>https://jimmysong.io/categories/go/</link>
       <pubDate>Sun, 13 May 2018 09:55:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/go/</guid>
+      <guid>https://jimmysong.io/categories/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>flhonker.github.io/categories/linux/</link>
+      <link>https://jimmysong.io/categories/linux/</link>
       <pubDate>Fri, 15 Jun 2018 11:10:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/linux/</guid>
+      <guid>https://jimmysong.io/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Opencv</title>
-      <link>flhonker.github.io/categories/opencv/</link>
+      <link>https://jimmysong.io/categories/opencv/</link>
       <pubDate>Tue, 31 Jul 2018 20:30:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/opencv/</guid>
+      <guid>https://jimmysong.io/categories/opencv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Os</title>
-      <link>flhonker.github.io/categories/os/</link>
+      <link>https://jimmysong.io/categories/os/</link>
       <pubDate>Sat, 19 May 2018 10:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/os/</guid>
+      <guid>https://jimmysong.io/categories/os/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Server</title>
-      <link>flhonker.github.io/categories/server/</link>
+      <link>https://jimmysong.io/categories/server/</link>
       <pubDate>Mon, 14 May 2018 22:10:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/server/</guid>
+      <guid>https://jimmysong.io/categories/server/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tcp</title>
-      <link>flhonker.github.io/categories/tcp/</link>
+      <link>https://jimmysong.io/categories/tcp/</link>
       <pubDate>Sat, 28 Apr 2018 15:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/categories/tcp/</guid>
+      <guid>https://jimmysong.io/categories/tcp/</guid>
       <description></description>
     </item>
     

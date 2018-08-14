@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C&#43;&#43; on Frank Liu</title>
-    <link>flhonker.github.io/tags/c&#43;&#43;/</link>
+    <link>https://jimmysong.io/tags/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,114 +10,114 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Fri, 11 May 2018 09:02:40 +0800</lastBuildDate>
     
-	<atom:link href="flhonker.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jimmysong.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>C&#43;&#43;11智能指针理解与应用</title>
-      <link>flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <link>https://jimmysong.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
       <pubDate>Fri, 11 May 2018 09:02:40 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <guid>https://jimmysong.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
       <description>C++11智能指针理解与应用 智能指针的作用 C++11中引入了智能指针的概念，方便管理堆内存。使用普通指针，容易造成堆内存泄露（忘记释放），二</description>
     </item>
     
     <item>
       <title>C&#43;&#43;多线程与同步(Linux)</title>
-      <link>flhonker.github.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
+      <link>https://jimmysong.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
       <pubDate>Fri, 04 May 2018 13:02:55 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
+      <guid>https://jimmysong.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
       <description>C++多线程与同步(Linux) 1 利用系统API实现多线程（POSIX） C++11以前不包含多线程应用程序的任何内置支持。相反，它完全依赖于</description>
     </item>
     
     <item>
       <title>字符串朴素匹配算法和KMP</title>
-      <link>flhonker.github.io/posts/2018-04-30-alg-kmp/</link>
+      <link>https://jimmysong.io/posts/2018-04-30-alg-kmp/</link>
       <pubDate>Mon, 30 Apr 2018 12:11:11 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-04-30-alg-kmp/</guid>
+      <guid>https://jimmysong.io/posts/2018-04-30-alg-kmp/</guid>
       <description>字符串朴素匹配算法和KMP KMP算法的核心思想是利用已经得到的部分匹配信息来进行后面的匹配过程。KMP算法分为两步，第一步是计算next数组</description>
     </item>
     
     <item>
       <title></title>
-      <link>flhonker.github.io/posts/frank_model/</link>
+      <link>https://jimmysong.io/posts/frank_model/</link>
       <pubDate>Sun, 29 Apr 2018 22:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/frank_model/</guid>
+      <guid>https://jimmysong.io/posts/frank_model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理（内存模型）</title>
-      <link>flhonker.github.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>https://jimmysong.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sun, 29 Apr 2018 22:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://jimmysong.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>C++内存管理（内存模型） [导语] 内存管理是C++最令人切齿痛恨的问题，也是C++最有争议的问题，C++高手从中获得了更好的性能，更大的自由</description>
     </item>
     
     <item>
       <title>C&#43;&#43;的TCP通信（多线程）</title>
-      <link>flhonker.github.io/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</link>
+      <link>https://jimmysong.io/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</link>
       <pubDate>Sat, 28 Apr 2018 15:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</guid>
+      <guid>https://jimmysong.io/posts/2018-04-28-tcp-%E5%88%A9%E7%94%A8windows-api%E5%AE%9E%E7%8E%B0tcp%E9%80%9A%E4%BF%A1/</guid>
       <description>C++的TCP通信（多线程） 简述：TCP通信服务端和客户端代码是不同的。首先，服务端有一个ServerSocket，初始化以后（包括设置IP</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存对齐</title>
-      <link>flhonker.github.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</link>
+      <link>https://jimmysong.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</link>
       <pubDate>Wed, 25 Apr 2018 13:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</guid>
+      <guid>https://jimmysong.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</guid>
       <description>6. 内存对齐 内存对齐的作用： &amp;gt;(1)平台原因：不是所有的硬件平台都能访问任意内存地址上的任意数据的；某些硬件平台只能在某些地址取得特定类</description>
     </item>
     
     <item>
       <title>C&#43;&#43;运算符重载</title>
-      <link>flhonker.github.io/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</link>
+      <link>https://jimmysong.io/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</link>
       <pubDate>Tue, 24 Apr 2018 12:11:45 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</guid>
+      <guid>https://jimmysong.io/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</guid>
       <description>C++运算符重载 5.1 运算符重载的规则 运算符重载规则如下： ①、 C++中的运算符除了少数几个之外，全部可以重载，而且只能重载C++中已有的运算符。</description>
     </item>
     
     <item>
       <title>C&#43;&#43;拷贝构造函数</title>
-      <link>flhonker.github.io/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</link>
+      <link>https://jimmysong.io/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</link>
       <pubDate>Mon, 23 Apr 2018 10:01:45 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://jimmysong.io/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</guid>
       <description>1 C++拷贝构造函数 为什么复制构造函数的参数需要加const和引用? 1.1 首先跑一个小程序，看下调用关系。 #include &amp;lt;iostream&amp;gt; using namespace std; class CExample { public: CExample(int x) :m_nTest(x) //带参数构造</description>
     </item>
     
     <item>
       <title>C&#43;&#43;单例模式实现</title>
-      <link>flhonker.github.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://jimmysong.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Sun, 22 Apr 2018 18:45:07 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://jimmysong.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
       <description>单例模式实现 参考: C++的单例模式与线程目录安全单例模式（懒汉/饿汉） (1) 教科书里的单例模式(懒汉式) 我们都很清楚一个简单的单例模式该怎样去实</description>
     </item>
     
     <item>
       <title>八大排序算法</title>
-      <link>flhonker.github.io/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</link>
+      <link>https://jimmysong.io/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Sat, 21 Apr 2018 08:23:07 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</guid>
+      <guid>https://jimmysong.io/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</guid>
       <description>八大排序算法 参考： 1. CSDN八大经典排序算法 2. CSDN稳定与不稳定排序方法 1.0 排序算法分类 1.1 直接插入排序 基本思想: 将一个记录插入到已排序好的有</description>
     </item>
     
     <item>
       <title>MFC连连看开发日志</title>
-      <link>flhonker.github.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</link>
+      <link>https://jimmysong.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</link>
       <pubDate>Sat, 27 May 2017 16:43:27 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</guid>
+      <guid>https://jimmysong.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</guid>
       <description>MFC连连看开发日志 卡通连连看项目[LLK-MFC]地址为：https://github.com/FLHonker/LLK-MFC 本文为作者</description>
     </item>
     

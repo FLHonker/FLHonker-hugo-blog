@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Me on Frank Liu</title>
-    <link>flhonker.github.io/tags/me/</link>
+    <link>https://jimmysong.io/tags/me/</link>
     <description>Recent content in Me on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Sun, 18 Mar 2018 20:53:54 +0800</lastBuildDate>
     
-	<atom:link href="flhonker.github.io/tags/me/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jimmysong.io/tags/me/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About me</title>
-      <link>flhonker.github.io/about/</link>
+      <link>https://jimmysong.io/about/</link>
       <pubDate>Sun, 18 Mar 2018 20:53:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/about/</guid>
+      <guid>https://jimmysong.io/about/</guid>
       <description>Info Frank Liu(flhonker) Wuhan, China 🇨🇳 Career WHUT （WHUT) ICBC软件开发中心广州研发部 爱好：看书、逛技术论坛，写博客、浏览知乎，打篮球，游泳等，对新技术充满好奇。酷爱</description>
     </item>
     

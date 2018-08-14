@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>List on Frank Liu</title>
-    <link>flhonker.github.io/tags/list/</link>
+    <link>https://jimmysong.io/tags/list/</link>
     <description>Recent content in List on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,24 +10,24 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Mon, 09 Jul 2018 11:08:04 +0800</lastBuildDate>
     
-	<atom:link href="flhonker.github.io/tags/list/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jimmysong.io/tags/list/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>C语言造轮子（五）——List</title>
-      <link>flhonker.github.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</link>
+      <link>https://jimmysong.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</link>
       <pubDate>Mon, 09 Jul 2018 11:08:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</guid>
+      <guid>https://jimmysong.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</guid>
       <description>C语言造轮子（五）——List “如果你有能力选择，你是会选择扼住命运的咽喉还是躺下来接受命运的蹂躏” 链表是一种迷人的数据结构，就像因果关系一</description>
     </item>
     
     <item>
       <title>面试精选：链表问题集锦</title>
-      <link>flhonker.github.io/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</link>
+      <link>https://jimmysong.io/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</link>
       <pubDate>Sat, 30 Jun 2018 13:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</guid>
+      <guid>https://jimmysong.io/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</guid>
       <description>面试精选：链表问题集锦 链表问题在面试过程中也是很重要也很基础的一部分，链表本身很灵活，很考查编程功底，所以是很值得考的地方。我将复习过程中觉</description>
     </item>
     

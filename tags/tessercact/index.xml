@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tessercact on Frank Liu</title>
-    <link>flhonker.github.io/tags/tessercact/</link>
+    <link>https://jimmysong.io/tags/tessercact/</link>
     <description>Recent content in Tessercact on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Fri, 27 Jul 2018 20:30:04 +0800</lastBuildDate>
     
-	<atom:link href="flhonker.github.io/tags/tessercact/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jimmysong.io/tags/tessercact/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>E2E软件自动化测试中的OCR功能</title>
-      <link>flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/</link>
+      <link>https://jimmysong.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/</link>
       <pubDate>Fri, 27 Jul 2018 20:30:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/</guid>
+      <guid>https://jimmysong.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/</guid>
       <description>E2E软件自动化测试中的OCR功能 Sikuli MIT的研究人员设计了一种新颖的图形脚本语言Sikuli，计算机用户只须有最基本的编程技能（比如会写pr</description>
     </item>
     

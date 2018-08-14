@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Facemark on Frank Liu</title>
-    <link>flhonker.github.io/tags/facemark/</link>
+    <link>https://jimmysong.io/tags/facemark/</link>
     <description>Recent content in Facemark on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +10,15 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Mon, 04 Jun 2018 22:45:54 +0800</lastBuildDate>
     
-	<atom:link href="flhonker.github.io/tags/facemark/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jimmysong.io/tags/facemark/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>opencv实战：人脸关键点检测（FaceMark）</title>
-      <link>flhonker.github.io/posts/2018-06-04-cv-facemark/</link>
+      <link>https://jimmysong.io/posts/2018-06-04-cv-facemark/</link>
       <pubDate>Mon, 04 Jun 2018 22:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>flhonker.github.io/posts/2018-06-04-cv-facemark/</guid>
+      <guid>https://jimmysong.io/posts/2018-06-04-cv-facemark/</guid>
       <description>opencv实战：人脸关键点检测（FaceMark） Summary：利用OpenCV中的LBF算法进行人脸关键点检测（Facial Landmark Dete</description>
     </item>
     
