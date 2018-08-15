@@ -8,10 +8,19 @@
     <language>zh</language>
     <managingEditor>frankliu624@gmail.com (Frank Liu(flhonker))</managingEditor>
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
-    <lastBuildDate>Tue, 31 Jul 2018 20:30:04 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Aug 2018 20:15:22 +0800</lastBuildDate>
     
 	<atom:link href="http://frankliu624.me/tags/opencv/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GUI截图文本搜索定位</title>
+      <link>http://frankliu624.me/posts/2018-08-14-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D/</link>
+      <pubDate>Tue, 14 Aug 2018 20:15:22 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-08-14-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D/</guid>
+      <description>GUI截图文本搜索定位 介绍了E2E自动化测试中OCR模块的功能后，在前面两节中，我们讲了控件截图预处理与去边框算法和基于连通域检测的文本区域</description>
+    </item>
     
     <item>
       <title>基于连通域检测的文本区域提取算法</title>
