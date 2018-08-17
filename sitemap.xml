@@ -213,14 +213,14 @@
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/algorithm/</loc>
-    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
+    <loc>http://frankliu624.me/categories/algorithm/</loc>
+    <lastmod>2018-07-10T11:08:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://frankliu624.me/categories/algorithm/</loc>
-    <lastmod>2018-07-10T11:08:04+08:00</lastmod>
+    <loc>http://frankliu624.me/tags/algorithm/</loc>
+    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -231,13 +231,13 @@
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/blockchain/</loc>
+    <loc>http://frankliu624.me/categories/blockchain/</loc>
     <lastmod>2018-05-31T22:45:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://frankliu624.me/categories/blockchain/</loc>
+    <loc>http://frankliu624.me/tags/blockchain/</loc>
     <lastmod>2018-05-31T22:45:54+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -255,25 +255,25 @@
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/c&#43;&#43;/</loc>
-    <lastmod>2018-05-11T09:02:40+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://frankliu624.me/categories/c&#43;&#43;/</loc>
     <lastmod>2018-05-11T09:02:40+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/career/</loc>
-    <lastmod>2018-07-27T19:30:04+08:00</lastmod>
+    <loc>http://frankliu624.me/tags/c&#43;&#43;/</loc>
+    <lastmod>2018-05-11T09:02:40+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://frankliu624.me/categories/career/</loc>
+    <lastmod>2018-07-27T19:30:04+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://frankliu624.me/tags/career/</loc>
     <lastmod>2018-07-27T19:30:04+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -321,14 +321,14 @@
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/go/</loc>
-    <lastmod>2018-07-06T00:00:00+00:00</lastmod>
+    <loc>http://frankliu624.me/categories/go/</loc>
+    <lastmod>2018-05-13T09:55:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://frankliu624.me/categories/go/</loc>
-    <lastmod>2018-05-13T09:55:00+08:00</lastmod>
+    <loc>http://frankliu624.me/tags/go/</loc>
+    <lastmod>2018-07-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -363,13 +363,13 @@
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/linux/</loc>
+    <loc>http://frankliu624.me/categories/linux/</loc>
     <lastmod>2018-06-15T11:10:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://frankliu624.me/categories/linux/</loc>
+    <loc>http://frankliu624.me/tags/linux/</loc>
     <lastmod>2018-06-15T11:10:22+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -417,25 +417,25 @@
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/opencv/</loc>
-    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://frankliu624.me/categories/opencv/</loc>
     <lastmod>2018-08-14T20:15:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/os/</loc>
-    <lastmod>2018-05-19T10:45:54+08:00</lastmod>
+    <loc>http://frankliu624.me/tags/opencv/</loc>
+    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://frankliu624.me/categories/os/</loc>
+    <lastmod>2018-05-19T10:45:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://frankliu624.me/tags/os/</loc>
     <lastmod>2018-05-19T10:45:54+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -453,13 +453,13 @@
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/server/</loc>
+    <loc>http://frankliu624.me/categories/server/</loc>
     <lastmod>2018-05-14T22:10:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://frankliu624.me/categories/server/</loc>
+    <loc>http://frankliu624.me/tags/server/</loc>
     <lastmod>2018-05-14T22:10:22+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -501,13 +501,13 @@
   </url>
   
   <url>
-    <loc>http://frankliu624.me/tags/tcp/</loc>
+    <loc>http://frankliu624.me/categories/tcp/</loc>
     <lastmod>2018-04-28T15:22:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://frankliu624.me/categories/tcp/</loc>
+    <loc>http://frankliu624.me/tags/tcp/</loc>
     <lastmod>2018-04-28T15:22:00+08:00</lastmod>
     <priority>0</priority>
   </url>
