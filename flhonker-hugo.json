@@ -535,6 +535,27 @@
         ]
     },
     {
+        "title": "GUI截图文本搜索定位(多线程)",
+        "uri": "posts/2018-08-16-Alg-GUI截图文本搜索定位(多线程)",
+        "objectID": "posts/2018-08-16-Alg-GUI截图文本搜索定位(多线程)",
+        "date": "2018-08-16T12:15:22.000Z",
+        "bigimg": [
+            {
+                "src": "https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-linux_12.jpg",
+                "desc": "ICBCSDC|GuangZhou|Aug 14,2018"
+            }
+        ],
+        "draft": false,
+        "notoc": true,
+        "tags": [
+            "opencv",
+            "algorithm"
+        ],
+        "categories": [
+            "opencv"
+        ]
+    },
+    {
         "title": "Blog Plan",
         "uri": "posts/2999-01-01-Plan-下期预告",
         "objectID": "posts/2999-01-01-Plan-下期预告",

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://frankliu624.me/posts/2018-08-16-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2018-08-16T20:15:22+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://frankliu624.me/posts/2018-08-14-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D/</loc>
     <lastmod>2018-08-14T20:15:22+08:00</lastmod>
   </url>
@@ -209,12 +214,12 @@
   
   <url>
     <loc>http://frankliu624.me/</loc>
-    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
+    <lastmod>2018-08-16T20:15:22+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://frankliu624.me/tags/algorithm/</loc>
-    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
+    <lastmod>2018-08-16T20:15:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -418,13 +423,13 @@
   
   <url>
     <loc>http://frankliu624.me/tags/opencv/</loc>
-    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
+    <lastmod>2018-08-16T20:15:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://frankliu624.me/categories/opencv/</loc>
-    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
+    <lastmod>2018-08-16T20:15:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -448,7 +453,7 @@
   
   <url>
     <loc>http://frankliu624.me/posts/</loc>
-    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
+    <lastmod>2018-08-16T20:15:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -496,7 +501,7 @@
   
   <url>
     <loc>http://frankliu624.me/tags/</loc>
-    <lastmod>2018-08-14T20:15:22+08:00</lastmod>
+    <lastmod>2018-08-16T20:15:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
