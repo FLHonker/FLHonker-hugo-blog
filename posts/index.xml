@@ -19,7 +19,7 @@
       <pubDate>Thu, 16 Aug 2018 20:15:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>http://frankliu624.me/posts/2018-08-16-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
-      <description>GUI截图文本搜索定位(多线程)</description>
+      <description>GUI截图文本搜索定位(多线程) 在上一节中，我们讲了GUI截图进行文本搜索定位的算法和原理，但是，考虑到效率要求，我们打算将其改为多线程版，</description>
     </item>
     
     <item>

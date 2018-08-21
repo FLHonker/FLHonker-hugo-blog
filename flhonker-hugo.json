@@ -541,8 +541,8 @@
         "date": "2018-08-16T12:15:22.000Z",
         "bigimg": [
             {
-                "src": "https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-linux_12.jpg",
-                "desc": "ICBCSDC|GuangZhou|Aug 14,2018"
+                "src": "./images/post-bg/post-bg-cloudc.jpg",
+                "desc": "ICBCSDC|GuangZhou|Aug 16,2018"
             }
         ],
         "draft": false,
