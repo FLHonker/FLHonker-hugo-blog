@@ -556,6 +556,26 @@
         ]
     },
     {
+        "title": "ICBCSDC暑期实习总结",
+        "uri": "posts/2018-08-30-Career-ICBCSDC实习总结",
+        "objectID": "posts/2018-08-30-Career-ICBCSDC实习总结",
+        "date": "2018-08-30T13:44:18.000Z",
+        "bigimg": [
+            {
+                "src": "https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/home-bg-google1.jpg",
+                "desc": "ICBCSDC|GuangZhou|Aug 30,2018"
+            }
+        ],
+        "draft": false,
+        "notoc": true,
+        "tags": [
+            "career"
+        ],
+        "categories": [
+            "career"
+        ]
+    },
+    {
         "title": "Blog Plan",
         "uri": "posts/2999-01-01-Plan-下期预告",
         "objectID": "posts/2999-01-01-Plan-下期预告",

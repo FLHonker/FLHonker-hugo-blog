@@ -8,10 +8,19 @@
     <language>zh</language>
     <managingEditor>frankliu624@gmail.com (Frank Liu(flhonker))</managingEditor>
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
-    <lastBuildDate>Fri, 27 Jul 2018 19:30:04 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Aug 2018 21:44:18 +0800</lastBuildDate>
     
 	<atom:link href="http://frankliu624.me/categories/career/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ICBCSDC暑期实习总结</title>
+      <link>http://frankliu624.me/posts/2018-08-30-career-icbcsdc%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 30 Aug 2018 21:44:18 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-08-30-career-icbcsdc%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/</guid>
+      <description>写在总结报告中的 针对目前E2E自动化测试工具中存在的两个痛点：无法获取界面信息进行断言，无法根据已知信息在界面中定位进行交互操作，我们设计的</description>
+    </item>
     
     <item>
       <title>ICBC广州研发部实习第一周经历</title>
