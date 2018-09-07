@@ -340,63 +340,79 @@
         ]
     },
     {
-        "layout": "post",
+        "title": "用Go打造区块链（1）—— 基础原型",
         "uri": "posts/2018-07-03-BlockChain-Go打造区块链(1)",
         "objectID": "posts/2018-07-03-BlockChain-Go打造区块链(1)",
-        "title": "用Go打造区块链（1）—— 基础原型",
-        "subtitle": null,
-        "date": "2018-07-03T00:00:00.000Z",
-        "author": "Frank Liu",
-        "header-img": "img/post-bg-golang1.png",
-        "catalog": true,
+        "date": "2018-07-03T07:05:04.000Z",
+        "bigimg": [
+            {
+                "src": "https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-yourname.jpg",
+                "desc": "WHUT|Wuhan|Jul 3,2018"
+            }
+        ],
+        "notoc": true,
+        "draft": false,
+        "categories": "BlockChain",
         "tags": [
-            "Go",
-            "BloackChain"
+            "go",
+            "blockchain"
         ]
     },
     {
-        "layout": "post",
+        "title": "用Go打造区块链（2）—— 工作证明机制（PoW）",
         "uri": "posts/2018-07-04-BlockChain-Go打造区块链(2)",
         "objectID": "posts/2018-07-04-BlockChain-Go打造区块链(2)",
-        "title": "用Go打造区块链（2）—— 工作证明机制（PoW）",
-        "subtitle": "Proof of Work",
-        "date": "2018-07-04T00:00:00.000Z",
-        "author": "Frank Liu",
-        "header-img": "img/post-bg-golang1.png",
-        "catalog": true,
+        "date": "2018-07-04T14:25:04.000Z",
+        "bigimg": [
+            {
+                "src": "https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-yourname.jpg",
+                "desc": "WHUT|Wuhan|Jul 4,2018"
+            }
+        ],
+        "notoc": true,
+        "draft": false,
+        "categories": "BlockChain",
         "tags": [
-            "Go",
-            "BloackChain"
+            "go",
+            "blockchain"
         ]
     },
     {
-        "layout": "post",
+        "title": "用Go打造区块链（3）——数据存储及命令行（CLI）",
         "uri": "posts/2018-07-05-BlockChain-Go打造区块链(3)",
         "objectID": "posts/2018-07-05-BlockChain-Go打造区块链(3)",
-        "title": "用Go打造区块链（3）—— 数据存储及命令行（CLI）",
-        "subtitle": null,
-        "date": "2018-07-05T00:00:00.000Z",
-        "author": "Frank Liu",
-        "header-img": "img/post-bg-golang1.png",
-        "catalog": true,
+        "date": "2018-07-05T14:25:04.000Z",
+        "bigimg": [
+            {
+                "src": "https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-yourname.jpg",
+                "desc": "WHUT|Wuhan|Jul 5,2018"
+            }
+        ],
+        "notoc": true,
+        "draft": false,
+        "categories": "BlockChain",
         "tags": [
-            "Go",
-            "BloackChain"
+            "go",
+            "blockchain"
         ]
     },
     {
-        "layout": "post",
+        "title": "用Go打造区块链（4）—— 交易记录（一）",
         "uri": "posts/2018-07-06-BlockChain-Go打造区块链(4)",
         "objectID": "posts/2018-07-06-BlockChain-Go打造区块链(4)",
-        "title": "用Go打造区块链（4）—— 交易记录（一）",
-        "subtitle": null,
-        "date": "2018-07-06T00:00:00.000Z",
-        "author": "Frank Liu",
-        "header-img": "img/post-bg-golang1.png",
-        "catalog": true,
+        "date": "2018-07-06T14:25:04.000Z",
+        "bigimg": [
+            {
+                "src": "https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-yourname.jpg",
+                "desc": "WHUT|Wuhan|Jul 6,2018"
+            }
+        ],
+        "notoc": true,
+        "draft": false,
+        "categories": "BlockChain",
         "tags": [
-            "Go",
-            "BloackChain"
+            "go",
+            "blockchain"
         ]
     },
     {
