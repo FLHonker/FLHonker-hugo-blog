@@ -8,10 +8,19 @@
     <language>zh</language>
     <managingEditor>frankliu624@gmail.com (Frank Liu(flhonker))</managingEditor>
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
-    <lastBuildDate>Fri, 11 May 2018 09:02:40 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 07 Sep 2018 09:11:49 +0800</lastBuildDate>
     
 	<atom:link href="http://frankliu624.me/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>再也不怕红黑树</title>
+      <link>http://frankliu624.me/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/</link>
+      <pubDate>Fri, 07 Sep 2018 09:11:49 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/</guid>
+      <description>网上有很多红-黑树的段子，很多人都说，红-黑树只会存在于段子里，不会在面试中或者实际项目中让你实现。来看看网友都是怎么说的： 通常，如果有面试</description>
+    </item>
     
     <item>
       <title>C&#43;&#43;11智能指针理解与应用</title>
