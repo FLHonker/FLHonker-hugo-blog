@@ -2,7 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Trie on Frank Liu</title>
+<<<<<<< HEAD
     <link>https://flhonker.github.io/tags/trie/</link>
+=======
+    <link>http://frankliu624.me/tags/trie/</link>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     <description>Recent content in Trie on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +14,26 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Sat, 07 Jul 2018 12:00:04 +0800</lastBuildDate>
     
+<<<<<<< HEAD
 	<atom:link href="https://flhonker.github.io/tags/trie/index.xml" rel="self" type="application/rss+xml" />
+=======
+	<atom:link href="http://frankliu624.me/tags/trie/index.xml" rel="self" type="application/rss+xml" />
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     
     
     <item>
       <title>C语言造轮子（三）——Trie树及应用</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</link>
       <pubDate>Sat, 07 Jul 2018 12:00:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</link>
+      <pubDate>Sat, 07 Jul 2018 12:00:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>C语言造轮子（三）——Trie树及应用 大脑的构造其实就像数据结构那么简单，它简明扼要的记录下来每一个事件，再找一个事物作为索引，映射到大脑中</description>
     </item>
     

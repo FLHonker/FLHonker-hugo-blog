@@ -2,7 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shell on Frank Liu</title>
+<<<<<<< HEAD
     <link>https://flhonker.github.io/tags/shell/</link>
+=======
+    <link>http://frankliu624.me/tags/shell/</link>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     <description>Recent content in Shell on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +14,26 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Fri, 15 Jun 2018 11:10:22 +0800</lastBuildDate>
     
+<<<<<<< HEAD
 	<atom:link href="https://flhonker.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+=======
+	<atom:link href="http://frankliu624.me/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     
     
     <item>
       <title>高效Linux命令</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-06-15-%E9%AB%98%E6%95%88linux%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Fri, 15 Jun 2018 11:10:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-06-15-%E9%AB%98%E6%95%88linux%E5%91%BD%E4%BB%A4/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-06-15-%E9%AB%98%E6%95%88linux%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Fri, 15 Jun 2018 11:10:22 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-06-15-%E9%AB%98%E6%95%88linux%E5%91%BD%E4%BB%A4/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>高效Linux命令 1. vim 命令 2. screen 功能：命令行终端切换，用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。 会话恢复 会话共享</description>
     </item>
     

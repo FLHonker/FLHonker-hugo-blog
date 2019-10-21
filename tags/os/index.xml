@@ -2,7 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Os on Frank Liu</title>
+<<<<<<< HEAD
     <link>https://flhonker.github.io/tags/os/</link>
+=======
+    <link>http://frankliu624.me/tags/os/</link>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     <description>Recent content in Os on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,24 +14,42 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Sat, 19 May 2018 10:45:54 +0800</lastBuildDate>
     
+<<<<<<< HEAD
 	<atom:link href="https://flhonker.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
+=======
+	<atom:link href="http://frankliu624.me/tags/os/index.xml" rel="self" type="application/rss+xml" />
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     
     
     <item>
       <title>kernel的保护模式</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Sat, 19 May 2018 10:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sat, 19 May 2018 10:45:54 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>kernel的保护模式 实模式与保护模式下的分段机制 程序想要在计算机上运行，就必须将源代码编译链接成二进制的可执行文件之后才可能被操作系统加载</description>
     </item>
     
     <item>
       <title>为自己的操作系统写MBR</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</link>
       <pubDate>Thu, 17 May 2018 10:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</link>
+      <pubDate>Thu, 17 May 2018 10:45:54 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>为自己的操作系统写MBR 接上一节，我们搭建起了bochs的模拟器环境，创建了硬盘，但是没有办法正常启动OS，就是因为缺少MBR主引导唤醒BI</description>
     </item>
     

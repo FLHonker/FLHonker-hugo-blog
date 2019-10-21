@@ -2,7 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Test on Frank Liu</title>
+<<<<<<< HEAD
     <link>https://flhonker.github.io/tags/test/</link>
+=======
+    <link>http://frankliu624.me/tags/test/</link>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     <description>Recent content in Test on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +14,26 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Sun, 08 Jul 2018 12:00:04 +0800</lastBuildDate>
     
+<<<<<<< HEAD
 	<atom:link href="https://flhonker.github.io/tags/test/index.xml" rel="self" type="application/rss+xml" />
+=======
+	<atom:link href="http://frankliu624.me/tags/test/index.xml" rel="self" type="application/rss+xml" />
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     
     
     <item>
       <title>C语言造轮子（四）——单元测试</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</link>
       <pubDate>Sun, 08 Jul 2018 12:00:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</link>
+      <pubDate>Sun, 08 Jul 2018 12:00:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>C语言造轮子（四）——单元测试 人一旦上了年纪就变得容易追忆过去，这似乎是由于我们现在过于依赖电脑、手机把它们作为大脑最主要的外接存储器，往日</description>
     </item>
     

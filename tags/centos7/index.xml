@@ -2,7 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Centos7 on Frank Liu</title>
+<<<<<<< HEAD
     <link>https://flhonker.github.io/tags/centos7/</link>
+=======
+    <link>http://frankliu624.me/tags/centos7/</link>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     <description>Recent content in Centos7 on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,15 +14,26 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Wed, 25 Apr 2018 13:22:00 +0800</lastBuildDate>
     
+<<<<<<< HEAD
 	<atom:link href="https://flhonker.github.io/tags/centos7/index.xml" rel="self" type="application/rss+xml" />
+=======
+	<atom:link href="http://frankliu624.me/tags/centos7/index.xml" rel="self" type="application/rss+xml" />
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     
     
     <item>
       <title>CentOS7 分区硬盘扩容</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</link>
       <pubDate>Wed, 25 Apr 2018 13:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</link>
+      <pubDate>Wed, 25 Apr 2018 13:22:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>CentOS7 分区硬盘扩容 Tag：centos7 分区 硬盘扩容 fdisk LVM 运用虚拟机经常会出现硬盘容量不足的情况，在不改变配置的要求下，直接对根目录增加容量。 ce</description>
     </item>
     

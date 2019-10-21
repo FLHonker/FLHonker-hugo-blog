@@ -2,7 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Career on Frank Liu</title>
+<<<<<<< HEAD
     <link>https://flhonker.github.io/tags/career/</link>
+=======
+    <link>http://frankliu624.me/tags/career/</link>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     <description>Recent content in Career on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,33 +14,58 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Thu, 30 Aug 2018 21:44:18 +0800</lastBuildDate>
     
+<<<<<<< HEAD
 	<atom:link href="https://flhonker.github.io/tags/career/index.xml" rel="self" type="application/rss+xml" />
+=======
+	<atom:link href="http://frankliu624.me/tags/career/index.xml" rel="self" type="application/rss+xml" />
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     
     
     <item>
       <title>ICBCSDC暑期实习总结</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-08-30-career-icbcsdc%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/</link>
       <pubDate>Thu, 30 Aug 2018 21:44:18 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-08-30-career-icbcsdc%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-08-30-career-icbcsdc%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 30 Aug 2018 21:44:18 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-08-30-career-icbcsdc%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>写在总结报告中的 针对目前E2E自动化测试工具中存在的两个痛点：无法获取界面信息进行断言，无法根据已知信息在界面中定位进行交互操作，我们设计的</description>
     </item>
     
     <item>
       <title>ICBC广州研发部实习第一周经历</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</link>
       <pubDate>Fri, 27 Jul 2018 19:30:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</link>
+      <pubDate>Fri, 27 Jul 2018 19:30:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>ICBC广州研发部实习第一周经历 ICBC研发中心外景 ICBC开发中心前台 广研实习生概况 2018年中国工商银行广州研发部一共来了61名实习生，</description>
     </item>
     
     <item>
       <title>文艺程序员</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</link>
       <pubDate>Fri, 04 May 2018 07:22:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</link>
+      <pubDate>Fri, 04 May 2018 07:22:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-05-04-talk-%E6%96%87%E8%89%BA%E7%A8%8B%E5%BA%8F%E5%91%98/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>文艺程序员 大学本科计算机专业的优秀学生4年后毕业应该达到什么水平？ * 写得了算法翻的了墙; * 搭得了网站查得了bug; * 博客300篇，篇篇有心得</description>
     </item>
     

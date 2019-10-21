@@ -2,7 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Server on Frank Liu</title>
+<<<<<<< HEAD
     <link>https://flhonker.github.io/tags/server/</link>
+=======
+    <link>http://frankliu624.me/tags/server/</link>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     <description>Recent content in Server on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -10,24 +14,42 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Mon, 14 May 2018 22:10:22 +0800</lastBuildDate>
     
+<<<<<<< HEAD
 	<atom:link href="https://flhonker.github.io/tags/server/index.xml" rel="self" type="application/rss+xml" />
+=======
+	<atom:link href="http://frankliu624.me/tags/server/index.xml" rel="self" type="application/rss+xml" />
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     
     
     <item>
       <title>使用webbench压力测试Go服务器</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
       <pubDate>Mon, 14 May 2018 22:10:22 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Mon, 14 May 2018 22:10:22 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>使用webbench压力测试Go服务器 1. Webbench Webbench是Radim Kolar在1997年写的一个在Linux下使用的非常简单的网站压测工</description>
     </item>
     
     <item>
       <title>迷你Go服务器</title>
+<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
       <pubDate>Sun, 13 May 2018 09:55:00 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+=======
+      <link>http://frankliu624.me/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Sun, 13 May 2018 09:55:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>http://frankliu624.me/posts/2018-05-13-go-%E8%BF%B7%E4%BD%A0go%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+>>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>迷你Go服务器 Go语言里面提供了一个完善的net/http包，通过http包可以很方便的就搭建起来一个可以运行的Web服务。同时使用这个包能</description>
     </item>
     
