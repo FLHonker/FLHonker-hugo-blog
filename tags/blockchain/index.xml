@@ -2,11 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blockchain on Frank Liu</title>
-<<<<<<< HEAD
     <link>https://flhonker.github.io/tags/blockchain/</link>
-=======
-    <link>http://frankliu624.me/tags/blockchain/</link>
->>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     <description>Recent content in Blockchain on Frank Liu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -14,90 +10,51 @@
     <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
     <lastBuildDate>Fri, 06 Jul 2018 22:25:04 +0800</lastBuildDate>
     
-<<<<<<< HEAD
 	<atom:link href="https://flhonker.github.io/tags/blockchain/index.xml" rel="self" type="application/rss+xml" />
-=======
-	<atom:link href="http://frankliu624.me/tags/blockchain/index.xml" rel="self" type="application/rss+xml" />
->>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
     
     
     <item>
       <title>用Go打造区块链（4）—— 交易记录（一）</title>
-<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</link>
       <pubDate>Fri, 06 Jul 2018 22:25:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</guid>
-=======
-      <link>http://frankliu624.me/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</link>
-      <pubDate>Fri, 06 Jul 2018 22:25:04 +0800</pubDate>
-      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>http://frankliu624.me/posts/2018-07-06-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE4/</guid>
->>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学习学习再学习首发，本人觉得是一个结合Go语言学习区块</description>
     </item>
     
     <item>
       <title>用Go打造区块链（3）——数据存储及命令行（CLI）</title>
-<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</link>
       <pubDate>Thu, 05 Jul 2018 22:25:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</guid>
-=======
-      <link>http://frankliu624.me/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</link>
-      <pubDate>Thu, 05 Jul 2018 22:25:04 +0800</pubDate>
-      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>http://frankliu624.me/posts/2018-07-05-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE3/</guid>
->>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学习学习再学习首发，本人觉得是一个结合Go语言学习区块</description>
     </item>
     
     <item>
       <title>用Go打造区块链（2）—— 工作证明机制（PoW）</title>
-<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</link>
       <pubDate>Wed, 04 Jul 2018 22:25:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</guid>
-=======
-      <link>http://frankliu624.me/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</link>
-      <pubDate>Wed, 04 Jul 2018 22:25:04 +0800</pubDate>
-      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>http://frankliu624.me/posts/2018-07-04-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE2/</guid>
->>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学习学习再学习首发，本人觉得是一个结合Go语言学习区块</description>
     </item>
     
     <item>
       <title>用Go打造区块链（1）—— 基础原型</title>
-<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</link>
       <pubDate>Tue, 03 Jul 2018 15:05:04 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</guid>
-=======
-      <link>http://frankliu624.me/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</link>
-      <pubDate>Tue, 03 Jul 2018 15:05:04 +0800</pubDate>
-      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>http://frankliu624.me/posts/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1/</guid>
->>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>这一系列的文章是由Ivan Kuznetsov所写，第一篇文章的翻译稿由李笑来在其公众号学习学习再学习首发，本人觉得是一个结合Go语言学习区块</description>
     </item>
     
     <item>
       <title>IPFS入门笔记</title>
-<<<<<<< HEAD
       <link>https://flhonker.github.io/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Thu, 31 May 2018 22:45:54 +0800</pubDate>
       <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
       <guid>https://flhonker.github.io/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</guid>
-=======
-      <link>http://frankliu624.me/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Thu, 31 May 2018 22:45:54 +0800</pubDate>
-      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
-      <guid>http://frankliu624.me/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</guid>
->>>>>>> 6b9f8907ddd1f6bf386e5de71df17a533919ec99
       <description>IPFS入门笔记 1. IPFS 是什么？ IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是</description>
     </item>
     
