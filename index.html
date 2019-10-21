@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Frank Liu - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="Frank Liu" />
+  <meta name="twitter:title" content="Frank Liu" />
+  <meta name="description" content="Frank Liu(flhonker) is a Developer Advocate on computer vision and blockchain. He has deployed and operated the cloud platform business for a number of small and medium-sized enterprises, and obtained qualifications such as IDC operation and maintenance certification engineer, HDCP-Cloud Service certification, and (intermediate) software designer, rich in competitions and projects. Watching his schedule. He has been blogging and coding for years on Cloud Service, CV and blockchain, also translated">
+  <meta property="og:description" content="Frank Liu(flhonker) is a Developer Advocate on computer vision and blockchain. He has deployed and operated the cloud platform business for a number of small and medium-sized enterprises, and obtained qualifications such as IDC operation and maintenance certification engineer, HDCP-Cloud Service certification, and (intermediate) software designer, rich in competitions and projects. Watching his schedule. He has been blogging and coding for years on Cloud Service, CV and blockchain, also translated">
+  <meta name="twitter:description" content="Frank Liu(flhonker) is a Developer Advocate on computer vision and blockchain. He has deployed and operated the cloud platform business for a number of small and medium-sized enterprises, and obtained …">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=4 data-img-src-1="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-linux_2.jpg" data-img-desc-1="I ❤️  #Linux - Jul 21,2018"data-img-src-2="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/home-bg-google1.jpg" data-img-desc-2="Google AI is my dream. - Jun 30,2018"data-img-src-3="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-linux_4.jpg" data-img-desc-3="Linux serves all over the world. - Aug 28,2017"data-img-src-4="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-ubuntu1.jpg" data-img-desc-4="Ubuntu is my favorite."></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img">
+        
+        
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-md-offset-0">
+                
+                <div class="page-heading">
+                
+                  
+                     <h1 align="center">Hi,I&#39;m Frank</h1>
+                  
+                  
+                  
+                    <hr class="small">
+                    <span class="page-subheading">Standing on the Shoulder of Giants.</span>
+                  
+                  
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="page-heading">
+                <h1 align="center">Frank Liu</h1>
+                
+                  
+                    <hr class="small">
+                    <span class="page-subheading">Standing on the Shoulder of Giants.</span>
+                  
+                
+                
+                  <span class="post-meta">
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+  <div role="main" class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        
+        
+        
+          <div class="well">
+            <p><a href="/about">Frank Liu(flhonker)</a> is a Developer Advocate on computer vision and blockchain. He has deployed and operated the cloud platform business for a number of small and medium-sized enterprises, and obtained qualifications such as <code>IDC operation and maintenance certification engineer</code>, <code>HDCP-Cloud Service certification</code>, and <code>(intermediate) software designer</code>, rich in competitions and projects. Watching his <a href="https://flhonker.github.io/about/#activities">schedule</a>. He has been blogging and coding for years on Cloud Service, CV and blockchain, also translated Cloud Service &amp; CV &amp; blockchain papers into Chinese. Frank now studies in Wuhan and spends his free time on bartending and traveling.</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1534081776/flhonker-hugo/logo/QRCode_WeChat.png" alt="Frank 的微信号 FLHonker" /></p>
+
+          </div>
+        
+        
+        <div class="posts-list">
+          
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2999-01-01-plan-%E4%B8%8B%E6%9C%9F%E9%A2%84%E5%91%8A/">
+                <h2 class="post-title">Blog Plan</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  Blog Plan 1. C++智能指针 2. 算法设计 贪心法 回溯法 分治法 动态规划 3. Go高并发 4. 设计模式 5. 红黑树 6. B+树\B-树 7. 控件截图去边框算法 8. 基于连通域检测的
+                  <a href="https://flhonker.github.io/posts/2999-01-01-plan-%E4%B8%8B%E6%9C%9F%E9%A2%84%E5%91%8A/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/plan/">plan</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/">
+                <h2 class="post-title">再也不怕红黑树</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  网上有很多红-黑树的段子，很多人都说，红-黑树只会存在于段子里，不会在面试中或者实际项目中让你实现。来看看网友都是怎么说的： 通常，如果有面试
+                  <a href="https://flhonker.github.io/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/algorithm/">algorithm</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/c&#43;&#43;/">c&#43;&#43;</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2018-08-30-career-icbcsdc%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/">
+                <h2 class="post-title">ICBCSDC暑期实习总结</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  写在总结报告中的 针对目前E2E自动化测试工具中存在的两个痛点：无法获取界面信息进行断言，无法根据已知信息在界面中定位进行交互操作，我们设计的
+                  <a href="https://flhonker.github.io/posts/2018-08-30-career-icbcsdc%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/career/">career</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2018-08-16-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                <h2 class="post-title">GUI截图文本搜索定位(多线程)</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  GUI截图文本搜索定位(多线程) 在上一节中，我们讲了GUI截图进行文本搜索定位的算法和原理，但是，考虑到效率要求，我们打算将其改为多线程版，
+                  <a href="https://flhonker.github.io/posts/2018-08-16-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/opencv/">opencv</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/algorithm/">algorithm</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2018-08-14-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D/">
+                <h2 class="post-title">GUI截图文本搜索定位</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  GUI截图文本搜索定位 介绍了E2E自动化测试中OCR模块的功能后，在前面两节中，我们讲了控件截图预处理与去边框算法和基于连通域检测的文本区域
+                  <a href="https://flhonker.github.io/posts/2018-08-14-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/opencv/">opencv</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/algorithm/">algorithm</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2018-07-31-alg-%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E5%9F%9F%E6%A3%80%E6%B5%8B%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%BA%E5%9F%9F%E6%8F%90%E5%8F%96%E7%AE%97%E6%B3%95/">
+                <h2 class="post-title">基于连通域检测的文本区域提取算法</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  基于连通域检测的文本区域提取算法 1. 连通区域分析 连通区域（Connected Component）一般是指图像中具有相同像素值且位置相邻的前景像
+                  <a href="https://flhonker.github.io/posts/2018-07-31-alg-%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E5%9F%9F%E6%A3%80%E6%B5%8B%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%BA%E5%9F%9F%E6%8F%90%E5%8F%96%E7%AE%97%E6%B3%95/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/algorithm/">Algorithm</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/opencv/">opencv</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/">
+                <h2 class="post-title">控件截图预处理与去边框算法</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  控件截图预处理与去边框算法 恕我在该系列博客中不能粘贴大量代码和截图，该项目为公司内部模块开发实际案例，我们主要谈论问题的解决思路和算法设计方
+                  <a href="https://flhonker.github.io/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/algorithm/">Algorithm</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/opencv/">opencv</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/">
+                <h2 class="post-title">E2E软件自动化测试中的OCR功能</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  E2E软件自动化测试中的OCR功能 Sikuli MIT的研究人员设计了一种新颖的图形脚本语言Sikuli，计算机用户只须有最基本的编程技能（比如会写pr
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/algorithm/">Algorithm</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/opencv/">opencv</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/tessercact/">tessercact</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/">
+                <h2 class="post-title">ICBC广州研发部实习第一周经历</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  ICBC广州研发部实习第一周经历 ICBC研发中心外景 ICBC开发中心前台 广研实习生概况 2018年中国工商银行广州研发部一共来了61名实习生，
+                  <a href="https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/career/">career</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/opencv/">opencv</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/">
+                <h2 class="post-title">C语言造轮子（六）——哈希表</h2>
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  C语言造轮子（六）——哈希表 如同“见字如晤”一般，我们通常用标签化的事物来抽象一个人，一件事，一段情……，比如迎面走来了一个女工妹子，你和工
+                  <a href="https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/" class="post-read-more">[]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="https://flhonker.github.iotags/algorithm/">Algorithm</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/c/">C</a>&nbsp;
+                
+                  #<a href="https://flhonker.github.iotags/hash/">Hash</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+        </div>
+
+        
+          <ul class="pager main-pager">
+            
+            
+              <li class="next">
+                <a href="/page/2"> &rarr;</a>
+              </li>
+            
+          </ul>
+        
+      </div>
+      <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+
+<ul class="pagination">
+    
+    <li>
+        <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li
+    class="disabled">
+    <a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    class="active"><a href="/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/page/5/">5</a></li>
+    
+    
+    <li
+    >
+    <a href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li>
+        <a href="/page/5/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

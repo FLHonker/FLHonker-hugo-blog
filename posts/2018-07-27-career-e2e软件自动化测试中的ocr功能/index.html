@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> E2E软件自动化测试中的OCR功能 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="E2E软件自动化测试中的OCR功能" />
+  <meta name="twitter:title" content="E2E软件自动化测试中的OCR功能" />
+  <meta name="description" content="E2E软件自动化测试中的OCR功能 Sikuli MIT的研究人员设计了一种新颖的图形脚本语言Sikuli，计算机用户只须有最基本的编程技能（比如会写pr">
+  <meta property="og:description" content="E2E软件自动化测试中的OCR功能 Sikuli MIT的研究人员设计了一种新颖的图形脚本语言Sikuli，计算机用户只须有最基本的编程技能（比如会写pr">
+  <meta name="twitter:description" content="E2E软件自动化测试中的OCR功能 Sikuli MIT的研究人员设计了一种新颖的图形脚本语言Sikuli，计算机用户只须有最基本的编程技能（比如会写pr">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">E2E软件自动化测试中的OCR功能</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Jul 27, 2018</h4>
+    </section>
+    <h5 id="wc">2300 Words|Read in about 5 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/opencv/">opencv</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/tessercact/">tessercact</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#e2e软件自动化测试中的ocr功能">E2E软件自动化测试中的OCR功能</a>
+<ul>
+<li><a href="#sikuli">Sikuli</a></li>
+<li><a href="#tesseract-ocr">tesseract-OCR</a></li>
+<li><a href="#opencv">OpenCV</a></li>
+<li><a href="#该项目中的几项关键技术">该项目中的几项关键技术</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="e2e软件自动化测试中的ocr功能">E2E软件自动化测试中的OCR功能</h1>
+
+<h2 id="sikuli">Sikuli</h2>
+
+<p>MIT的研究人员设计了一种新颖的图形脚本语言<a href="https://de.wikipedia.org/wiki/Sikuli_(Software)">Sikuli</a>，计算机用户只须有最基本的编程技能（比如会写print&rdquo;hello world&rdquo;），他不需要去写出一行行代码，而是用屏幕截图的方式，用截出来的图形元素组合出神奇的程序。Sikuli脚本自动化，你在屏幕上看到的任何东西。它使用图像识别，识别和控制GUI组件。这是有用的，当有一个GUI的内部或源代码的访问是不容易的。</p>
+
+<p><a href="https://de.wikipedia.org/wiki/Sikuli_(Software)">Sikuli</a>（在墨西哥维乔印第安人的语言里是”上帝之眼”的意思）是由美国麻省理工学院开发的一种最新编程技术，使得编程人员可以使用截图替代代码，从而简化代码的编写流程。从它研究方向上看，是一种编程技术，但是该技术还可以用于进行大规模的程序测试，脚本程序编写使用的是python语言。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1533435284/githubio/icbc/sikuli_use.jpg" alt="Sikuli" /></p>
+
+<p>当你看到上图sikuli的脚本时，一定会惊呼，这样都可以~！脚本加截图~~~</p>
+
+<p>更多关于Sikuli的使用可以查看<a href="http://sikulix-2014.readthedocs.io/en/latest/index.html">官方文档</a></p>
+
+<p>在我们自主开发的E2E自动化测试工具中，使用Sikuli做二次开发，使用tesseract-OCR完成文本识别和定位功能，对软件GUI中大量的文本框、按钮等控件，在测试中无需反复的人工输入和点击，只需截图识别后生成自动化测试脚本。对于输入的一些非常长的账号、数字等，无需人工比对结果，也是通过截图识别判断测试结果。关于文本定位功能，就是在一张GUI截图中，搜索指定的文本并获得它的坐标位置。</p>
+
+<h2 id="tesseract-ocr">tesseract-OCR</h2>
+
+<p>光学字符识别(OCR,Optical Character Recognition)是指对文本资料进行扫描，然后对图像文件进行分析处理，获取文字及版面信息的过程。OCR技术非常专业，一般多是印刷、打印行业的从业人员使用，可以快速的将纸质资料转换为电子资料。关于中文OCR，目前国内水平较高的有清华文通、汉王、尚书，其产品各有千秋，价格不菲。国外OCR发展较早，像一些大公司，如IBM、微软、HP等，即使没有推出单独的OCR产品，但是他们的研发团队早已掌握核心技术，将OCR功能植入了自身的软件系统。对于我们程序员来说，一般用不到那么高级的，主要在开发中能够集成基本的OCR功能就可以了。</p>
+
+<p>Tesseract的OCR引擎最先由HP实验室于1985年开始研发，至1995年时已经成为OCR业内最准确的三款识别引擎之一。然而，HP不久便决定放弃OCR业务，Tesseract也从此尘封。
+数年以后，HP意识到，与其将Tesseract束之高阁，不如贡献给开源软件业，让其重焕新生——2005年，Tesseract由美国内华达州信息技术研究所获得，并求诸于Google对Tesseract进行改进、消除Bug、优化工作。
+Tesseract目前已作为开源项目发布在Google Project，其项目主页在<a href="https://github.com/tesseract-ocr/tesseract">这里</a>查看，其最新版本3.0已经支持中文OCR，并提供了一个命令行工具。</p>
+
+<p>简单来讲，tesseract-ocr已经帮我们封装好了文本识别算法，我们只需输入一张图片，就可以返回识别结果。以Linux为例，命令行下使用tesseract-ocr也非常简单：</p>
+
+<pre><code class="language-bash">Usage:
+  tesseract --help | --help-extra | --version
+  tesseract --list-langs
+  tesseract imagename outputbase [options...] [configfile...]
+
+OCR options:
+  -l LANG[+LANG]        Specify language(s) used for OCR.
+NOTE: These options must occur before any configfile.
+
+Single options:
+  --help                Show this help message.
+  --help-extra          Show extra help for advanced users.
+  --version             Show version information.
+  --list-langs          List available languages for tesseract engine.
+</code></pre>
+
+<p>最常用的就是：</p>
+
+<blockquote>
+<p>tesseract imagename outputbase -l eng</p>
+</blockquote>
+
+<p>一般来讲，为了提高识别准确率，我们都要下载训练好的语言包，手动制定识别文本的语言。关于怎么训练自己的语言库，可以查看<a href="https://blog.csdn.net/m0epNwstYk4/article/details/78890681">CSDN-Tesseract-OCR 3.0.1训练自己的语言库之图像文字识别</a>。</p>
+
+<p>作为Developer，我们肯定不会直接使用现成的命令输入输出，我们要使用tesseract-dev API，来调用tesseract实现文本识别。tesseract提供了C++、Ruby和Python的API，但是我们这里要使用java开发，也有一个jar的库：<a href="http://tess4j.sourceforge.net/">Tess4J</a>，在Java项目中引入即可，并且可以使用自己训练的字库进行识别。</p>
+
+<h2 id="opencv">OpenCV</h2>
+
+<p>这个我就不多介绍了吧，我们的老朋友了。Frank目前就是专门研究opencv的，最近推出的很多都是opencv的文章。在本项目中，opencv可是作为特邀嘉宾，负责所有的图像处理。相对于其他图像处理库或者使用Java内置类库自己写的图像处理模块，opencv兼具高性能与简洁的特性。为此，opencv是我强烈推荐使用的，也是由我引入本项目中的，在后面的算法介绍中opencv将闪亮登场并贯穿始终。新来的朋友，可以去<a href="https://opencv.org/">opencv官网</a>或者<a href="https://github.com/opencv">github</a>了解一下opencv。</p>
+
+<p>至于，如何在Eclipse或InteliJ IDEA中配置opencv3.x，给大家推荐两篇博客：</p>
+
+<ol>
+<li><a href="https://www.cnblogs.com/lyx2018/p/7071241.html">简单eclipse配置opencv的方法</a></li>
+<li><a href="https://www.cnblogs.com/yezhang/p/4006134.html">在IntelliJ IDEA 13中配置OpenCV的Java开发环境</a></li>
+</ol>
+
+<h2 id="该项目中的几项关键技术">该项目中的几项关键技术</h2>
+
+<p>关于如何使用Sikuli二次开发并不在我们小组负责的范围内，只是了解了它在我们整个项目中的作用；我们4人的团队只负责基于tesseract开发OCR功能和文本搜索定位。关于Tess4J在InteliJ IDEA、Eclipse中的配置和使用这里也不做过多介绍，大家可以去Google，不过是些工具的使用问题而已。关于<a href="https://blog.csdn.net/m0epNwstYk4/article/details/78890681">使用Tesseract训练自己的字库教程</a>我也告诉了你们链接。训练过程十分繁琐和无聊，“有多少智能，就得付出多少人工”。</p>
+
+<p>以上，简单介绍了我们整个项目中使用的工具和目的。接下来，前方高能！</p>
+
+<p>限于篇幅问题，我们对关键技术详细的设计算法在后续文章中分章节介绍。</p>
+
+<ol>
+<li><p><a href="http://frankliu624.me/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/">控件截图预处理与去边框算法</a></p></li>
+
+<li><p><a href="http://frankliu624.me/posts/2018-07-31-alg-%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E5%9F%9F%E6%A3%80%E6%B5%8B%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%BA%E5%9F%9F%E6%8F%90%E5%8F%96%E7%AE%97%E6%B3%95/">基于连通域检测的文本区域提取算法</a></p></li>
+
+<li><p><a href="http://frankliu624.me/posts/2018-08-14-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D/">GUI截图文本搜索定位</a></p></li>
+
+<li><p><a href="http://frankliu624.me/posts/2018-08-16-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D%E5%A4%9A%E7%BA%BF%E7%A8%8B/">GUI截图文本搜索定位（多线程版本）</a></p></li>
+</ol>
+
+<p>我们的OCR模块实现流程图如下：</p>
+
+<div div align="center">
+<img src="https://res.cloudinary.com/flhonker/image/upload/githubio/icbc/ocr-process.jpg" width="60%" height="60%">
+</div>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/" data-toggle="tooltip" data-placement="top" title="ICBC广州研发部实习第一周经历">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/" data-toggle="tooltip" data-placement="top" title="控件截图预处理与去边框算法"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/">ICBC广州研发部实习第一周经历</a></li>
+                    
+                    <li><a href="/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/">C语言造轮子（六）——哈希表</a></li>
+                    
+                    <li><a href="/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/">C语言造轮子（五）——List</a></li>
+                    
+                    <li><a href="/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/">C语言造轮子（四）——单元测试</a></li>
+                    
+                    <li><a href="/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/">C语言造轮子（三）——Trie树及应用</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Jul 27, 2018</h4>
+    </section>
+    <h5 id="wc">2300 Words|Read in about 5 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/opencv/">opencv</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/tessercact/">tessercact</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

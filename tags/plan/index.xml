@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Plan on Frank Liu</title>
+    <link>https://flhonker.github.io/tags/plan/</link>
+    <description>Recent content in Plan on Frank Liu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>frankliu624@gmail.com (Frank Liu(flhonker))</managingEditor>
+    <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
+    <lastBuildDate>Sun, 28 Jul 2019 20:30:04 +0800</lastBuildDate>
+    
+	<atom:link href="https://flhonker.github.io/tags/plan/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blog Plan</title>
+      <link>https://flhonker.github.io/posts/2999-01-01-plan-%E4%B8%8B%E6%9C%9F%E9%A2%84%E5%91%8A/</link>
+      <pubDate>Sun, 28 Jul 2019 20:30:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2999-01-01-plan-%E4%B8%8B%E6%9C%9F%E9%A2%84%E5%91%8A/</guid>
+      <description>Blog Plan 1. C++智能指针 2. 算法设计 贪心法 回溯法 分治法 动态规划 3. Go高并发 4. 设计模式 5. 红黑树 6. B+树\B-树 7. 控件截图去边框算法 8. 基于连通域检测的</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> opencv实战：人脸关键点检测（FaceMark） - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="opencv实战：人脸关键点检测（FaceMark）" />
+  <meta name="twitter:title" content="opencv实战：人脸关键点检测（FaceMark）" />
+  <meta name="description" content="opencv实战：人脸关键点检测（FaceMark） Summary：利用OpenCV中的LBF算法进行人脸关键点检测（Facial Landmark Dete">
+  <meta property="og:description" content="opencv实战：人脸关键点检测（FaceMark） Summary：利用OpenCV中的LBF算法进行人脸关键点检测（Facial Landmark Dete">
+  <meta name="twitter:description" content="opencv实战：人脸关键点检测（FaceMark） Summary：利用OpenCV中的LBF算法进行人脸关键点检测（Facial Landmark Dete">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-06-04-cv-facemark/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-06-04-cv-facemark/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">opencv实战：人脸关键点检测（FaceMark）</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Jun 4, 2018</h4>
+    </section>
+    <h5 id="wc">3100 Words|Read in about 7 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/opencv/">opencv</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/linux/">linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/facemark/">FaceMark</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#opencv实战-人脸关键点检测-facemark">opencv实战：人脸关键点检测（FaceMark）</a>
+<ul>
+<li><a href="#测试环境">测试环境</a></li>
+<li><a href="#引言">引言</a>
+<ul>
+<li><a href="#facemark-api"><strong>Facemark API</strong></a></li>
+</ul></li>
+<li><a href="#facemark训练好的模型">Facemark训练好的模型</a></li>
+<li><a href="#利用opencv代码进行实时人脸关键点检测">利用OpenCV代码进行实时人脸关键点检测</a>
+<ul>
+<li><a href="#1-加载人脸检测器-face-detector">1. 加载人脸检测器（face detector）</a></li>
+<li><a href="#2-创建facemark对象">2. 创建Facemark对象</a></li>
+<li><a href="#3-加载landmark检测器">3. 加载landmark检测器</a></li>
+<li><a href="#4-从网络摄像头中捕获帧">4.从网络摄像头中捕获帧</a></li>
+<li><a href="#5-检测人脸">5. 检测人脸</a></li>
+<li><a href="#6-运行人脸关键点检测器">6. 运行人脸关键点检测器</a></li>
+<li><a href="#7-绘制人脸关键点">7. 绘制人脸关键点</a>
+<ul>
+<li><a href="#代码">代码</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#实验结果">实验结果</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="opencv实战-人脸关键点检测-facemark">opencv实战：人脸关键点检测（FaceMark）</h1>
+
+<blockquote>
+<p>Summary：利用OpenCV中的LBF算法进行人脸关键点检测（Facial Landmark Detection）
+Author：Frank Liu
+date： 2018-05-03
+Note：OpenCV3.4和OpenCV Contrib3.4及上支持Facemark</p>
+</blockquote>
+
+<p><font size=5> 教程目录 </font></p>
+
+<p>[TOC]</p>
+
+<h2 id="测试环境">测试环境</h2>
+
+<ul>
+<li>Ubuntu18.04 LTS</li>
+<li>gcc 7.3.0</li>
+<li><a href="https://github.com/opencv/opencv/releases">OpenCV3.4.0</a>+<a href="https://github.com/opencv/opencv_contrib/releases/tag/3.4.0">OpenCV-Contrib3.4.0</a></li>
+</ul>
+
+<p>注：使用Windows的童鞋请注意，不推荐使用官网提供的OpenCV3.4.x Window版本，因为官方提供的OpenCV3.4.x无Contrib库，而且只支持vc14和vc15。所以建议使用CMake，自己下载上述资源，然后使用CMake编译OpenCV和Contrib，生成自己环境下的OpenCV动态链接库。如何编译，请自行百度，谢谢！</p>
+
+<h2 id="引言">引言</h2>
+
+<p>人脸一般是有68个关键点，常用的人脸开源库有Dlib，还有很多深度学习的方法。</p>
+
+<p><img src="http://www.learnopencv.com/wp-content/uploads/2018/03/OpenCV-Facemark.jpg" alt="OpenCV Facemark : Facial Landmark Detection" />
+本教程仅利用OpenCV，不依赖任何其它第三方库来实现人脸关键点检测，这一特性是之前没有的。因为OpenCV自带的samples中只有常见的人脸检测、眼睛检测和眼镜检测等（方法是harr+cascade或lbp+cascade）。</p>
+
+<p>本教程主要参考Facemark : <a href="https://www.learnopencv.com/facemark-facial-landmark-detection-using-opencv/">Facial Landmark Detection using OpenCV</a><sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>^</p>
+
+<p>截止到2018-05-03，OpenCV3.4可支持三种人脸关键点检测，但目前只能找到一种已训练好的模型，所以本教程只介绍一种实现人脸关键点检测的算法。而且此类算法还没有Python接口，所以这里只介绍C++的代码实现。</p>
+
+<h3 id="facemark-api"><strong>Facemark API</strong></h3>
+
+<p>OpenCV官方的人脸关键点检测API称为Facemark。Facemark目前分别基于下述三篇论文，实现了三种人脸关键点检测的方法。</p>
+
+<p>OpenCV官方的人脸关键点检测API称为Facemark。Facemark目前分别基于下述三篇论文，实现了三种人脸关键点检测的方法。</p>
+
+<ul>
+<li><a href="https://docs.opencv.org/trunk/dc/de0/classcv_1_1face_1_1FacemarkKazemi.html">FacemarkKazemi</a>: This implementation is based on a paper titled “<a href="http://www.csc.kth.se/~vahidk/face_ert.html">One Millisecond Face Alignment with an Ensemble of Regression Trees</a>” by V.Kazemi and J. Sullivan published in CVPR 2014. An alternative implementation of this algorithm can be found in DLIB</li>
+<li><a href="https://docs.opencv.org/trunk/d5/d7b/classcv_1_1face_1_1FacemarkAAM.html">FacemarkAAM</a>: This implementation uses an Active Appearance Model (AAM) and is based on an the paper titled “<a href="https://ibug.doc.ic.ac.uk/media/uploads/documents/tzimiro_pantic_iccv2013.pdf">Optimization problems for fast AAM fitting in-the-wild</a>” by G. Tzimiropoulos and M. Pantic, published in ICCV 2013.</li>
+<li><a href="https://docs.opencv.org/trunk/dc/d63/classcv_1_1face_1_1FacemarkLBF.html">FacemarkLBF</a>: This implementation is based a paper titled “<a href="http://www.jiansun.org/papers/CVPR14_FaceAlignment.pdf">Face alignment at 3000 fps via regressing local binary features</a>” by S. Ren published in CVPR 2014.</li>
+</ul>
+
+<p>在写这篇文章的时候，FacemarkKazemi类似乎不是从Facemark类派生的，而其他两个类都是。</p>
+
+<h2 id="facemark训练好的模型">Facemark训练好的模型</h2>
+
+<p>尽管Facemark API包含三种不同的实现，但只有FacemarkLBF（local binary features，LBF）才提供经过训练的模型。 （之后在我们根据公共数据集训练我们自己的模型后，这篇文章将在未来更新）</p>
+
+<p>你可以从中下载已训练好的模型：</p>
+
+<ul>
+<li><a href="https://github.com/kurnianggoro/GSOC2017/blob/master/data/lbfmodel.yaml">lbfmodel.yaml</a></li>
+</ul>
+
+<h2 id="利用opencv代码进行实时人脸关键点检测">利用OpenCV代码进行实时人脸关键点检测</h2>
+
+<h3 id="1-加载人脸检测器-face-detector">1. 加载人脸检测器（face detector）</h3>
+
+<p>所有的人脸关键点检测算法的输入都是一个截切的人脸图像。因为，我们的第一步就是在图像中检测所有的人脸，并将所有的人脸矩形框输入到人脸关键点检测器中。这里，我们可以使用OpenCV的Haar人脸检测器或者lbp人脸检测器来检测人脸。</p>
+
+<h3 id="2-创建facemark对象">2. 创建Facemark对象</h3>
+
+<p>创建Facemark类的对象。在OpenCV中，Facemark是使用智能指针（smart pointer，PTR），所以我们不需要考虑内存泄漏问题。</p>
+
+<h3 id="3-加载landmark检测器">3. 加载landmark检测器</h3>
+
+<p>加载关键点检测器（lbfmodel.yaml）。此人脸检测器是在几千幅带有关键点标签的人脸图像上训练得到的。</p>
+
+<p>带有注释/标签关键点的人脸图像公共数据集可以访问这个链接下载：<a href="https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/">https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/</a></p>
+
+<h3 id="4-从网络摄像头中捕获帧">4.从网络摄像头中捕获帧</h3>
+
+<p>捕获视频帧并处理。我们既可以打开一个本地视频(.mp4)，也可以打开网络摄像机（如果电脑有的话）来进行人脸关键点检测。</p>
+
+<h3 id="5-检测人脸">5. 检测人脸</h3>
+
+<p>我们对视频的每一帧运行人脸检测器。人脸检测器的输出是一个包含一个或多个矩形（rectangles）的容器（vector），即视频帧中可能有一张或者多张人脸。</p>
+
+<h3 id="6-运行人脸关键点检测器">6. 运行人脸关键点检测器</h3>
+
+<p>我们根据人脸矩形框截取原图中的人脸ROI，再利用人脸关键点检测器（facial landmark detector）对人脸ROI进行检测。</p>
+
+<p>对于每张脸我们获得，我们可以获得68个关键点，并将其存储在点的容器中。因为视频帧中可能有多张脸，所以我们应采用点的容器的容器。</p>
+
+<h3 id="7-绘制人脸关键点">7. 绘制人脸关键点</h3>
+
+<p>根据获得关键点，我们可以在视频帧上绘制出来并显示。</p>
+
+<h4 id="代码">代码</h4>
+
+<p>本教程的代码一共有两个程序，分别为<strong>faceLandmarkDetection.cpp</strong>和<strong>drawLandmarks.hpp</strong>。</p>
+
+<ul>
+<li><p>faceLandmarkDetection.cpp实现视频帧捕获、人脸检测、人脸关键点检测；</p></li>
+
+<li><p>drawLandmarks.hpp实现人脸关键点绘制和多边形线绘制。</p></li>
+</ul>
+
+<p><strong>faceLandmarkDetection.cpp</strong></p>
+
+<pre><code>// Summary: 利用OpenCV的LBF算法进行人脸关键点检测
+// Author:  Amusi
+// Date:    2018-03-20
+// Reference:
+//		[1]Tutorial: https://www.learnopencv.com/facemark-facial-landmark-detection-using-opencv/
+//		[2]Code: https://github.com/spmallick/learnopencv/tree/master/FacialLandmarkDetection
+
+// Note: OpenCV3.4以及上支持Facemark
+
+#include &lt;opencv2/opencv.hpp&gt;
+#include &lt;opencv2/face.hpp&gt;
+#include &quot;drawLandmarks.hpp&quot;
+
+
+using namespace std;
+using namespace cv;
+using namespace cv::face;
+
+
+int main(int argc,char** argv)
+{
+    // 加载人脸检测器（Face Detector）
+	// [1]Haar Face Detector
+    //CascadeClassifier faceDetector(&quot;haarcascade_frontalface_alt2.xml&quot;);
+	// [2]LBP Face Detector
+	CascadeClassifier faceDetector(&quot;lbpcascade_frontalface.xml&quot;);
+
+    // 创建Facemark类的对象
+    Ptr&lt;Facemark&gt; facemark = FacemarkLBF::create();
+
+    // 加载人脸检测器模型
+    facemark-&gt;loadModel(&quot;lbfmodel.yaml&quot;);
+
+    // 设置网络摄像头用来捕获视频
+    VideoCapture cam(0);
+    
+    // 存储视频帧和灰度图的变量
+    Mat frame, gray;
+    
+    // 读取帧
+    while(cam.read(frame))
+    {
+      
+      // 存储人脸矩形框的容器
+      vector&lt;Rect&gt; faces;
+	  // 将视频帧转换至灰度图, 因为Face Detector的输入是灰度图
+      cvtColor(frame, gray, COLOR_BGR2GRAY);
+
+      // 人脸检测
+      faceDetector.detectMultiScale(gray, faces);
+      
+	  // 人脸关键点的容器
+      vector&lt; vector&lt;Point2f&gt; &gt; landmarks;
+      
+	  // 运行人脸关键点检测器（landmark detector）
+      bool success = facemark-&gt;fit(frame,faces,landmarks);
+      
+      if(success)
+      {
+        // 如果成功, 在视频帧上绘制关键点
+        for(int i = 0; i &lt; landmarks.size(); i++)
+        {
+			// 自定义绘制人脸特征点函数, 可绘制人脸特征点形状/轮廓
+			drawLandmarks(frame, landmarks[i]);
+			// OpenCV自带绘制人脸关键点函数: drawFacemarks
+			drawFacemarks(frame, landmarks[i], Scalar(0, 0, 255));
+        }
+	
+      }
+
+      // 显示结果
+      imshow(&quot;Facial Landmark Detection&quot;, frame);
+
+      // 如果按下ESC键, 则退出程序
+      if (waitKey(1) == 27) break;
+      
+    }
+    return 0;
+}
+
+</code></pre>
+
+<p><strong>drawLandmarks.hpp</strong></p>
+
+<pre><code>// Summary: 绘制人脸关键点和多边形线
+// Author:  Amusi
+// Date:    2018-03-20
+
+#ifndef _renderFace_H_
+#define _renderFace_H_
+
+#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+
+using namespace cv; 
+using namespace std; 
+
+#define COLOR Scalar(255, 200,0)
+
+// drawPolyline通过连接开始和结束索引之间的连续点来绘制多边形线。
+void drawPolyline
+(
+  Mat &amp;im,
+  const vector&lt;Point2f&gt; &amp;landmarks,
+  const int start,
+  const int end,
+  bool isClosed = false
+)
+{
+    // 收集开始和结束索引之间的所有点
+    vector &lt;Point&gt; points;
+    for (int i = start; i &lt;= end; i++)
+    {
+        points.push_back(cv::Point(landmarks[i].x, landmarks[i].y));
+    }
+
+    // 绘制多边形曲线
+    polylines(im, points, isClosed, COLOR, 2, 16);
+    
+}
+
+// 绘制人脸关键点
+void drawLandmarks(Mat &amp;im, vector&lt;Point2f&gt; &amp;landmarks)
+{
+    // 在脸上绘制68点及轮廓（点的顺序是特定的，有属性的）
+    if (landmarks.size() == 68)
+    {
+        drawPolyline(im, landmarks, 0, 16);           // Jaw line
+        drawPolyline(im, landmarks, 17, 21);          // Left eyebrow
+        drawPolyline(im, landmarks, 22, 26);          // Right eyebrow
+        drawPolyline(im, landmarks, 27, 30);          // Nose bridge
+        drawPolyline(im, landmarks, 30, 35, true);    // Lower nose
+        drawPolyline(im, landmarks, 36, 41, true);    // Left eye
+        drawPolyline(im, landmarks, 42, 47, true);    // Right Eye
+        drawPolyline(im, landmarks, 48, 59, true);    // Outer lip
+        drawPolyline(im, landmarks, 60, 67, true);    // Inner lip
+    }
+    else 
+    { 
+		// 如果人脸关键点数不是68，则我们不知道哪些点对应于哪些面部特征。所以，我们为每个landamrk画一个圆圈。
+		for(int i = 0; i &lt; landmarks.size(); i++)
+		{
+			circle(im,landmarks[i],3, COLOR, FILLED);
+		}
+    }
+    
+}
+
+#endif // _renderFace_H_
+
+</code></pre>
+
+<h2 id="实验结果">实验结果</h2>
+
+<p>![检测结果]()</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>[1]Tutorial：<a href="https://www.learnopencv.com/facemark-facial-landmark-detection-using-opencv/">https://www.learnopencv.com/facemark-facial-landmark-detection-using-opencv/</a></p>
+
+<p>[2]Code：<a href="https://github.com/spmallick/learnopencv/tree/master/FacialLandmarkDetection">https://github.com/spmallick/learnopencv/tree/master/FacialLandmarkDetection</a></p>
+
+<p>[3]Models：<a href="https://github.com/kurnianggoro/GSOC2017">https://github.com/kurnianggoro/GSOC2017</a></p>
+
+<p>[4]本教程所有文件打包：</p>
+
+<p>链接1（百度云网盘）：<a href="https://pan.baidu.com/s/16PZ-McVgRwB3bH1Y2fEWBA">https://pan.baidu.com/s/16PZ-McVgRwB3bH1Y2fEWBA</a>  密码：x8be</p>
+
+<p>链接2：<a href="http://anonfile.com/e9caRad3bf/Facemark_LBF.rar">http://anonfile.com/e9caRad3bf/Facemark_LBF.rar</a></p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">1 <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" data-toggle="tooltip" data-placement="top" title="IPFS入门笔记">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-06-15-%E9%AB%98%E6%95%88linux%E5%91%BD%E4%BB%A4/" data-toggle="tooltip" data-placement="top" title="高效Linux命令"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Jun 4, 2018</h4>
+    </section>
+    <h5 id="wc">3100 Words|Read in about 7 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/opencv/">opencv</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/linux/">linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/facemark/">FaceMark</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

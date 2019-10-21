@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> IPFS入门笔记 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="IPFS入门笔记" />
+  <meta name="twitter:title" content="IPFS入门笔记" />
+  <meta name="description" content="IPFS入门笔记 1. IPFS 是什么？ IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是">
+  <meta property="og:description" content="IPFS入门笔记 1. IPFS 是什么？ IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是">
+  <meta name="twitter:description" content="IPFS入门笔记 1. IPFS 是什么？ IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-05-31-cloud-ipfs%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">IPFS入门笔记</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Thu May 31, 2018</h4>
+    </section>
+    <h5 id="wc">5000 Words|Read in about 10 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/ipfs/">IPFS</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/cloud/">cloud</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/blockchain/">blockchain</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#ipfs入门笔记">IPFS入门笔记</a>
+<ul>
+<li>
+<ul>
+<li><a href="#1-ipfs-是什么">1. IPFS 是什么？</a></li>
+<li><a href="#2-为什么有ipfs">2. 为什么有IPFS?</a></li>
+<li><a href="#3-ipfs包含哪些内容">3. IPFS包含哪些内容?</a></li>
+<li><a href="#6-ipfs工作原理">6. IPFS工作原理</a></li>
+<li><a href="#7-ipfs-使用场景">7. IPFS 使用场景</a></li>
+<li><a href="#8-安装与初始化">8. 安装与初始化</a>
+<ul>
+<li><a href="#ipfs-配置">IPFS 配置</a></li>
+<li><a href="#密钥对">密钥对</a></li>
+</ul></li>
+<li><a href="#9-添加文件">9. 添加文件</a></li>
+<li><a href="#10-获取文件">10. 获取文件</a>
+<ul>
+<li><a href="#pin">Pin</a></li>
+<li><a href="#绑定节点名">绑定节点名</a></li>
+<li><a href="#dns-解析">DNS 解析</a></li>
+</ul></li>
+<li><a href="#写在最后">写在最后</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="ipfs入门笔记">IPFS入门笔记</h1>
+
+<h3 id="1-ipfs-是什么">1. IPFS 是什么？</h3>
+
+<p><a href="https://zh.wikipedia.org/wiki/%E6%98%9F%E9%99%85%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">IPFS（InterPlanetary File System，星际文件系统）</a>是永久的、去中心化保存和共享文件的方法，这是一种<u>内容可寻址、版本化、点对点(对等)超媒体</u>的分布式协议。</p>
+
+<p>IPFS是一个对等的分布式文件系统，它尝试为所有计算设备连接同一个文件系统。在某些方面，IPFS类似于万维网，但它也可以被视作一个独立的BitTorrent群、在同一个Git仓库中交换对象。换种说法，IPFS提供了一个高吞吐量、按内容寻址的块存储模型，及与内容相关超链接。这形成了一个广义的Merkle有向无环图（DAG）。IPFS结合了分布式散列表、鼓励块交换和一个自我认证的名字空间。IPFS没有单点故障，并且节点不需要相互信任。分布式内容传递可以节约带宽，和防止HTTP方案可能遇到的DDoS攻击。</p>
+
+<p>该文件系统可以通过多种方式访问，包括FUSE与HTTP。将本地文件添加到IPFS文件系统可使其面向全世界可用。文件表示基于其哈希，因此有利于缓存。文件的分发采用一个基于BitTorrent的协议。其他查看内容的用户也有助于将内容提供给网络上的其他人。IPFS有一个称为IPNS的名称服务，它是一个基于PKI的全局名字空间，用于构筑信任链，这与其他NS兼容，并可以映射DNS、.onion、.bit等到IPNS。</p>
+
+<ul>
+<li>内容可寻址：通过文件内容生成唯一哈希值来标识文件，而不是通过文件保存位置来标识。相同内容的文件在系统中只会存在一份，节约存储空间。</li>
+<li>版本化：可追溯文件修改历史。</li>
+<li>点对点超媒体：P2P 保存各种各样类型的数据。</li>
+</ul>
+
+<p>可以把 IPFS 想象成所有文件数据是在同一个 BitTorrent 群并且通过同一个 Git 仓库存取。</p>
+
+<p>总之，它集一些成功系统（分布式哈希表、BitTorrent、Git、自认证文件系统）的优势于一身，是一套很厉害的文件存取系统。</p>
+
+<h3 id="2-为什么有ipfs">2. 为什么有IPFS?</h3>
+
+<p>众所周知, 互联网是建立在HTTP协议上的. HTTP协议是个伟大的发明, 让我们的互联网得以快速发展.但是互联网发展到了今天HTTP逐渐出来了不足：
+HTTP的中心化是低效的, 并且成本很高。</p>
+
+<p>使用HTTP协议每次需要从中心化的服务器下载完整的文件(网页, 视频, 图片等), 速度慢, 效率低. 如果改用P2P的方式下载, 可以节省近60%的带宽. P2P将文件分割为小的块, 从多个服务器同时下载, 速度非常快。</p>
+
+<p><strong>（1）Web文件经常被删除</strong></p>
+
+<p>回想一下是不是经常你收藏的某个页面, 在使用的时候浏览器返回404(无法找到页面), http的页面平均生存周期大约只有100天. Web文件经常被删除(由于存储成本太高), 无法永久保存. IPFS提供了文件的历史版本回溯功能(就像git版本控制工具一样), 可以很容易的查看文件的历史版本, 数据可以得到永久保存</p>
+
+<p><strong>（2）中心化限制了web的成长</strong></p>
+
+<p>我们的现有互联网是一个高度中心化的网络. 互联网是人类的伟大发明, 也是科技创新的加速器. 各种管制将对这互联网的功能造成威胁, 例如: 互联网封锁, 管制, 监控等等. 这些都源于互联网的中心化.而分布式的IPFS可以克服这些web的缺点.</p>
+
+<p><strong>（3）互联网应用高度依赖主干网</strong></p>
+
+<p>主干网受制于诸多因素的影响, 战争, 自然灾害, 互联网管制, 中心化服务器宕机等等, 都可能是我们的互联网应用中断服务. IPFS可以是互联网应用极大的降低互联网应用对主干网的依赖.</p>
+
+<p>【IPFS的目标】：IPFS不仅仅是为了加速web. 而是为了最终取代HTTP协议, 使互联网更加美好。</p>
+
+<blockquote>
+<p><strong>Merkle数据格式:</strong>
+每个Merkle都是一个有向无环图 ，因为每个节点都通过其名称访问。每个Merkle分支都是其本地内容的哈希，它们的子节点使用它们的哈希而非完整内容来命名。因此，在创建后将不能编辑节点。这可以防止循环（假设没有哈希碰撞），因为无法将第一个创建的节点链接到最后一个节点从而创建最后一个引用。</p>
+</blockquote>
+
+<p>对任何Merkle来说，要创建一个新的分支或验证现有分支，通常需要在本地内容的某些组合体（例如列表的子哈希和其他字节）上使用一种哈希算法。IPFS中有多种散列算法可用。</p>
+
+<h3 id="3-ipfs包含哪些内容">3. IPFS包含哪些内容?</h3>
+
+<p>(1) IPFS是一个协议，类似http协议</p>
+
+<ul>
+<li>定义了基于内容的寻址文件系统</li>
+<li>内容分发</li>
+<li>使用的技术分布式哈希、p2p传输、版本管理系统</li>
+</ul>
+
+<p>(2) IPFS是一个文件系统</p>
+
+<ul>
+<li>有文件夹和文件</li>
+<li>可挂载文件系统</li>
+</ul>
+
+<p>(3) IPFS是一个web协议</p>
+
+<ul>
+<li>可以像http那样查看互联网页面</li>
+<li>未来浏览器可以直接支持 ipfs:/ 或者 fs:/ 协议</li>
+</ul>
+
+<p>(4) IPFS是模块化的协议</p>
+
+<ul>
+<li>连接层：通过其他任何网络协议连接</li>
+<li>路由层：寻找定位文件所在位置</li>
+<li>数据块交换：采用BitTorrent技术</li>
+</ul>
+
+<p>(5) IPFS是一个p2p系统</p>
+
+<ul>
+<li>世界范围内的p2p文件传输网络</li>
+<li>分布式网络结构</li>
+<li>没有单点失效问题</li>
+</ul>
+
+<p>(6) IPFS天生是一个CDN</p>
+
+<ul>
+<li>文件添加到IPFS网络，将会在全世界进行CDN加速</li>
+<li>bittorrent的带宽管理</li>
+</ul>
+
+<p>(7) IPFS拥有命名服务</p>
+
+<ul>
+<li>IPNS：基于SFS（自认证系统）命名体系</li>
+<li>可以和现有域名系统绑定</li>
+</ul>
+
+<h3 id="6-ipfs工作原理">6. IPFS工作原理</h3>
+
+<p>IPFS的的”宏伟”目标是取代HTTP, 那么先来看看IPFS是如何工作的?</p>
+
+<p>IPFS为每一个文件分配一个独一无二的哈希值(文件指纹: 根据文件的内容进行创建), 即使是两个文件内容只有1个比特的不相同, 其哈希值也是不相同的.所以IPFS是基于文件内容进行寻址, 而不像传统的HTTP协议一样基于域名寻址。
+IPFS在整个网络范围内去掉重复的文件, 并且为文件建立版本管理, 也就是说每一个文件的变更历史都将被记录(这一点类似版本控制工具git, svn等), 可以很容易个回到文件的历史版本查看数据.
+当查询文件的时候, IPFS网络根据文件的哈希值(全网唯一)进行查找. 由于每个文件的哈希值全网唯一, 查询将很容易进行。
+如果仅仅使用哈希值来区分文件的话, 会给传播造成困难, 因为哈希值不容易记忆, 就像ip地址一样不容易记忆, 于是人类发明的域名. IPFS利用IPNS将哈希值映射为容易记的名字
+每个节点除了存储自己需要的数据, 还存储了一张哈希表, 用来记录文件存储所在的位置. 用来进行文件的查询下载。</p>
+
+<p>那么问题来了, IPFS是如何来解决HTTP 及一些中心化服务器的这些缺点的?</p>
+
+<p>(1) 下载速度快, 不再依赖主干网, 中心化服务器</p>
+
+<p>整个IPFS系统是一个分布式的文件存储系统, 那么在下载相关数据的时候, 将从多个节点同时下载, 相比于HTTP从中心服务器的下载速度要快很多, 大家都用过P2P下载(比如: 迅雷, BitTorrent), IPFS下载过程跟这个类似.</p>
+
+<p>(2) 存储空间变得非常便宜</p>
+
+<p>由于IPFS使用的是区块链技术, 利用 Filecoin(为了的文章中会将如何获取filecoin, 也就是挖矿)来激励矿工分享自己的硬盘, 并且IFPS从全网去掉了冗余存储(从整个网络空间考虑, 这将大大节省网络存储空间), 将来的IPFS存储将会变得非常便宜(与我们现在的云盘, 各种中心化的CND相比较).</p>
+
+<p>(3) 安全</p>
+
+<p>中心化服务器目前很难抵挡DDoS攻击, 当大量的访问请求从四面八方涌来, 中心化的服务器几乎会在一瞬间瘫痪, 做过运维的同学应该深有感触, 比如每年双11, 不能睡觉的除了阿里, 腾讯的技术同学, 还有整个银行业的小朋友. 巨大的访问量随时可能造成服务器宕机. IPFS天生就拥有抵挡这种攻击的能力. 因为所有的访问将会被分散到不同的节点. 甚至攻击者自己也是节点之一. 某种程度上讲, IPFS甚至能抵挡量子计算的攻击.</p>
+
+<p>(4) 开放</p>
+
+<p>众所周知, 比特币是一种去中心化, 匿名的数据货币, 这些特性使得比特币无法被管制, 交易无法篡改. IPFS同样, 由于是建立在去中心化的分布式网络上的, 所以IFPS很难被中心化管理, 限制. 互联网将更加开放.</p>
+
+<h3 id="7-ipfs-使用场景">7. IPFS 使用场景</h3>
+
+<p>IPFS 的发明者 Juan Benet（juan@benet.ai）在 IPFS 技术白皮书中假设了一些使用场景：</p>
+
+<ul>
+<li>在 /ipfs 和 /ipns 下挂载全球文件系统</li>
+<li>挂载的个人同步文件夹，拥有版本功能</li>
+<li>文件加密，数据共享系统</li>
+<li>可用于所有软件的带版本的包管理器（已经实现了：<a href="https://github.com/whyrusleeping/gx">https://github.com/whyrusleeping/gx</a>）</li>
+<li>可以作为虚机的根文件系统</li>
+<li>可以作为数据库：应用可以直接操作 Merkle DAG，拥有 IPFS 提供的版本化、缓存以及分布式特性</li>
+<li>可以做（加密）通讯平台</li>
+<li>各种类型的 CDN</li>
+<li>永久的 Web，不存在不能访问的链接</li>
+</ul>
+
+<p>我觉得作为数据库这一点对应用开发者来说会很有用。</p>
+
+<h3 id="8-安装与初始化">8. 安装与初始化</h3>
+
+<p>下载 <a href="https://dist.ipfs.io/#go-ipfs">go-ipfs</a> 解压（下面的示例我是在Ubuntu 18.04LTS上做的，解压目录为 ~/Developer/go-ipfs-v0.4.15），然后到解压目录执行命令 ./ipfs init;或者运行:
+&gt; $ sudo ./install.sh</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527777285/githubio/linux-service/ipfs/ipfs-install.png" alt="ipfs-install" /></p>
+
+<p>执行上述命令将自动把ipfs可执行文件移动到系统目录<code>/usr/local/bin</code>,直接在终端中执行:
+&gt; $ ipfs init</p>
+
+<p>将在用户 home（~）下建立 .ipfs 目录存放数据，默认最大存储 10G。init 命令可以带参，比如修改最大存储、目录等，具体参考
+&gt; $ ipfs init help</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527777285/githubio/linux-service/ipfs/ipfs-init.png" alt="ipfs-init" />
+继续执行命令启动节点服务器：
+&gt; $ ipfs daemon</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527777285/githubio/linux-service/ipfs/ipfs-daemon.png" alt="ipfs-daemon" /></p>
+
+<ul>
+<li>加入 IPFS 网络</li>
+<li>本地 HTTP 服务器，默认 8080 端口</li>
+<li>处理后续 ipfs 的客户端命令</li>
+</ul>
+
+<p>新开一个命令行，执行命令以查看当前节点标识:
+&gt; $ ipfs id</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527777285/githubio/linux-service/ipfs/ipfs-id.png" alt="ipfs-id" /></p>
+
+<p>浏览器访问 <a href="http://localhost:5001/webui">http://localhost:5001/webui</a> 进入管理界面，查看系统状态、管理文件以及配置系统。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527777706/githubio/linux-service/ipfs/ipfs-dashboard.png" alt="ipfsdashboard" /></p>
+
+<h4 id="ipfs-配置">IPFS 配置</h4>
+
+<p>除了使用 Web 管理界面修改配置外，也可以直接用命令行先导出当前配置（JSON 格式，
+&gt; $ ipfs config show &gt; ipfs.conf</p>
+
+<p>配置项不多且含义明显），改完后使用以下命令更新配置，重启服务器就生效了。
+&gt; $ ipfs config replace ipfs.conf</p>
+
+<p>当然，修改配置也可以直接用:
+&gt; $ ipfs config edit</p>
+
+<p>服务器最终使用的配置文件保存在<code>~/.ipfs/config</code>中，对比刚刚导出的文件我们发现导出的文件只比这个 config 少了一项 Identity.PrivKey，即节点初始化时自动生成的 RSA 私钥。</p>
+
+<h4 id="密钥对">密钥对</h4>
+
+<p>节点初始化时会自动生成 RSA 密钥对，并且私钥没有设置密码。</p>
+
+<p>公钥通过多重哈希得到节点 id（即上面的 QmZQqhrsJ41JFKpSAUNdpnGpyijazYrthWFdcMJcVu27K4），节点服务器启动后会和其他节点交互公钥，后续通讯时使用对方公钥加密数据，通过多重哈希对方公钥、对比对方节点 id 来确认是否正在和正确的节点交互。</p>
+
+<p>私钥用来解密接收到的数据，也用于 ipns 来绑定文件名。整个过程没有引入证书，仅是使用了 PKI 机制。</p>
+
+<p>总之，我觉得可以暂时不用关心密钥对，可能只有在一些使用场景下面才需要吧。</p>
+
+<h3 id="9-添加文件">9. 添加文件</h3>
+
+<p>我的Template/文件夹下有一个网页的文件夹<code>wutim_2.2/</code>，我准备把他添加进ipfs，执行命令：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527780301/githubio/linux-service/ipfs/ipfs-add.png" alt="ipfs-add" />
+这样我们使用 ipfs cat ~/ipfs/QmWkkuaANJCXKu4nkVR1MUfzArK7eiscNrxQmUh6voUZSc 就可以查看 animate.css 了。在其他节点上也可以，只要记住这个文件的哈希值就行了。我们可以在自己的 HTTP 网关上试试（注意我的端口改成了 5002，你的默认应该是 8080）：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527780567/githubio/linux-service/ipfs/ipfs-cat.png" alt="ipfs-cat" /></p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527780709/githubio/linux-service/ipfs/ipfs-http-5002.png" alt="ipfs-http-5002" /></p>
+
+<p>当然也可以用 ipfs 官方的 HTTP 网关：<a href="https://ipfs.io/ipfs/QmWkkuaANJCXKu4nkVR1MUfzArK7eiscNrxQmUh6voUZSc">https://ipfs.io/ipfs/QmWkkuaANJCXKu4nkVR1MUfzArK7eiscNrxQmUh6voUZSc</a></p>
+
+<h3 id="10-获取文件">10. 获取文件</h3>
+
+<blockquote>
+<p>注：wutim_2.2\的hash=“QmezBmf7Z24Ukz6Q6JfFbFMyw4evPU9XFPiwgjRQm7i9MS”</p>
+
+<p>$ ipfs get QmezBmf7Z24Ukz6Q6JfFbFMyw4evPU9XFPiwgjRQm7i9MS</p>
+</blockquote>
+
+<p>将获取刚才我们发布的 wutim_2.2 目录。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527781218/githubio/linux-service/ipfs/ipfs-get.png" alt="ipfs-get" /></p>
+
+<h4 id="pin">Pin</h4>
+
+<p>IPFS 的本意是让用户觉得所有文件都是在本地的，没有“从远程服务器上下载文件”。Pin 是将文件长期保留在本地，不被垃圾回收。</p>
+
+<p>执行<code>ipfs pin ls</code>可以查看哪些文件在本地是持久化的，通过 add 添加的文件默认就是 pin 过的。</p>
+
+<h4 id="绑定节点名">绑定节点名</h4>
+
+<p>每次修改文件后 add 都会返回不同的哈希，这对于网站来说就没法固定访问地址了，所以我们需要通过 ipns 来“绑定”节点名。</p>
+
+<p>上面 wutim_2.2/ 目录的哈希值是 QmezBmf7Z24Ukz6Q6JfFbFMyw4evPU9XFPiwgjRQm7i9MS，我们将整个目录作为节点根目录发布：
+&gt; $ ipfs name publish QmezBmf7Z24Ukz6Q6JfFbFMyw4evPU9XFPiwgjRQm7i9MS</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1527781639/githubio/linux-service/ipfs/ipfs-publish.png" alt="ipfs-publish" /></p>
+
+<p>然后我们就可以通过 ipns 访问了，注意是 ipns：
+&gt; $ ipfs cat /ipns/QmezBmf7Z24Ukz6Q6JfFbFMyw4evPU9XFPiwgjRQm7i9MS/index.html</p>
+
+<p>以后每次更新文件都再 publish 一下就行了。</p>
+
+<h4 id="dns-解析">DNS 解析</h4>
+
+<p>IPFS 允许用户使用现有的域名系统，这样就能用一个好记的地址来访问文件了，比如：
+&gt; $ ipfs cat /ipns/www.wutim.com/index.html</p>
+
+<p>只需要在 DNS 解析加入一条 TXT 记录：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">记录类型</th>
+<th align="center">主机记录</th>
+<th align="left">记录值</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">TXT</td>
+<td align="center">www.wutim.com</td>
+<td align="left">dnslink=/ipns/QmezBmf7Z24Ukz6Q6JfFbFMyw4evPU9XFPiwgjRQm7i9MS/index.tml</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="写在最后">写在最后</h3>
+
+<p>讲了IPFS这个强大的文件系统和上传发布文件的方法，你有没有想过把你的个人博客或网站发布到IPFS？把你的github pages发布上去？只要IPFS存在，你的文件节点就会长久地存在与这个网络中，或许是你自己的存储上，更多的可能是别人的服务器上。不过，目前上传到IPFS的文件，如果没有发布，你可以在本地删除，网络中也不会存在；但是如果一旦发布，就永远无法删除，你只能更改它。这个问题，开发者们正在讨论研究，相信会有一个好的解决。</p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/" data-toggle="tooltip" data-placement="top" title="kernel的保护模式">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-06-04-cv-facemark/" data-toggle="tooltip" data-placement="top" title="opencv实战：人脸关键点检测（FaceMark）"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Thu May 31, 2018</h4>
+    </section>
+    <h5 id="wc">5000 Words|Read in about 10 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/ipfs/">IPFS</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/cloud/">cloud</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/blockchain/">blockchain</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

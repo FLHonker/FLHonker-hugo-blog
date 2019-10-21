@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> C语言造轮子（五）——List - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="C语言造轮子（五）——List" />
+  <meta name="twitter:title" content="C语言造轮子（五）——List" />
+  <meta name="description" content="C语言造轮子（五）——List “如果你有能力选择，你是会选择扼住命运的咽喉还是躺下来接受命运的蹂躏” 链表是一种迷人的数据结构，就像因果关系一">
+  <meta property="og:description" content="C语言造轮子（五）——List “如果你有能力选择，你是会选择扼住命运的咽喉还是躺下来接受命运的蹂躏” 链表是一种迷人的数据结构，就像因果关系一">
+  <meta name="twitter:description" content="C语言造轮子（五）——List “如果你有能力选择，你是会选择扼住命运的咽喉还是躺下来接受命运的蹂躏” 链表是一种迷人的数据结构，就像因果关系一">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">C语言造轮子（五）——List</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Jul 9, 2018</h4>
+    </section>
+    <h5 id="wc">2500 Words|Read in about 5 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/c/">C</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/list/">List</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#c语言造轮子-五-list">C语言造轮子（五）——List</a></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="c语言造轮子-五-list">C语言造轮子（五）——List</h1>
+
+<p>“如果你有能力选择，你是会选择扼住命运的咽喉还是躺下来接受命运的蹂躏”</p>
+
+<p>链表是一种迷人的数据结构，就像因果关系一样。当你以为现在的果是之前种下的因时，再向前追溯，不过是更早之前的果罢了，如此追本溯源终将一片虚无。</p>
+
+<p>无论你现在是正开着7档手自一体挖掘机活跃在各大城市的棚改工地上幻想着年底在乡镇沙县旗舰店的初中同学聚会觥筹交错间人们主动献来的殷勤慰问“强子现在是地产界人士了！”亦或者是活跃在城市近郊各广场的流动滚石音乐汇演现场嘲笑着他们不懂真正的农业重金属（是的，农业重金属如果不是站在拖拉机上吼叫那将毫无意义）。你是否会回想起当年刚迈出火车站，第一次看到熙熙攘攘的人群而澎湃的心脏？电线杆，公厕墙上的白色招聘启事密密麻麻写满的是希望。你嘴角上扬，大步流星地走进了这座城市。一条无形且冗长的因果链条由此而开端。</p>
+
+<p>链表的迷人之处就像爱情把原本完全不同且独立的生命体交织在一起一样把计算机中完全不相关的内存连接起来。使得我们可以自由的上下追溯。这种结构在做“插入”，“删除”，“遍历”的时候拥有巨大的市场价值。</p>
+
+<p>作为“表”这种抽象结构，他的存储结构并不复杂，但是为什么第五章才写链表，是因为它的逻辑陷阱还是挺多的。接下来的第一步则是设计它的接口</p>
+
+<pre><code class="language-c">//gtlist.h
+#include &quot;gttypes.h&quot;
+
+typedef struct GtList GtList;
+
+GT_API GtList* gt_list_create(void);
+GT_API unsigned int gt_list_size(GtList* gtList);
+GT_API gt_status gt_list_insert(GtList* gtList, int index, GtValue val);
+GT_API gt_status gt_list_append(GtList* gtList, GtValue val);
+GT_API gt_status gt_list_get(GtList* gtList, int index, GtValue* val);
+GT_API void gt_list_destroy(GtList** gtList);
+</code></pre>
+
+<p>这里设计了几个最基本的api，大抵也不需要仔细介绍一眼就能看明白。但是仅凭这几个api不足以完成高效地遍历操作（如果使用get来做遍历就太低效了）。所以我们需要一个结构来存储list遍历过程中的中间状态（也就是我当前走到哪个节点了？）。但是具体的节点实现我不想开放给用户以增加用户使用成本，所以我们单独设计一个结构以及关于它的api，这个结构就是iterator迭代器。</p>
+
+<pre><code class="language-c">typedef struct GtListIter GtListIter;
+
+GT_API GtListIter* gt_list_iterator_create(GtList *gtList);
+GT_API GT_BOOL gt_list_iterator_has_next(GtListIter* iter);
+GT_API gt_status gt_list_iterator_next(GtListIter* iter, GtValue* val);
+GT_API gt_status gt_list_iterator_val(GtListIter* iter, GtValue* val);
+GT_API gt_status gt_list_iterator_remove(GtListIter* iter);
+GT_API void gt_list_iterator_destroy(GtListIter** iter);
+</code></pre>
+
+<p>设计完api之后，大部分人可能直接就去写代码逻辑了。但是如果我们不赶时间，我还是建议在设计完api之后先写测试用例，尽可能的把所有使用情况覆盖进去，这样对以后重构代码会让人心里更加有底。而这种模式也是著名的TDD开发模式。</p>
+
+<pre><code class="language-c">//
+// test/test_gtlist.c
+//
+#include &lt;criterion/criterion.h&gt;
+#include &lt;stdio.h&gt;
+#include &quot;../include/gttypes.h&quot;
+#include &quot;../include/gtlist.h&quot;
+
+GtList* gtList = NULL;
+
+void gtlist_setup(void)
+{
+    gtList = gt_list_create();
+}
+
+void gtlist_teardown(void)
+{
+    gt_list_destroy(&amp;gtList);
+}
+
+TestSuite(GtList, .init=gtlist_setup, .fini=gtlist_teardown);
+
+Test(GtList, counts)
+{
+    cr_assert(gtList != NULL, &quot;list initialized failed!&quot;);
+    unsigned int size = gt_list_size(gtList);
+    cr_expect_eq(size, 0, &quot;expected list size = 0.&quot;);
+    gt_list_append(gtList, &quot;apple&quot;);
+    size = gt_list_size(gtList);
+    cr_expect_eq(size, 1, &quot;expected list size = 1.&quot;);
+}
+
+Test(GtList, storge)
+{
+    unsigned int size = gt_list_size(gtList);
+    cr_expect_eq(size, 0, &quot;expected list size = 0.&quot;);
+    gt_list_append(gtList, &quot;apple&quot;);
+    gt_list_append(gtList, &quot;banbna&quot;);
+    gt_list_append(gtList, &quot;orange&quot;);
+    gt_list_append(gtList, &quot;pear&quot;);
+    gt_list_append(gtList, &quot;lemon&quot;);
+
+    GtValue val;
+    gt_status error;
+    error = gt_list_get(gtList, 0, &amp;val);
+    cr_expect_eq(error, GT_STATUS_OK, &quot;expected OK.&quot;);
+    cr_expect(!strcmp(&quot;apple&quot;, val), &quot;shit happened here!&quot;);
+    gt_list_get(gtList, 2, &amp;val);
+    cr_expect(!strcmp(&quot;orange&quot;, val), &quot;shit happened here!&quot;);
+    size = gt_list_size(gtList);
+    cr_expect_eq(size, 5, &quot;expected list size = 5.&quot;);
+    gt_list_insert(gtList, 0, &quot;cherry&quot;);
+    // cherry, apple, banana, orange, pear, lemon
+    gt_list_insert(gtList, 4, &quot;mango&quot;);
+    // cherry, apple, banana, orange, mango, pear, lemon
+    char* data_set[] = {
+        &quot;cherry&quot;, &quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;, &quot;mango&quot;, &quot;pear&quot;, &quot;lemon&quot;
+    };
+    for(int i = 0; i &lt; 7; ++i)
+    {
+        gt_list_get(gtList, i, &amp;val);
+//        cr_log(CR_LOG_WARNING, &quot;%s&quot;, (char*)val);
+        cr_expect(!strcmp(data_set[i], val), &quot;shit happened here!&quot;);
+    }
+}
+
+Test(GtList, visit)
+{
+    char* data_set[] = {
+        &quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;, &quot;pear&quot;, &quot;lemon&quot;
+    };
+
+    for(int i = 0; i &lt; 5; ++i)
+        gt_list_append(gtList, data_set[i]);
+
+    unsigned int size = gt_list_size(gtList);
+    cr_expect_eq(size, 5, &quot;expected list size = 5.&quot;);
+
+    GtValue val;
+    GtListIter* gtListIter = gt_list_iterator_create(gtList);
+    cr_assert(gtListIter, &quot;list iterator initialized failed!&quot;);
+    for(int i = 0; gt_list_iterator_has_next(gtListIter); ++i)
+    {
+        gt_list_iterator_next(gtListIter, &amp;val);
+        cr_assert(!strcmp(data_set[i], val), &quot;not equel at %d rounds&quot;, i+1);
+        if(i == 3)
+            gt_list_iterator_remove(gtListIter); //删除pear
+    }
+    gt_list_get(gtList, 3, &amp;val);
+    cr_assert(!strcmp(&quot;lemon&quot;, val), &quot;list iterator failed to remove 3rd item.&quot;);
+    size = gt_list_size(gtList);
+    cr_expect_eq(size, 4, &quot;expected list size = 4 but got %d.&quot;, size);
+    gt_list_iterator_val(gtListIter, &amp;val);
+    cr_expect(!strcmp(&quot;lemon&quot;, val), &quot;shit happened here!&quot;);
+    gt_list_iterator_destroy(&amp;gtListIter);
+}
+</code></pre>
+
+<p>接下来，终于可以怼一下src/gtlist.c的接口实现了。</p>
+
+<pre><code class="language-c">#include &lt;stdlib.h&gt;
+#include &quot;../include/gtlist.h&quot;
+
+typedef struct GtListEntry GtListEntry;
+
+struct GtList {
+    GtListEntry *entry;
+};
+
+struct GtListEntry {
+    GtValue data;
+    GtListEntry *prev;
+    GtListEntry *next;
+};
+
+GtList* gt_list_create()
+{
+    GtList *out = (GtList*)malloc(sizeof(GtList));
+    if(!out)  exit(GT_STATUS_OUTMEM);
+    out-&gt;entry = NULL;
+    return out;
+}
+</code></pre>
+
+<p>↑ 为了隐藏实现细节，所以没有把内部数据结构暴露到头文件里面。看到这里很多人就要问了，从api和测试用例来看，我们只用到了next操作而没有prev操作，为什么我们需要双向链表而不是单向链表？很简单，为了简化插入和删除操作，如果是单向链表，那我们还需要向前追溯一个节点，但由于缺乏prev指针，向前追溯的动作只能是从头向后进行遍历操作。这样效率就会大打折扣。</p>
+
+<pre><code class="language-c">unsigned int gt_list_size(GtList* gtList)
+{
+    unsigned int size = 0;
+    if(gtList != NULL)
+    {
+        GtListEntry* entry = gtList-&gt;entry;
+        while(entry)
+        {
+            size++;
+            entry = entry-&gt;next;
+        }
+    }
+    return size;
+}
+
+/*
+ * operations for listEntry
+ */
+
+//append newEntry after entries
+static void gt_entry_append(GtListEntry** entryAddress, GtListEntry* newEntry)
+{
+    if(!entryAddress || !newEntry) return;
+    if(!*entryAddress)
+    {   //if list is empty, set list's head address to newEntry's address 
+        *entryAddress = newEntry;
+    }else {
+        GtListEntry* entry = *entryAddress;
+        while(entry-&gt;next)
+            entry = entry-&gt;next;
+        //here we arrive the last entry!
+        entry-&gt;next = newEntry;
+        newEntry-&gt;prev = entry;
+    }
+}
+</code></pre>
+
+<p>↑值得一提是append函数，如果链表本身是空的，那么就把newEntry节点的地址直接赋予链表。这就是为什么我们需要GtListEntry** 而不是 GtListEntry* 的原因。</p>
+
+<pre><code class="language-c">//add newEntry before entry
+static void gt_entry_insert(GtListEntry** entryAddress, GtListEntry* newEntry)
+{
+    if(!entryAddress||!newEntry) return;
+    if(!*entryAddress){
+        //if list is empty, set list's head address to newEntry's address
+        *entryAddress = newEntry;
+    }else{
+        GtListEntry* entry = *entryAddress;
+        newEntry-&gt;next = entry;
+        newEntry-&gt;prev = entry-&gt;prev;
+        if(entry-&gt;prev)
+            entry-&gt;prev-&gt;next = newEntry;
+        else
+            //newEntry is the first element
+            *entryAddress = newEntry;
+
+        entry-&gt;prev = newEntry;
+    }
+}
+
+//remove current entry
+static void gt_entry_remove(GtListEntry** entryAddress)
+{
+    if(!entryAddress) return;
+    GtListEntry* entry = *entryAddress;
+    if(!entry-&gt;next &amp;&amp; !entry-&gt;prev){
+        //check if this is the only one in the list
+        *entryAddress = NULL;
+    }else{
+        if(entry-&gt;prev)
+            entry-&gt;prev-&gt;next = entry-&gt;next;
+        else
+            //delete first one
+            *entryAddress = entry-&gt;next;
+        if(entry-&gt;next)  entry-&gt;next-&gt;prev = entry-&gt;prev;
+    }
+    free(entry);
+}
+</code></pre>
+
+<p>同样的，insert函数也面临和append一样的情况。remove函数需要注意的是如果当前的链表只有唯一一个entry，那么需要把这个链表置空。</p>
+
+<pre><code class="language-c">/*
+ * opertions for list 
+ */
+
+//insert
+gt_status gt_list_insert(GtList* gtList, int index, GtValue val)
+{
+    if(!gtList || !val) 
+        return GT_STATUS_NULL;
+    GtListEntry* newEntry = (GtListEntry*)malloc(sizeof(GtListEntry));
+    if(!newEntry)  
+        return GT_STATUS_OUTMEM;
+    newEntry-&gt;data = val;
+    newEntry-&gt;prev = NULL;
+    newEntry-&gt;next = NULL;
+
+    GtListEntry** entry = &amp;gtList-&gt;entry;
+    if(index &lt; 0)
+    {
+        gt_entry_append(entry, newEntry);
+        return GT_STATUS_OK;
+    }
+    while((*entry)-&gt;next)
+    {
+        if(index == 0) break;
+        index--;
+        entry = &amp;(*entry)-&gt;next;
+    }
+    if(index &gt; 0)
+        return GT_STATUS_OVER_INDEX;
+    gt_entry_insert(entry, newEntry);
+    return GT_STATUS_OK;
+}
+
+//append
+gt_status gt_list_append(GtList* gtList, GtValue val)
+{
+    if(!gtList || !val)
+        return GT_STATUS_NULL;
+    GtListEntry* newEntry = (GtListEntry*)malloc(sizeof(GtListEntry));
+    if(!newEntry)
+        return GT_STATUS_OUTMEM;
+    newEntry-&gt;data = val;
+    newEntry-&gt;prev = NULL;
+    newEntry-&gt;next = NULL;
+    gt_entry_append(&amp;gtList-&gt;entry, newEntry);
+    return GT_STATUS_OK;
+}
+
+//getVal
+gt_status gt_list_get(GtList* gtList, int index, GtValue* val)
+{
+    if(!gtList || !val)
+        return GT_STATUS_NULL;
+    if(!gtList-&gt;entry)
+        return GT_STATUS_EMPTY;
+    GtListEntry* entry = gtList-&gt;entry;
+    while(entry)
+    {
+        if(index == 0) break;
+        index--;
+        entry = entry-&gt;next;
+        if(!entry)
+            return GT_STATUS_OVER_INDEX;
+    }
+    *val = entry-&gt;data;
+    return GT_STATUS_OK;
+}
+
+//destroy
+void gt_list_destroy(GtList** gtList)
+{
+    if(*gtList)
+    {
+        GtList* in = *gtList;
+        GtListEntry* entry = in-&gt;entry;
+        GtListEntry* next;
+        while(entry)
+        {
+            next = entry-&gt;next;
+            free(entry);
+            entry = next;
+        }
+        free(in);
+        *gtList = NULL;
+    }
+}
+</code></pre>
+
+<p>唯一值得注意的是这个list_insert函数中循环为什么不写成*entry = (*entry)-&gt;next 的写法呢？因为如果这么写entry的地址永远不会发生改变改变的是它的内容。entry地址永远是第一个元素的地址，那么去做insert永远改变的是第一个元素。</p>
+
+<p>接下来，我们需要实现一下迭代器。</p>
+
+<pre><code class="language-c">/*
+ * ListIter operations
+ */
+
+typedef struct GtListIter {
+    GtListEntry* head;
+    GtListEntry* current;
+}GtListIter;
+
+//iterator create
+GtListIter* gt_list_iterator_create(GtList* gtList)
+{
+    if(!gtList)  return NULL;
+    GtListIter* gtListIter = malloc(sizeof(GtListIter));
+    gtListIter-&gt;head = (GtListEntry*)malloc(sizeof(GtListEntry));
+    if(!gtListIter-&gt;head)
+        exit(GT_STATUS_OUTMEM);
+    gtListIter-&gt;head-&gt;data = NULL;
+    gtListIter-&gt;head-&gt;prev = NULL;
+    gtListIter-&gt;head-&gt;next = gtList-&gt;entry;
+    gtListIter-&gt;current = gtListIter-&gt;head;
+    return gtListIter;
+}
+
+//iterator has next
+GT_BOOL gt_list_iterator_has_next(GtListIter* iter)
+{
+    if(!iter)  return 0;
+    GtListIter* in = iter;
+    return (in-&gt;current-&gt;next != NULL);
+}
+
+//iterator next
+gt_status gt_list_iterator_next(GtListIter *iter, GtValue* val)
+{
+    if(!iter)
+        return GT_STATUS_NULL;
+    if(iter-&gt;current)
+        iter-&gt;current = iter-&gt;current-&gt;next;
+    if(val)
+        *val = iter-&gt;current-&gt;data;
+
+    return GT_STATUS_OK;
+}
+
+//iterator value
+gt_status gt_list_iterator_val(GtListIter* iter, GtValue* val)
+{
+    if(!iter) 
+        return GT_STATUS_NULL;
+    if(val)
+        *val = iter-&gt;current-&gt;data;
+
+    return GT_STATUS_OK;
+}
+
+//iterator remove
+gt_status gt_list_iterator_remove(GtListIter* iter)
+{
+    if(!iter || !iter-&gt;current)
+        return GT_STATUS_FULL;
+    gt_entry_remove(&amp;iter-&gt;current);
+
+    return GT_STATUS_OK;
+}
+
+//iterator destroy
+void gt_list_iterator_destroy(GtListIter** iter)
+{
+    if(*iter)
+    {
+        GtListIter* in = *iter;
+        free(in-&gt;head);
+        free(in-&gt;current);
+        *iter = NULL;
+    }
+}
+
+</code></pre>
+
+<p>得益于我们之前设置的head冗余节点，剩下的几个迭代器操作都实现的比较清爽。虽然说写C程序要尽量避免多的开辟内存和冗余变量。但是在性能和代码整洁度的如何权衡也是一门艺术。</p>
+
+<p>接下来还是使用3板斧来运行测试检验我们链表的正确性。</p>
+
+<pre><code class="language-bash">$ cd build
+$ cmake ..
+$ make
+$ make test
+$ cat Testing/Temporary/LastTest.log 
+Start testing: Jun 18 00:46 CST
+----------------------------------------------------------
+1/1 Testing: runtest
+1/1 Test: runtest
+Command: &quot;/Users/luoran/work/cspace/grandma-turner/build/runtest&quot;
+Directory: /Users/luoran/work/cspace/grandma-turner/build
+&quot;runtest&quot; start time: Jun 18 00:46 CST
+Output:
+----------------------------------------------------------
+[====] Synthesis: Tested: 9 | Passing: 9 | Failing: 0 | Crashing: 0 
+&lt;end of output&gt;
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+&quot;runtest&quot; end time: Jun 18 00:46 CST
+&quot;runtest&quot; time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 18 00:46 CST
+
+</code></pre>
+
+<p>恭喜自己测试通过！</p>
+
+<p><a href="https://github.com/FLHonker/Cwheel/tree/part_5">github代码</a>已更新</p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/" data-toggle="tooltip" data-placement="top" title="C语言造轮子（四）——单元测试">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/" data-toggle="tooltip" data-placement="top" title="C语言造轮子（六）——哈希表"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">面试精选：链表问题集锦</a></li>
+                    
+                    <li><a href="/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/">C语言造轮子（四）——单元测试</a></li>
+                    
+                    <li><a href="/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/">C语言造轮子（三）——Trie树及应用</a></li>
+                    
+                    <li><a href="/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/">C语言造轮子（二）——CMake打包</a></li>
+                    
+                    <li><a href="/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/">C语言造轮子（一）——stack</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Jul 9, 2018</h4>
+    </section>
+    <h5 id="wc">2500 Words|Read in about 5 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/c/">C</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/list/">List</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

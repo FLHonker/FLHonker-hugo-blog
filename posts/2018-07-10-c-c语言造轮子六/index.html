@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> C语言造轮子（六）——哈希表 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="C语言造轮子（六）——哈希表" />
+  <meta name="twitter:title" content="C语言造轮子（六）——哈希表" />
+  <meta name="description" content="C语言造轮子（六）——哈希表 如同“见字如晤”一般，我们通常用标签化的事物来抽象一个人，一件事，一段情……，比如迎面走来了一个女工妹子，你和工">
+  <meta property="og:description" content="C语言造轮子（六）——哈希表 如同“见字如晤”一般，我们通常用标签化的事物来抽象一个人，一件事，一段情……，比如迎面走来了一个女工妹子，你和工">
+  <meta name="twitter:description" content="C语言造轮子（六）——哈希表 如同“见字如晤”一般，我们通常用标签化的事物来抽象一个人，一件事，一段情……，比如迎面走来了一个女工妹子，你和工">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">C语言造轮子（六）——哈希表</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Tue Jul 10, 2018</h4>
+    </section>
+    <h5 id="wc">3300 Words|Read in about 7 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/c/">C</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/hash/">Hash</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#c语言造轮子-六-哈希表">C语言造轮子（六）——哈希表</a></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="c语言造轮子-六-哈希表">C语言造轮子（六）——哈希表</h1>
+
+<p>如同“见字如晤”一般，我们通常用标签化的事物来抽象一个人，一件事，一段情……，比如迎面走来了一个女工妹子，你和工友交换眼神之后给出7分的信号。或者食堂打菜阿姨给你留下的深刻印象竟是那双突发癫痫的手。又或者那个紫色的肥皂盒总能让你想到5年前在学校门口大众浴室发生的种种。清风笑，竟惹基佬。</p>
+
+<p>所以哈希表是一种很有现实意义的数据结构，它和人类大脑的思维模式很接近，能让我们用一个简练的标签去索引一段数据，我们把这个标签叫做key。</p>
+
+<p>规划接口：</p>
+
+<pre><code class="language-c">#include &quot;gttypes.h&quot;
+
+typedef struct GtHashmap GtHashmap;
+GT_API GtHashmap* gt_hashmap_create(unsigned int(*)(char* key));
+GT_API unsigned int gt_hashmap_counts(GtHashmap* gtHashmap);
+GT_API gt_status gt_hashmap_put(GtHashmap* gtHashmap, 
+                                char* key, 
+                                GtValue val);
+GT_API gt_status gt_hashmap_get(GtHashmap* gtHashmap, 
+                                char* key, 
+                                GtValue* val);
+GT_API gt_status gt_hashmap_remove(GtHashmap* gtHashmap, char* key);
+GT_API void gt_hashmap_destroy(GtHashmap** gtHashmap);
+GT_API void gt_hashmap_travel(GtHashmap* gtHashmap, 
+                              GT_BOOL(*traveller)(char* key, GtValue val));
+</code></pre>
+
+<p>回调函数traveller的返回值是布尔值代表遍历操作的连续性。比如返回为TRUE才继续遍历，否则退出遍历。</p>
+
+<p>然后是例行测试代码:</p>
+
+<pre><code class="language-c">#include &lt;criterion/criterion.h&gt;
+#include &quot;../include/gttypes.h&quot;
+#include &quot;../include/gthashmap.h&quot;
+
+GtHashmap* gtHashmap = NULL;
+
+void gthashmap_setup(void)
+{
+    gtHashmap = gt_hashmap_create(NULL);
+}
+
+void gthashmap_teardown(void)
+{
+    gt_hashmap_destroy(&amp;gtHashmap);
+}
+
+TestSuite(GtHashmap, .init=gthashmap_setup, .fini=gthashmap_teardown);
+
+Test(GtHashmap, storge)
+{
+    gt_hashmap_put(gtHashmap, &quot;周一&quot;, &quot;Mon&quot;);
+    gt_hashmap_put(gtHashmap, &quot;周二&quot;, &quot;Tue&quot;);
+    gt_hashmap_put(gtHashmap, &quot;周三&quot;, &quot;Wed&quot;);
+    gt_hashmap_put(gtHashmap, &quot;周四&quot;, &quot;Thursday&quot;);
+    gt_hashmap_put(gtHashmap, &quot;周五&quot;, &quot;Fri&quot;);
+    
+    unsigned int size = gt_hashmap_counts(gtHashmap);
+    cr_expect_eq(size, 5, &quot;size 5 is expected but got %u.&quot;, size);
+
+    gt_status error;
+    error = gt_hashmap_remove(gtHashmap, &quot;周五&quot;);
+    cr_expect_eq(error, GT_STATUS_OK, &quot;remove failed&quot;);
+    size = gt_hashmap_counts(gtHashmap);
+    cr_expect_eq(size, 4, &quot;size 4 is expected but got %u.&quot;, size);
+
+    GtValue val;
+    gt_hashmap_get(gtHashmap, &quot;周四&quot;, &amp;val);
+    cr_expect(!strcmp(&quot;Thursday&quot;, val), &quot;shit happened here!&quot;);
+
+    gt_hashmap_put(gtHashmap, &quot;周四&quot;, &quot;Thu&quot;);
+    gt_hashmap_get(gtHashmap, &quot;周四&quot;, &amp;val);
+    cr_expect(!strcmp(&quot;Thu&quot;, val), &quot;shit happened here!&quot;);
+}
+
+GT_BOOL hashmap_visit(char* key, GtValue gtValue)
+{
+    cr_log_warn(&quot;\t\&quot;%s\&quot;:\&quot;%s\&quot;&quot;, key, (char*)gtValue);
+    if(!strcmp(key, &quot;周一&quot;)){
+        cr_expect(!strcmp(gtValue, &quot;Mon&quot;), &quot;shit happened here!&quot;);
+    }else if(!strcmp(key, &quot;周二&quot;)){
+        cr_expect(!strcmp(gtValue, &quot;Tues&quot;), &quot;shit happened here!&quot;);
+    }else if(!strcmp(key, &quot;周三&quot;)){
+        cr_expect(!strcmp(gtValue, &quot;Wed&quot;), &quot;shit happened here!&quot;);
+    }else if(!strcmp(key, &quot;周四&quot;)){
+        cr_expect(!strcmp(gtValue, &quot;Thurs&quot;), &quot;shit happened here!&quot;);
+    }else if(!strcmp(key, &quot;周五&quot;)){
+        cr_expect(!strcmp(gtValue, &quot;Fri&quot;), &quot;shit happened here!&quot;);
+    }else if(!strcmp(key, &quot;周六&quot;)){
+        cr_expect(!strcmp(gtValue, &quot;Sat&quot;), &quot;shit happened here!&quot;);
+    }else if(!strcmp(key, &quot;周日&quot;)){
+        cr_expect(!strcmp(gtValue, &quot;Sun&quot;), &quot;shit happened here!&quot;);
+    }
+    return GT_TRUE;
+}
+
+Test(GtHashmap, visit)
+{
+    char* data_set[] = {
+        &quot;周一&quot;, &quot;Mon&quot;,
+        &quot;周二&quot;, &quot;Tue&quot;,
+        &quot;周三&quot;, &quot;Wed&quot;,
+        &quot;周四&quot;, &quot;Thu&quot;,
+        &quot;周五&quot;, &quot;Fri&quot;,
+        &quot;周六&quot;, &quot;Sat&quot;,
+        &quot;周日&quot;, &quot;Sun&quot;
+    };
+    for(int i = 0; i &lt; 7; ++i)
+    {
+        gt_hashmap_put(gtHashmap, data_set[i*2], data_set[i*2+1]);
+    }
+    unsigned int size = gt_hashmap_counts(gtHashmap);
+    cr_expect_eq(size, 7, &quot;size 7 is expected but got %u&quot;, size);
+    cr_log_warn(&quot;{&quot;);
+    gt_hashmap_travel(gtHashmap, hashmap_visit);
+    cr_log_warn(&quot;}&quot;);
+}
+</code></pre>
+
+<p>就像人被杀就会死一样有逻辑性的测试！</p>
+
+<p>那么接下来就是重头戏，首先我们的哈希表不能太low。那么高大上的哈希表体现在什么地方上呢？主要体现在别人看你代码的时候是会发出“卧槽？！卧槽？！”还是会发出“卧槽。卧槽。”的声音来判断的，当然我是在开玩笑。哈希表内部结构其实是一个很大的数组elements，我们利用一段哈希函数把key计算出一个index，当然为了保证index满足[0, size)，还需要对index进行模除取余：index=index%size。然后我们把这个index当做下标去操作这个数组。elements[index]。一切看起来都很完美。最麻烦的问题在于index冲突。两个不同的key代入哈希函数计算出同样的值会产生冲突，即便值不同，但是对长度模除取余之后也可能相等。这种情况呢，最简单的办法是直接对index++操作放到冲突位置的后面。但这样会带来一个巨大的坑。就是查询的时候，特别是查询一个不在哈希表中的key的时候，你不能根据这个 elements[index]元素来判断是否返回，你得从这个点往后面遍历比较key直至末尾。这样效率非常低下，特别是在哈希表数据很多的时候，我可以用不存在的key进行攻击。有没有一种办法既能高效解决冲突，有比较好实现？在此呢，我打算使用链表法，把冲突的元素用链表的形式组织起来。这样即便退化为链表操作，单个链表的元素数量也大大降低，遍历效率也不至于难看。我们可以直接利用上一章节写到的链表来简化工作量！</p>
+
+<pre><code class="language-c">#include &quot;../include/gttypes.h&quot;
+#include &quot;../include/gtlist.h&quot;
+#include &quot;../include/gthashmap.h&quot;
+
+#define INIT_SIZE   16
+#define MAX_DENSITY 0.75
+
+typedef struct GtElement {
+    //逻辑删除
+    enum {UNUSED = 0, USED}used;
+    //冲突的时候退化为链表
+    enum {ORIGIN = 0, LIST} listified;
+    char* key;
+    //如果是普通值就是GtValue，否则就是链表
+    union{
+        GtValue value;
+        GtList* list;  //出自于上一章节
+    };
+}GtElement;
+
+struct GtHashmap {
+    unsigned int counts;    //元素数量
+    unsigned int size;  //容量
+    unsigned int (*hashing)(char*);    //hash函数
+    GtElement* elems;
+};
+</code></pre>
+
+<p>这里需要交代的不多。</p>
+
+<pre><code class="language-c">GtHashmap* gt_hashmap_create(unsigned int (*hash_func)(char*))
+{
+    GtHashmap* out = malloc(sizeof(GtHashmap));
+    if(!out)
+        exit(GT_STATUS_OUTMEM);
+
+    out-&gt;elems = calloc(INIT_SIZE, sizeof(GtElement));
+    if(!out-&gt;elems)
+    {
+        free(out);
+        exit(GT_STATUS_OUTMEM);
+    }
+
+    if(hash_func)
+        out-&gt;hashing = hash_func;
+    else
+        out-&gt;hashing = gt_origin_hashing;
+
+    out-&gt;size = INIT_SIZE;
+    out-&gt;counts = 0;
+    return out;
+}
+
+</code></pre>
+
+<p>↑构造函数。同样没什么可交代的，唯一需要注意的是参数是一个函数。代表哈希函数，意味着哈希函数是外部传递进来可以变化的，评估一个哈希函数的好坏有性能、疏密程度等等，所以这里为哈希函数的升级预留了口子。当然如果用户没有这种需要，可以传NULL，这样就用默认的哈希函数来替代：</p>
+
+<pre><code class="language-c">static unsigned int gt_origin_hashing(char* key)
+{
+    unsigned int result = 193;
+    char* p = key;
+    int c;
+    while(*p != '\0')
+    {
+        c = (int)*p;
+        c += 128;
+        result = result*32 + result + c;
+        p++;
+    }
+    return result;
+}
+</code></pre>
+
+<p>借鉴了java的hash算法。 谈不上什么大道理，就像人被杀就会死一样。</p>
+
+<pre><code class="language-c">unsigned int gt_hashmap_counts(GtHashmap* gtHashmap)
+{
+    unsigned int counts = 0;
+    if(gtHashmap)
+        counts = gtHashmap-&gt;counts;
+    return counts;
+}
+</code></pre>
+
+<p>↑获取哈希表的元素数目。</p>
+
+<pre><code class="language-c">gt_status gt_hashmap_get(GtHashmap* gtHashmap, char* key, GtValue *val)
+{
+    if(!gtHashmap)
+        return GT_STATUS_NULL;
+    unsigned int index = gtHashmap-&gt;hashing(key)%gtHashmap-&gt;size;
+    GtElement* elems = gtHashmap-&gt;elems;
+    GtElement* hover = elems + index;
+    if(!hover-&gt;used)
+        return GT_STATUS_NULL;
+    gt_status error = GT_STATUS_NULL;
+    if(hover-&gt;listified)  //如果是链表
+    {
+        GtList* list = hover-&gt;list;
+        //遍历使用迭代器
+        GtListIter* iter = gt_list_iterator_create(list);
+        GtElement* temp;
+        while(gt_list_iterator_has_next(iter))
+        {
+            gt_list_iterator_next(iter, (GtValue*)&amp;temp);
+            if(!strcmp(temp-&gt;key, key))
+            {
+                if(val)
+                    *val = temp-&gt;value;
+                error = GT_STATUS_OK;
+                break;
+            }
+        }
+        gt_list_iterator_destroy(&amp;iter);
+    }else{
+        if(val)
+            *val = hover-&gt;value;
+        error = GT_STATUS_OK;
+    }
+    return error;
+}
+</code></pre>
+
+<p>↑我没有先写put操作，因为put略麻烦需要考虑的东西有点多。get总体来说很直观，就是拿到index之后检查元素是否是链表，如果不是链表那么就返回value，如果是链表那就遍历链表查找key相同的元素，找到了再返回value。</p>
+
+<pre><code class="language-c">gt_status gt_hashmap_remove(GtHashmap* gtHashmap, char* key)
+{
+    if(!gtHashmap)
+        return GT_STATUS_NULL;
+    unsigned int index = gtHashmap-&gt;hashing(key) % gtHashmap-&gt;size;
+    GtElement* elems = gtHashmap-&gt;elems;
+    GtElement* hover = elems + index;
+    if(!hover-&gt;used) 
+        return GT_STATUS_FULL;
+    //如果是链表需要遍历比较key，找到了就删除
+    if(hover-&gt;listified)
+    {
+        GtList* list = hover-&gt;list;
+        GtListIter* iter = gt_list_iterator_create(list);
+
+        GtElement* temp;
+        while(gt_list_iterator_has_next(iter))
+        {
+            gt_list_iterator_next(iter, (GtValue*)&amp;temp);
+            if(!strcmp(temp-&gt;key, key))
+            {
+                gt_list_iterator_remove(iter);
+                free(temp);
+                break;
+            }
+        }
+        gt_list_destroy(&amp;iter);
+        //这里最容易忽略的一个细节：
+        //如果list只有一个元素了，需要把这个list提升为value，free掉list
+        if(1 == gt_list_size(list))
+        {
+            gt_list_get(list, 0, (GtValue*)&amp;temp);
+            hover-&gt;key = temp-&gt;key;
+            hover-&gt;value = temp-&gt;value;
+            hover-&gt;listified = ORIGIN;
+            free(temp);
+            gt_list_destroy(&amp;list);
+        }
+    }else{
+        //如果不是链表而是普通元素，只修改used做逻辑删除
+        hover-&gt;used = UNUSED;
+    }
+    gtHashmap-&gt;counts--;
+    return GT_STATUS_OK;
+}
+</code></pre>
+
+<p>↑remove跟get有点像，删除的逻辑是如果是普通数组元素，那么直接修改used字段为UNUSED标记成“未使用”来逻辑删除，如果是链表就需要遍历查找再删除，不过这里有个细节就是如果是链表类型，那么删除之后需要检查一下链表是不是只有一个元素了。如果是，就需要把这个元素提升到外层哈希表的数组元素中来。</p>
+
+<p>接下来就是最麻烦的put函数了！</p>
+
+<pre><code class="language-c">gt_status gt_hashmap_put(GtHashmap* gtHashmap, char* key, GtValue val)
+{
+    if(!gtHashmap)
+        return GT_STATUS_NULL;
+    //计算当前容器的密度
+    double density = (double)gtHashmap-&gt;counts / gtHashmap-&gt;size;
+    gt_status error;
+    if(density &gt; MAX_DENSITY)
+    {//如果大于密度阈值，则触发扩容
+        error = gt_rehash(gtHashmap);
+        if(error != GT_STATUS_OK)
+            return error;
+    }
+    return  gt_hash_element_put(gtHashmap, key, val); //真正的put操作
+}
+</code></pre>
+
+<p>所以这里涉及到扩容函数<code>gt_rehash</code>我们来实现一下:</p>
+
+<pre><code class="language-c">static gt_status gt_rehash(GtHashmap* in)
+{
+    unsigned int old_size = in-&gt;size;
+    unsigned int new_size = old_size * 2;  //2倍扩容
+    GtElement* old_elems = in-&gt;elems;
+    GtElement* new_elems = (GtElement*)calloc(new_size, sizeof(GtElement));
+    if(!new_elems)
+        return GT_STATUS_OUTMEM;
+
+    GtElement* hover;
+    gt_status error = GT_STATUS_OK;
+    in-&gt;size = new_size;
+    in-&gt;counts = 0;
+    in-&gt;elems = new_elems;
+    for(unsigned int i = 0; i &lt; old_size; ++i)
+    {
+        //需要把老数组中的内容重新搬运到新数组中
+        GtElement old_ele = old_elems[i];
+        if(!old_ele.used) 
+            continue;
+        if(old_ele.listified)
+        {
+            GtList* list = old_ele.list;
+            GtListIter* iter = gt_list_iterator_create(list);
+            while(gt_list_iterator_has_next(iter))
+            {
+                gt_list_iterator_next(iter, (GtValue*)&amp;hover);
+                error = gt_hash_element_put(in, hover-&gt;key, hover-&gt;value);
+                free(hover);
+            }
+            gt_list_iterator_destroy(&amp;iter);
+            gt_list_destroy(&amp;list);
+        }else{
+            error = gt_hash_element_put(in, old_ele.key, old_ele.value);
+        }
+    }
+    free(old_elems);
+    return error;
+}
+</code></pre>
+
+<p>扩容的基本思路就是创建一个容量为两倍的新数组。然后把老数组的元素一一搬到新数组去。你可能会问为什么需要重新计算元素在新数组中的位置？可以假设，初始状态下我数组长度是16 。我有两个key，哈希函数计算出来的值是3和19，模除长度之后都是3，所以在哈希表中是以链表形式存在的。当我扩容到32的时候，3和19都可以独立存放了，就不需要挤在链表里面。所以我们要对所有元素重新计算在新数组当中的位置。</p>
+
+<p>再接下来是最为关键的真正的put操作：</p>
+
+<pre><code class="language-c">static gt_status gt_hash_element_put(GtHashmap* gtHashmap,char* key, GtValue val)
+{
+    if(!gtHashmap)
+        return GT_STATUS_NULL;
+    unsigned int index = gtHashmap-&gt;hashing(key) % gtHashmap-&gt;size;
+    GtElement* elems = gtHashmap-&gt;elems;
+    GtElement* hover = elems + index;
+    if(!hover-&gt;used)
+    {   //没有冲突，就简单了
+        hover-&gt;key = key;
+        hover-&gt;value = USED;
+        hover-&gt;listified = ORIGIN;
+    }else{
+        //比较key
+        if(!strcmp(hover-&gt;key, key))
+        {
+            //key相同则覆盖之
+            hover-&gt;key = key;
+            hover-&gt;value = val;
+            return GT_STATUS_OK;    //函数没有必要再走下去
+        }
+        // key不同引发冲突
+        GtElement* new_ele = malloc(sizeof(GtElement));
+        if(!new_ele)
+            return GT_STATUS_OUTMEM;
+        new_ele-&gt;used = USED;
+        new_ele-&gt;key = key;
+        new_ele-&gt;listified = ORIGIN;
+        new_ele-&gt;value = val;
+        if(hover-&gt;listified)
+        {   //如果是链表得先遍历链表确保元素
+            GtList* list = hover-&gt;list;
+            GtListIter* iter = gt_list_iterator_create(list);
+            GtElement* temp;
+            while(gt_list_iterator_has_next(iter))
+            {
+                gt_list_iterator_next(iter, (GtValue*)&amp;temp);
+                if(!strcmp(key, temp-&gt;key))
+                {   //如果找到就删除
+                    gt_list_iterator_remove(iter);
+                    free(temp);
+                    gtHashmap-&gt;counts--;
+                    break;
+                }
+            }
+            //插入到链表中
+            gt_list_insert(list, 0, new_ele);
+            gt_list_iterator_destroy(&amp;iter);
+        }else if(!hover-&gt;listified){
+            //如果不是链表，转成链表
+            GtElement* temp = malloc(sizeof(GtElement));
+            if(!temp)
+                return GT_STATUS_OUTMEM;
+            temp-&gt;listified = ORIGIN;
+            temp-&gt;used = USED;
+            temp-&gt;key = hover-&gt;key;
+            temp-&gt;value = hover-&gt;value;
+            hover-&gt;key = NULL;
+            GtList* list = gt_list_create();
+            if(!list)
+                return GT_STATUS_OUTMEM;
+            gt_list_append(list, new_ele);
+            gt_list_append(list, temp);
+            hover-&gt;list = list;
+            hover-&gt;listified = LIST;
+        }
+    }
+    gtHashmap-&gt;counts++;
+    return GT_STATUS_OK;
+}
+</code></pre>
+
+<p>遍历：</p>
+
+<pre><code class="language-c">void gt_hashmap_travel(GtHashmap* gtHashmap, GT_BOOL(*traveller)(char*, GtValue))
+{
+    if(!gtHashmap)  return;
+    GtElement *hover, *temp;
+    GT_BOOL go_on = GT_TRUE;
+    for(unsigned int i = 0; i &lt; gtHashmap-&gt;size &amp;&amp; go_on; ++i)
+    {
+        hover = gtHashmap-&gt;elems + i;
+        if(!hover-&gt;used)  continue;
+        if(hover-&gt;listified)
+        {
+            GtList* list = hover-&gt;list;
+            GtListIter* iter = gt_list_iterator_create(list);
+            while(gt_list_iterator_has_next(iter))
+            {
+                gt_list_iterator_next(iter, (GtValue*)&amp;temp);
+                if(!traveller(temp-&gt;key, temp-&gt;value))
+                {
+                    go_on = GT_FALSE;
+                    break;
+                }
+            }
+            gt_list_iterator_destroy(&amp;iter);
+        } else {
+            if(!traveller(hover-&gt;key, hover-&gt;value))
+                go_on = GT_FALSE;
+        }
+    }
+}
+</code></pre>
+
+<p>收尾：</p>
+
+<pre><code class="language-c">void gt_hashmap_destroy(GtHashmap** gtHashmap)
+{
+    if(*gtHashmap)
+    {
+        GtHashmap* in = *gtHashmap;
+        GtElement* elems = in-&gt;elems;
+        GtElement *hover, *temp;
+        for(unsigned int i = 0; i &lt; in-&gt;size; ++i)
+        {
+            hover = elems + i;
+            if(!hover-&gt;used)  continue;
+            if(hover-&gt;listified)
+            {
+                GtListIter* iter = gt_list_iterator_create(hover-&gt;list);
+                while(gt_list_iterator_has_next(iter))
+                {
+                    gt_list_iterator_next(iter, (GtValue*)&amp;temp);
+                    free(temp);
+                }
+                gt_list_iterator_destroy(&amp;iter);
+                gt_list_destroy(&amp;hover-&gt;list);
+            }
+        }
+        free(elems);
+        free(in);
+        *gtHashmap = NULL;
+    }
+}
+</code></pre>
+
+<p>搞定了，最后照例三板斧:</p>
+
+<pre><code class="language-bash">$ cd build
+$ cmake ..
+$ make
+$ make test
+$ cat Testing/Temporary/LastTest.log
+</code></pre>
+
+<p>搞定！！！！！是不是很强势？</p>
+
+<p>本期代码已更新：<a href="https://github.com/FLHonker/Cwheel/tree/part_6">Part_6</a></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/" data-toggle="tooltip" data-placement="top" title="C语言造轮子（五）——List">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/" data-toggle="tooltip" data-placement="top" title="ICBC广州研发部实习第一周经历"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/">C语言造轮子（五）——List</a></li>
+                    
+                    <li><a href="/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/">C语言造轮子（四）——单元测试</a></li>
+                    
+                    <li><a href="/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/">C语言造轮子（三）——Trie树及应用</a></li>
+                    
+                    <li><a href="/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/">C语言造轮子（二）——CMake打包</a></li>
+                    
+                    <li><a href="/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/">C语言造轮子（一）——stack</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Tue Jul 10, 2018</h4>
+    </section>
+    <h5 id="wc">3300 Words|Read in about 7 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/c/">C</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/hash/">Hash</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

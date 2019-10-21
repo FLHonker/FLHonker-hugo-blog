@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> bochs环境搭建 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="bochs环境搭建" />
+  <meta name="twitter:title" content="bochs环境搭建" />
+  <meta name="description" content="bochs环境搭建 Linux kernel学习专栏——1 项目源码和配置文件请移步github:https://github.com/FLHonker/">
+  <meta property="og:description" content="bochs环境搭建 Linux kernel学习专栏——1 项目源码和配置文件请移步github:https://github.com/FLHonker/">
+  <meta name="twitter:description" content="bochs环境搭建 Linux kernel学习专栏——1 项目源码和配置文件请移步github:https://github.com/FLHonker/">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-05-16-kernel-bochs%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">bochs环境搭建</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Wed May 16, 2018</h4>
+    </section>
+    <h5 id="wc">2800 Words|Read in about 6 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/linux/">Linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/kernel/">kernel</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/bochs/">bochs</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#bochs环境搭建">bochs环境搭建</a>
+<ul>
+<li><a href="#配置要求">配置要求</a></li>
+<li><a href="#安装bochs">安装bochs</a>
+<ul>
+<li><a href="#编译">编译</a></li>
+</ul></li>
+<li><a href="#配置">配置</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="bochs环境搭建">bochs环境搭建</h1>
+
+<blockquote>
+<p>Linux kernel学习专栏——1
+项目源码和配置文件请移步github:<a href="https://github.com/FLHonker/Frank-OS">https://github.com/FLHonker/Frank-OS</a></p>
+</blockquote>
+
+<p>最近Frank又想着手研究放下好久的Linux内核，发现一个好的学习工具——bochs。利用它来一步步搭建自己的OS，理解操作系统内核原理最好不过过了。
+&gt; Bochs是一个x86硬件平台的开源模拟器。它可以模拟各种硬件的配置。Bochs模拟的是整个PC平台，包括I/O设备、内存和BIOS。更为有趣的是，甚至可以不使用PC硬件来运行Bochs。事实上，它可以在任何编译运行Bochs的平台上模拟x86硬件。通过改变配置，可以指定使用的CPU(386、486或者586)，以及内存大小等。一句话，Bochs是电脑里的“PC”。根据需要，Bochs还可以模拟多台PC，此外，它甚至还有自己的电源按钮。</p>
+
+<h2 id="配置要求">配置要求</h2>
+
+<p>一台Linux/Windows操作系统的机器即可，最好是32位/64位皆可，反正是我们自行编译C++源码，平台无关哈哈，Frank最喜欢了。Frank用的最新的Ubuntu18.04LTS，最新的gcc 7.3.0，都一切正常，接下来一切以Ubuntu为例。</p>
+
+<h2 id="安装bochs">安装bochs</h2>
+
+<p><a href="https://link.zhihu.com/?target=https%3A//sourceforge.net/projects/bochs/files/bochs/">bochs下载地址</a></p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526438137/githubio/linux-service/bochs/bochs-download1.png" alt="bochs-download1" />
+进入下载地址会发现有很多个版本，这里最新的为<code>2.6.9</code>，其实bochs官网上目前最新的是bochs-20180511，不过Frank亲身尝试发现make编译的时候有个源码错误，采用2.6.9版本没有问题，那我们就用2.6.9版本。如果你是Windows或者rpm系列Linux（如CentOS、redhat），也可以直接下载相应的版本安装包。这里我们直接下载源码<code>bochs-2.6.9.tar.gz</code>自行编译安装。
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1526438137/githubio/linux-service/bochs/bochs-download2.png" alt="bochs-download2" /></p>
+
+<p>其实我们也可以通过
+&gt; sudo apt install bochs</p>
+
+<p>这个命令进行安装，我不用这个方法安装的原因是安装之后的bochs文件比较分散，造成配置时比较麻烦，自己下载的文件进行安装时配置文件都在一起，管理起来方便。</p>
+
+<p>好了，文件下载好了之后解压：
+&gt; tar -zxvf bochs-2.6.9.tar.gz</p>
+
+<p>解压之后的文件有：
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1526438545/githubio/linux-service/bochs/bochs-source.png" alt="" /></p>
+
+<p>配置前先安装依赖库：
+&gt; sudo apt install libx11-dev libxrandr-dev</p>
+
+<p>进入到bochs-2.6.9的目录中，输入:</p>
+
+<pre><code class="language-bash">./configure --prefix=/home/frank/Developer/bochs-2.6.9 --enable-debugger --enable-disasm --enable-iodebug --enable-iodebug --enable-x86-debugger --with-x --with-x11 libs='-lx11'
+</code></pre>
+
+<p>一定要将“&ndash;perfix”后面的<code>/home/frank/Developer/bochs-2.6.9</code>换成你自己的安装目录。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526436936/githubio/linux-service/bochs/configure-bochs.png" alt="configure" /></p>
+
+<h3 id="编译">编译</h3>
+
+<p>编译很简单，但是比较揪心，说必定就报什么错误和warning，幸好，Frank已经帮大家探好了路。
+进入解压后的bochs-2.6.9目录，执行make：
+&gt; make</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526436936/githubio/linux-service/bochs/make-bochs.png" alt="make" />
+首次make过程比较长，会有部分warning，不必理会，像这样的：
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1526436937/githubio/linux-service/bochs/make-warning.png" alt="make-warning" /></p>
+
+<p>下一步，
+&gt; make install</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526436936/githubio/linux-service/bochs/make-install-bochs.png" alt="make-install" /></p>
+
+<p>安装完成，大家可以看看自己的安装目录下是否出现这个bochs-2.6.9，里面有两个文件夹（bin和share），安装目录参考自己配置文件中填写的路径。</p>
+
+<h2 id="配置">配置</h2>
+
+<p>安装好了bochs之后我们要对它进行配置，这个配置大家可以参考安装目录下的bochsrc-sample.txt，该文件的路径在bochs目录下的
+&gt; share/doc/bochs/bochsrc-sample.txt</p>
+
+<p>因为bochs在运行的时候要加载我们的配置文件，这个配置文件需要我们自己指定，所以我把配置文件放在了bochs目录下的my_conf文件夹中。</p>
+
+<pre><code class="language-bash">$ cd bochs-2.6.9/my_conf
+$ vim bochsrc.disk
+
+// 配置如下
+#首先设置 Bochs 在运行过程中能够使用的内存，本例为 32MB。
+#关键字为 megs
+megs: 32
+
+#设置对应真实机器的 BIOS 和 VGA BIOS 。
+#对应两个关键字为 ： romimage 和 vgaromimage
+romimage: file＝/home/frank/Developer/bochs-2.6.9/share/bochs/BIOS-bochs-latest
+vgaromimage: file＝/home/frank/Developer/bochs-2.6.9/share/bochs/VGABIOS-lgpl-latest
+
+#选择启动盘符
+boot: disk  #从硬盘启动
+
+# 设置日志文件的输入位置
+log: bochs.out
+
+# 关闭鼠标，打开键盘
+mouse: enabled=0
+keyboard: keymap=/home/frank/Developer/bochs-2.6.9/share/bochs/keymaps/x11-pc-us.map
+
+# 设置硬盘
+ata0: enabled=1,ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
+</code></pre>
+
+<p>大家在写配置文件的时候一定要把这些路径写成绝对路径，不要使用相对路径，因为bochs不认相对路径。
+配置文件写完了，那我们运行一下bochs试试， 看看是什么样子。</p>
+
+<p>在bochs的bin目录下输入
+&gt; ./bochs</p>
+
+<p>接下来就会看到如下界面：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526436937/githubio/linux-service/bochs/run-bochs1.png" alt="run-bochs" /></p>
+
+<p>可以看到默认的选项是2，要求我们输入配置文件的名称，此时输入myconf/bochsrc.disk即可，也就是以前我们写的配置文件的名称。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526436936/githubio/linux-service/bochs/panic-error.png" alt="" /></p>
+
+<p>在我们输入配置文件按下回车之后可以看到，报了一个PANIC级别的错误，意思是我们没有启动盘，因为bochs是模拟的操作系统进行运行，此时我们还没有启动盘，所以它不知道从哪里开始运行，接下来我们就开始创建启动盘。</p>
+
+<p>退出后运行：
+&gt; ./bximage</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526436936/githubio/linux-service/bochs/new-bximage.png" alt="bximage" />
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1526436936/githubio/linux-service/bochs/hd60M-img.png" alt="hd60M-img" />
+60代表该硬盘的大小为60M，hd60M.img是我给改硬盘取得名字，最后我们需要加入到配置文件中的，这是我们硬盘配置好之后，bochs给我们自动生成的硬盘信息，接下来在配置文件的最后一行加上该硬盘的信息。</p>
+
+<p>完整的配置如下:</p>
+
+<pre><code class="language-bash">###############################################################
+# Configuration file for Bochs -- use harddisk
+###############################################################
+# 首先设置 Bochs 在运行过程中能够使用的内存，本例为 32MB。
+# 关键字为 megs
+megs: 32
+
+# 设置对应真实机器的 BIOS 和 VGA BIOS 。
+# 对应两个关键字为: romimage 和 vgaromimage
+romimage: file=/home/frank/Developer/bochs-2.6.9/share/bochs/BIOS-bochs-latest
+vgaromimage: file=/home/frank/Developer/bochs-2.6.9/share/bochs/VGABIOS-lgpl-latest
+
+# 选择启动盘符
+boot: disk  #从硬盘启动
+
+# 设置日志文件的输入位置
+log: bochslog.txt
+
+# 关闭鼠标，打开键盘
+mouse: enabled=0
+keyboard: keymap=/home/frank/Developer/bochs-2.6.9/share/bochs/keymaps/x11-pc-us.map
+
+# 设置硬盘
+ata0: enabled=1,ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
+
+# 启动盘信息
+ata0-master: type=disk, path=&quot;my_conf/hd60M.img&quot;, mode=flat
+</code></pre>
+
+<p>硬盘信息配置好了之后我们初步的配置就已经搞定了，接下来我们在此启动一下试试</p>
+
+<blockquote>
+<p>./bochs -f my_conf/bochsrc.disk</p>
+</blockquote>
+
+<p>通过-f 可以直接指定我们的配置文件的名称，如果嫌麻烦，每次必须进入bochs文件下，都要输入这么多字的话，可以直接用别名来代替</p>
+
+<pre><code class="language-bash">$ cd ~
+$ vim .bashrc
+
+alias bochs='/home/frank/Developer/bochs-2.6.9/bin/bochs -f /home/frank/Developer/bochs-2.6.9/bin/my_conf/bochsrc.disk'
+
+$ source .bashrc
+</code></pre>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526436935/githubio/linux-service/bochs/bochs-key.png" alt="" />
+当然，路径得改成你们自己的。接下来我们就可以在任意路径下输入bochs运行我们的虚拟机啦，此时如果你想运行看看结果的话，大概就是这样吧:</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526436936/githubio/linux-service/bochs/parameter-exit.png" alt="" /></p>
+
+<p>这样其实说明一切都准备好了，属于正常现象，如果不是这样，可能您需要回头再看看自己是不是哪里配置出现了问题。真的是这样吗？不是的，没看见上图第二行提示错误吗？
+经过我一晚上的折腾，终于发现了配置文件bochsrc.disk的内容有错误！有几行注释的&rdquo;#“使用的是中文全角的&rdquo;＃”，所以造成解析错误。同学们一定要注意！
+修正配置文件后，接下来还原正常配置过程：
+<img src="https://res.cloudinary.com/flhonker/image/upload/v1526490072/githubio/linux-service/bochs/bochs-conf-ok.png" alt="bochs-start-ok" />
+这里默认选[6]进入模拟器。然后输入：<code>&lt;bochs:1&gt; c</code>进入模拟器界面。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526490065/githubio/linux-service/bochs/conf-ok-nobootdev.png" alt="nodev" />
+到这里才一切正常。
+接下我们退出吧：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/v1526490068/githubio/linux-service/bochs/bochs-exit.png" alt="exit-bochs" /></p>
+
+<p>出现这用错误的原因是因为我们现在的硬盘还只是一个空的硬盘，没有任何数据，又如何能够运行呢，从图上可以看到，CPU一下就跑没影了。在我们平时开机的时候，是不是都要通过BIOS引导，进行硬件，内存的各项检测之后，再将我们的操作系统从硬盘上唤醒。此时操作系统才接管了我们的电脑。我们的配置讲完了，关于主引导的编写可能要等我研究透了之后再和大家分享啦。</p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-05-14-go-webbench%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95go%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-toggle="tooltip" data-placement="top" title="使用webbench压力测试Go服务器">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-05-17-kernel-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%99mbr/" data-toggle="tooltip" data-placement="top" title="为自己的操作系统写MBR"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-05-06-ipc-linux%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/">Linux进程间通信（IPC）机制总结</a></li>
+                    
+                    <li><a href="/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/">C&#43;&#43;多线程与同步(Linux)</a></li>
+                    
+                    <li><a href="/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80/">Linux 常用命令基础</a></li>
+                    
+                    <li><a href="/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/">CentOS7 分区硬盘扩容</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Wed May 16, 2018</h4>
+    </section>
+    <h5 id="wc">2800 Words|Read in about 6 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/linux/">Linux</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/kernel/">kernel</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/bochs/">bochs</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

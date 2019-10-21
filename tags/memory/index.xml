@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Memory on Frank Liu</title>
+    <link>https://flhonker.github.io/tags/memory/</link>
+    <description>Recent content in Memory on Frank Liu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>frankliu624@gmail.com (Frank Liu(flhonker))</managingEditor>
+    <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
+    <lastBuildDate>Sat, 19 May 2018 10:45:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://flhonker.github.io/tags/memory/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>kernel的保护模式</title>
+      <link>https://flhonker.github.io/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sat, 19 May 2018 10:45:54 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-05-19-kernel-%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/</guid>
+      <description>kernel的保护模式 实模式与保护模式下的分段机制 程序想要在计算机上运行，就必须将源代码编译链接成二进制的可执行文件之后才可能被操作系统加载</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11智能指针理解与应用</title>
+      <link>https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <pubDate>Fri, 11 May 2018 09:02:40 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <description>C++11智能指针理解与应用 智能指针的作用 C++11中引入了智能指针的概念，方便管理堆内存。使用普通指针，容易造成堆内存泄露（忘记释放），二</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://flhonker.github.io/posts/frank_model/</link>
+      <pubDate>Sun, 29 Apr 2018 22:22:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/frank_model/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;内存管理（内存模型）</title>
+      <link>https://flhonker.github.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sun, 29 Apr 2018 22:22:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description>C++内存管理（内存模型） [导语] 内存管理是C++最令人切齿痛恨的问题，也是C++最有争议的问题，C++高手从中获得了更好的性能，更大的自由</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;内存对齐</title>
+      <link>https://flhonker.github.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</link>
+      <pubDate>Wed, 25 Apr 2018 13:22:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</guid>
+      <description>6. 内存对齐 内存对齐的作用： &amp;gt;(1)平台原因：不是所有的硬件平台都能访问任意内存地址上的任意数据的；某些硬件平台只能在某些地址取得特定类</description>
+    </item>
+    
+  </channel>
+</rss>

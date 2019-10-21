@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> MFC连连看开发日志 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="MFC连连看开发日志" />
+  <meta name="twitter:title" content="MFC连连看开发日志" />
+  <meta name="description" content="MFC连连看开发日志 卡通连连看项目[LLK-MFC]地址为：https://github.com/FLHonker/LLK-MFC 本文为作者">
+  <meta property="og:description" content="MFC连连看开发日志 卡通连连看项目[LLK-MFC]地址为：https://github.com/FLHonker/LLK-MFC 本文为作者">
+  <meta name="twitter:description" content="MFC连连看开发日志 卡通连连看项目[LLK-MFC]地址为：https://github.com/FLHonker/LLK-MFC 本文为作者">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">MFC连连看开发日志</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Sat May 27, 2017</h4>
+    </section>
+    <h5 id="wc">3000 Words|Read in about 6 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/mfc/">MFC</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/game/">game</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/c&#43;&#43;/">C&#43;&#43;</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/win32/">Win32</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#mfc连连看开发日志">MFC连连看开发日志</a>
+<ul>
+<li><a href="#1-关于mfc对话框最小化后从任务栏还原就出发中断的问题">1. 关于MFC对话框最小化后从任务栏还原就出发中断的问题</a></li>
+<li><a href="#2-图游戏片元素的组织问题">2. 图游戏片元素的组织问题</a></li>
+<li><a href="#3-游戏相关的c-类的组合问题">3. 游戏相关的C++类的组合问题</a></li>
+<li><a href="#4-游戏胜负判断的算法优化">4. 游戏胜负判断的算法优化</a></li>
+<li><a href="#5-游戏地图元素数据利用两个随机数重排使游戏进程阻塞的问题">5. 游戏地图元素数据利用两个随机数重排使游戏进程阻塞的问题</a></li>
+<li><a href="#6-边缘图片的消除和内部图片区域外引线消除情况的统一解决方案">6. 边缘图片的消除和内部图片区域外引线消除情况的统一解决方案</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="mfc连连看开发日志">MFC连连看开发日志</h1>
+
+<p>卡通连连看项目[LLK-MFC]地址为：<a href="https://github.com/FLHonker/LLK-MFC">https://github.com/FLHonker/LLK-MFC</a>
+本文为作者当时的开发日志记录。</p>
+
+<h2 id="1-关于mfc对话框最小化后从任务栏还原就出发中断的问题">1. 关于MFC对话框最小化后从任务栏还原就出发中断的问题</h2>
+
+<p>参考：<a href="http://blog.sina.com.cn/s/blog_4b44e1c00100mdkl.html">http://blog.sina.com.cn/s/blog_4b44e1c00100mdkl.html</a>
+　　程序最小化后不能还原，一般原因是程序中至少存在一个Popup类型的窗口引起的，因为Popup类型的子窗口即使由于父窗口的隐藏而隐藏，其WS_VISIBLE属性仍然是可见的，当用户再次点击任务栏的程序图标时，Popup窗口会拦截系统（还原）消息，使主程序框架无法接收到系统消息，从而导致主程序无法正常还原。如果将其修改为Child类型的窗口，那么主程序的最小化和还原的功能就可以正常了。不过在实际项目中，往往就需要一个Popup类型的窗口作为子窗口（Popup类型的窗口也可以有父窗口），那么这又如何解决程序最小化后不能还原的问题呢？根据以上分析的原理，只要在主程序最小化时，相应也隐藏掉Popup窗口（ShowWindow(SW_HIDE)），这样系统消息就能够正确传递了；当主程序还原时，再将隐藏的Popup窗口显示出来，这样就既不影响程序的显示效果，又能解决问题了！具体方法如下：
+　　首先需要在主程序（如MainFrame）中拦截系统消息（响应最大化，最小化，还原，关闭等消息的地方）。其消息为WM_SYSCOMMAND.如在MainFrame.h头文件中加入afx_msg void OnSyscommand(UIND nID,LPARAM lParam);在MainFrame.cpp的BEGIN_MAP与END_MAP之间加入ON_WM_SYSCOMMAND，响应函数为:</p>
+
+<blockquote>
+<p>void CMainFrame::OnSyscommand(UIND nID,LPARAM lParam){}。</p>
+</blockquote>
+
+<p>其次根据系统消息对Popup窗口进行隐藏与显示操作，代码如下：</p>
+
+<pre><code class="language-c++">CWnd* m_pPopupWnd;/// Popup类型的窗口指针
+void CMainFrame::OnSyscommand(UIND nID,LPARAM lParam)
+{
+    static BOOL s_bDialogVisible = FALSE;
+    /// 如果是最小化消息
+    if(SC_MINIMIZE == nID)
+    {
+       if(NULL != m_pPopupWnd &amp;&amp; ::IsWindow(m_pPopupWnd-&gt;m_hWnd))
+       {
+          if(::IsWindowVisible(m_pPopupWnd-&gt;m_hWnd))
+          {
+             s_bDialogVisible = TRUE;
+             /// 隐藏Popup类型窗口
+             m_pPopupWnd-&gt;ShowWindow(SW_HIDE);
+          }
+       }
+    }
+    else    
+    {
+       if(NULL != m_pPopupWnd &amp;&amp; ::IsWindow(m_pPopupWnd-&gt;m_hWnd))
+       {
+          if(TRUE == s_bDialogVisible)
+          {
+             s_bDialogVisible = FALSE;
+             /// 显示Popup类型窗口
+             m_pPopupWnd-&gt;ShowWindow(SW_SHOW);
+          }
+       }
+    }
+    CWnd::OnSyscommand(nID,lParam);
+}
+   方法二：拦截系统的还原消息，对其进行自定义的操作，如先设置为活动窗口，然后继续执行还原操作。
+   BOOL PreTranslateMessage(MSG* pMsg)
+   {
+        ASSERT(pMsg);
+         /// 如果是激活窗口消息
+        if(pMsg-&gt;message == WS_APPACTIVE)
+          {
+              /// 如果是按下左键
+              if(pMsg-&gt;wParam == VK_LBUTTON)
+              {
+                 ASSERT(AfxGetMainFrame());
+                 /// 激活主窗口
+                 SetActiveWindow(AfxGetMainFrame()-&gt;m_hWnd);
+              }
+          }
+       /// 可继续向基类传递消息
+       return   C**APP::PreTranslateMessage(pMsg);
+   }
+</code></pre>
+
+<p><strong>真正的问题所在：</strong></p>
+
+<p>　　问题出在背景图加载函数InitBackground()上，将位图资源加载进dc内存后直接绘制图像，导致最小化窗口还原后无法重绘，要想正常重绘，必须将绘制图像的函数放进OnPaint()函数；包括CGameDlg控制的游戏窗体类同理，加载游戏背景和游戏地图元素的逻辑，都是要先将位图加载进相应的CDC位图内存，然后执行各自的绘制或重绘，并且要保证游戏地图元素在游戏进行状态还原窗口后也能实现重绘，这就需要在onPaint()中加入一个判断语句：</p>
+
+<blockquote>
+<p>if (m_bPlaying)    //如果游戏处于开始状态，则需要重绘游戏地图，主要是为了窗口最小化还原后可以自动重绘元素
+UpdateMap();    //如果是刚进入游戏界面，还没有点击“开始游戏”，则不需要加载游戏地图</p>
+</blockquote>
+
+<h2 id="2-图游戏片元素的组织问题">2. 图游戏片元素的组织问题</h2>
+
+<p>　　一开始没能理解老师给的操作步骤原理，看网上别人写的连连看都是给图片编号，根据游戏地图数组存储的随机编号调用显示相关图片。经过分析，原来课件中的思想是，把所有游戏图片元素组合在一起，相当于一个一维图片组，根据游戏地图中的图片编号确定图片在元素图片组和掩码图片组中的位置，然后利用BitBit()函数将其提取并做位运算处理，之后显示在游戏地图对应位置。</p>
+
+<h2 id="3-游戏相关的c-类的组合问题">3. 游戏相关的C++类的组合问题</h2>
+
+<ul>
+<li>CGameDlg、CGameControl、CGameLogic、CGameException
+　　CGameDlg类负责游戏界面的交互和消息事件响应，其中包含CGameControl类的对象，用于实现游戏的控制，包括初始化游戏地图、设置选中点的信息、消子判断等；CGameControl类中创建了CGameLogic类的对象，用于实现游戏的逻辑控制，包括随机生成游戏地图、游戏图片的连通判断、连通路径的记录和消子等，逻辑性强、算法最复杂。CGameException类贯穿各个类，用于处理游戏中的一些异常事件。</li>
+</ul>
+
+<h2 id="4-游戏胜负判断的算法优化">4. 游戏胜负判断的算法优化</h2>
+
+<p>　　老师给的游戏胜负判断的参考算法是在m_GameLogic对象中用<code>IsBank(int** pGameMap)</code>来遍历游戏地图二维数组，判断其中的元素是否全部置为空，然后在m_GameC类中用IsWin()调用IsBank(pGameMap)函数，判断胜负。在每次选中两张图片并判断可以消除后，都要调用一次IsWin()来判断胜负，也就是要每次都遍历一次10*16的二维数组，效率非常低。因此，可以在CGameControl类中定义一个int变量clearPic用于记录消除的图片数，每次消除后clearPic自加2，与图片总数比较，若相等则说明所有图片消除完毕，玩家胜利，这样就避免了遍历二维数组带来的时空效率的浪费。</p>
+
+<pre><code class="language-c++">/*根据消除的图片数判定胜负*/
+bool CGameControl::IsWin(void)
+{
+/*如果消除的图片数与原有图片数相等，则判定玩家取胜；优化了每次遍历二维地图数组带来的时空复杂度*/
+if (clearPic == s_nRows*s_nCols)
+{
+clearPic = 0;   //重置计数器，为下一轮做准备
+return true;
+}
+else
+return false;
+}
+</code></pre>
+
+<h2 id="5-游戏地图元素数据利用两个随机数重排使游戏进程阻塞的问题">5. 游戏地图元素数据利用两个随机数重排使游戏进程阻塞的问题</h2>
+
+<p>　　CGameLogic类中的RerankGraph()函数中使用了如下代码随机生成两个坐标：</p>
+
+<pre><code class="language-c++">do {
+// 随机得到第一个坐标  
+int nIndex1 = rand() % nVertexNum;
+x1 = nIndex1 / nCols; y1 = nIndex1 % nCols;
+} while (pGameMap[x1][y1] != BLANK);   //直到第一个元素数据不为空
+ 
+do {
+// 随机得到第二个坐标  
+int nIndex2 = rand() % nVertexNum;
+x2 = nIndex2 / nCols; y2 = nIndex2 % nCols;
+} while (pGameMap[x2][y2] != BLANK);        //直到第二个元素数据不为空
+</code></pre>
+
+<p>　　出现的问题是每当点击“重排”按钮后都会很长时间无响应，不会真正实现重排，而且导致了游戏其他进程阻塞。开始我以为是两个随机数生成的筛选条件可能有点苛刻，导致长时间无法生成2个符合要求的随机数才导致运行变慢。然而开始游戏后，直接点击“重排”，进度条本来正在加载阶段，之后直接停在中间不动了。于是，我把其中一个坐标只用一次随机数生成，另一个任然用while循环生成地图数据不为空的坐标，游戏开始后10s，进度条加载完毕，正常计时，这时点击“重排”，可以实现重排。如果游戏一开始就重排，仍然会导致阻塞。进一步测试，如果点击“重排”后，值生成2个简单随机数，不进行复杂的筛选，仍然会在进度条加载阶段卡死。所以问你题在于进度条的加载导致阻塞，而2个严格的随机数筛选也是游戏运行变慢、有效地图坐标命中率低下无法实现重排的因素。那么就要解决进度条加载的问题。</p>
+
+<h2 id="6-边缘图片的消除和内部图片区域外引线消除情况的统一解决方案">6. 边缘图片的消除和内部图片区域外引线消除情况的统一解决方案</h2>
+
+<p>　　游戏地图数组外层加一“圈”，并初始化为BLANK（-1），需要同步修改的其余部分有：加载游戏图片是需要从编号为1的行列开始，遍历数组寻找通路时扩展到0至nRows+1和0至nCols+1；其余部分可直接复用。</p>
+
+<pre><code class="language-c++">// 游戏地图开辟内存空间
+int** pGameMap = new int*[nRows + 2];
+if(NULL == pGameMap)
+{
+	throw new CGameException(_T(&quot;内存操作异常！&quot;));
+}
+else
+{
+	for (int i = 0; i &lt; nRows + 2; i++)
+	{
+		pGameMap[i] = new int[nCols + 2]; 
+		if(NULL == pGameMap) 
+		{
+			throw new CGameException(_T(&quot;内存操作异常！&quot;));   
+		}
+		memset(pGameMap[i], BLANK, sizeof(int) * (nCols + 2));  //初始化数组为BLANK(-1)
+	}
+}
+</code></pre>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/" data-toggle="tooltip" data-placement="top" title="八大排序算法"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Sat May 27, 2017</h4>
+    </section>
+    <h5 id="wc">3000 Words|Read in about 6 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/mfc/">MFC</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/game/">game</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/c&#43;&#43;/">C&#43;&#43;</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/win32/">Win32</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

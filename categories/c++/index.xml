@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on Frank Liu</title>
+    <link>https://flhonker.github.io/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Frank Liu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>frankliu624@gmail.com (Frank Liu(flhonker))</managingEditor>
+    <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
+    <lastBuildDate>Fri, 07 Sep 2018 09:11:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://flhonker.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>再也不怕红黑树</title>
+      <link>https://flhonker.github.io/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/</link>
+      <pubDate>Fri, 07 Sep 2018 09:11:49 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/</guid>
+      <description>网上有很多红-黑树的段子，很多人都说，红-黑树只会存在于段子里，不会在面试中或者实际项目中让你实现。来看看网友都是怎么说的： 通常，如果有面试</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11智能指针理解与应用</title>
+      <link>https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <pubDate>Fri, 11 May 2018 09:02:40 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-05-11-c&#43;&#43;-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <description>C++11智能指针理解与应用 智能指针的作用 C++11中引入了智能指针的概念，方便管理堆内存。使用普通指针，容易造成堆内存泄露（忘记释放），二</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;多线程与同步(Linux)</title>
+      <link>https://flhonker.github.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Fri, 04 May 2018 13:02:55 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-05-04-thread-c&#43;&#43;%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
+      <description>C++多线程与同步(Linux) 1 利用系统API实现多线程（POSIX） C++11以前不包含多线程应用程序的任何内置支持。相反，它完全依赖于</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://flhonker.github.io/posts/frank_model/</link>
+      <pubDate>Sun, 29 Apr 2018 22:22:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/frank_model/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;内存管理（内存模型）</title>
+      <link>https://flhonker.github.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sun, 29 Apr 2018 22:22:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-29-c&#43;&#43;-c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description>C++内存管理（内存模型） [导语] 内存管理是C++最令人切齿痛恨的问题，也是C++最有争议的问题，C++高手从中获得了更好的性能，更大的自由</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;内存对齐</title>
+      <link>https://flhonker.github.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</link>
+      <pubDate>Wed, 25 Apr 2018 13:22:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-25-c&#43;&#43;-%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</guid>
+      <description>6. 内存对齐 内存对齐的作用： &amp;gt;(1)平台原因：不是所有的硬件平台都能访问任意内存地址上的任意数据的；某些硬件平台只能在某些地址取得特定类</description>
+    </item>
+    
+    <item>
+      <title>CentOS7 分区硬盘扩容</title>
+      <link>https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</link>
+      <pubDate>Wed, 25 Apr 2018 13:22:00 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA/</guid>
+      <description>CentOS7 分区硬盘扩容 Tag：centos7 分区 硬盘扩容 fdisk LVM 运用虚拟机经常会出现硬盘容量不足的情况，在不改变配置的要求下，直接对根目录增加容量。 ce</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;运算符重载</title>
+      <link>https://flhonker.github.io/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</link>
+      <pubDate>Tue, 24 Apr 2018 12:11:45 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-24-c&#43;&#43;-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</guid>
+      <description>C++运算符重载 5.1 运算符重载的规则 运算符重载规则如下： ①、 C++中的运算符除了少数几个之外，全部可以重载，而且只能重载C++中已有的运算符。</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;拷贝构造函数</title>
+      <link>https://flhonker.github.io/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Mon, 23 Apr 2018 10:01:45 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-23-c&#43;&#43;-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</guid>
+      <description>1 C++拷贝构造函数 为什么复制构造函数的参数需要加const和引用? 1.1 首先跑一个小程序，看下调用关系。 #include &amp;lt;iostream&amp;gt; using namespace std; class CExample { public: CExample(int x) :m_nTest(x) //带参数构造</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;单例模式实现</title>
+      <link>https://flhonker.github.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 22 Apr 2018 18:45:07 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-22-c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>单例模式实现 参考: C++的单例模式与线程目录安全单例模式（懒汉/饿汉） (1) 教科书里的单例模式(懒汉式) 我们都很清楚一个简单的单例模式该怎样去实</description>
+    </item>
+    
+    <item>
+      <title>八大排序算法</title>
+      <link>https://flhonker.github.io/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Sat, 21 Apr 2018 08:23:07 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-21-alg-%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</guid>
+      <description>八大排序算法 参考： 1. CSDN八大经典排序算法 2. CSDN稳定与不稳定排序方法 1.0 排序算法分类 1.1 直接插入排序 基本思想: 将一个记录插入到已排序好的有</description>
+    </item>
+    
+    <item>
+      <title>MFC连连看开发日志</title>
+      <link>https://flhonker.github.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Sat, 27 May 2017 16:43:27 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2017-05-27-mfc-%E8%BF%9E%E8%BF%9E%E7%9C%8B%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/</guid>
+      <description>MFC连连看开发日志 卡通连连看项目[LLK-MFC]地址为：https://github.com/FLHonker/LLK-MFC 本文为作者</description>
+    </item>
+    
+  </channel>
+</rss>

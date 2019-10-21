@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> 再也不怕红黑树 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="再也不怕红黑树" />
+  <meta name="twitter:title" content="再也不怕红黑树" />
+  <meta name="description" content="网上有很多红-黑树的段子，很多人都说，红-黑树只会存在于段子里，不会在面试中或者实际项目中让你实现。来看看网友都是怎么说的： 通常，如果有面试">
+  <meta property="og:description" content="网上有很多红-黑树的段子，很多人都说，红-黑树只会存在于段子里，不会在面试中或者实际项目中让你实现。来看看网友都是怎么说的： 通常，如果有面试">
+  <meta name="twitter:description" content="网上有很多红-黑树的段子，很多人都说，红-黑树只会存在于段子里，不会在面试中或者实际项目中让你实现。来看看网友都是怎么说的： 通常，如果有面试">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/post-bg-github-cup.jpg" data-img-desc-1="WHUT|Wuhan|Sep 7,2018"></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img">
+        
+        
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-md-offset-0">
+                
+                <div class="post-heading">
+                
+                  
+                     <h1>再也不怕红黑树</h1>
+                     
+                    <span class="post-meta">
+  
+  
+  
+  
+</span>
+
+
+                    
+                  
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">再也不怕红黑树</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Sep 7, 2018</h4>
+    </section>
+    <h5 id="wc">5300 Words|Read in about 11 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/c&#43;&#43;/">c&#43;&#43;</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+
+                
+
+<p>网上有很多红-黑树的段子，很多人都说，红-黑树只会存在于段子里，不会在面试中或者实际项目中让你实现。来看看网友都是怎么说的：</p>
+
+<blockquote>
+<p>通常，如果有面试官问我红黑数这种问题。</p>
+
+<p>我一般扭头就走。</p>
+
+<p>不是因为，这个职位用不到还问这个。</p>
+
+<p>而是因为。</p>
+
+<p>我 tmd 真的不会啊 - -|||</p>
+</blockquote>
+
+<p>很多人看着这个网友说的，感觉很扎心。别急，还有更扎心的：</p>
+
+<blockquote>
+<p>这有什么难的！</p>
+
+<p>Map map = new TreeMap();</p>
+
+<p>手动斜眼，已经写完了。</p>
+</blockquote>
+
+<p>如果这样，面试官一定也是一脸懵逼啊~ 不过也没错，TreeMap 内部的确就是用红-黑树实现的。学红-黑树不仅仅是用来应付面试官，武侠小说里说：招式只是形式，要练神功，必须要懂心法。这篇文章就带你慢慢拨开红-黑树的面纱，特别是文章中的动态图会让你很直观的感受红-黑树的旋转。当然咯，理解了这篇文章，面试也能轻松搞定啦~</p>
+
+<p>我们知道，二叉搜索树是个很好的数据结构，可以快速地找到一个给定关键字的数据项，并且可以快速地插入和删除数据项。但是二叉搜索树有个很麻烦的问题，如果树中插入的是随机数据，则执行效果很好，但如果插入的是有序或者逆序的数据，那么二叉搜索树的执行速度就变得很慢。因为当插入数值有序时，二叉树就是非平衡的了，排在一条线上，其实就变成了一个链表……它的快速查找、插入和删除指定数据项的能力就丧失了。</p>
+
+<p>为了能以较快的时间 O(logN) 来搜索一棵树，需要保证树总是平衡的（或者至少大部分是平衡的），这就是说对树中的每个节点在它左边的后代数目和在它右边的后代数目应该大致相等。红-黑树的就是这样的一棵平衡树，对一个要插入的数据项，插入例程要检查会不会破坏树的特征，如果破坏了，程序就会进行纠正，根据需要改变树的结构，从而保持树的平衡。那么红-黑树都有哪些特征呢？</p>
+
+<h2 id="1-红-黑树的特征">1. 红-黑树的特征</h2>
+
+<p>它主要有两个特征： 1.节点都有颜色；2.在插入和删除的过程中，要遵循保持这些颜色的不同排列的规则。首先第一个特征很好解决，在节点类中添加一个数据字段，例如 boolean 型变量，以此来表示节点的颜色信息。第二个特征比较复杂，红-黑树有它的几个规则，如果遵循这些规则，那么树就是平衡的。红-黑树的主要规则如下：</p>
+
+<ul>
+<li>1.每个节点不是红色就是黑色的；</li>
+<li>2.根节点总是黑色的；</li>
+<li>3.如果节点是红色的，则它的子节点必须是黑色的（反之不一定）；</li>
+<li>4.从根节点到叶节点或空子节点的每条路径，必须包含相同数目的黑色节点（即相同的黑色高度）。</li>
+</ul>
+
+<p>在红-黑树中插入的节点都是红色的，这不是偶然的，因为插入一个红色节点比插入一个黑色节点违背红-黑规则的可能性更小。原因是：插入黑色节点总会改变黑色高度（违背规则4），但是插入红色节点只有一半的机会会违背规则3。另外违背规则3比违背规则4要更容易修正。当插入一个新的节点时，可能会破坏这种平衡性，那么红-黑树是如何修正的呢</p>
+
+<h2 id="2-平衡性的修正">2. 平衡性的修正</h2>
+
+<p>红-黑树主要通过三种方式对平衡进行修正，改变节点颜色、左旋和右旋。这看起来有点抽象，我们分别来介绍它们。</p>
+
+<h3 id="2-1-变色">2.1 变色</h3>
+
+<p>改变节点颜色比较容易理解，因为它违背了规则3。假设现在有个节点E，然后插入节点A和节点S，节点A在左子节点，S在右子节点，目前是平衡的。如果此时再插一个节点，那么就出现了不平衡了，因为红色节点的子节点必须为黑色，但是新插的节点是红色的。所以这时候就必须改变节点颜色了。所以我们将根的两个子节点从红色变为黑色（至于为什么都要变，下面插入的时候会详细介绍），将父节点会从黑色变成红色。可以用如下示意图表示一下：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/githubio/C-img/rbtree/changecolor.webp" alt="changecolor" /></p>
+
+<h3 id="2-2-左旋">2.2 左旋</h3>
+
+<p>通常左旋操作用于将一个向右倾斜的红色链接旋转为向左链接。示意图如下：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/githubio/C-img/rbtree/leftRoate.webp" alt="左旋" /></p>
+
+<p>左旋有个很萌萌哒的动态示意图，可以方便理解：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/githubio/C-img/rbtree/leftRoate2.gif" alt="左旋动图" /></p>
+
+<h3 id="2-3-右旋">2.3 右旋</h3>
+
+<p>右旋可左旋刚好相反，这里不再赘述，直接看示意图：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/githubio/C-img/rbtree/rightRoate.webp" alt="右旋" /></p>
+
+<p>当然咯，右旋也有个萌萌的动态图：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/githubio/C-img/rbtree/rightRoate2.gif" alt="右旋动图" /></p>
+
+<p>这里主要介绍了红-黑树对平衡的三种修正方式，大家有个感性的认识，那么什么时候该修正呢？什么时候该用哪种修正呢？这将是接下来我们要探讨的问题。</p>
+
+<h2 id="3-红-黑树的操作">3. 红-黑树的操作</h2>
+
+<p>红-黑树的基本操作是添加、删除和旋转。对红-黑树进行添加或删除后，可能会破坏其平衡性，会用到哪种旋转方式去修正呢？我们首先对红-黑树的节点做一介绍，然后分别对左旋和右旋的具体实现做一分析，最后我们探讨下红-黑树的具体操作。</p>
+
+<h3 id="3-1-红-黑树的节点">3.1 红-黑树的节点</h3>
+
+<p>红-黑树是对二叉搜索树的改进，所以其节点与二叉搜索树是差不多的，只不过在它基础上增加了一个boolean型变量来表示节点的颜色，具体看RBNode类：</p>
+
+<pre><code class="language-c++">public class RBNode&lt;T extends Comparable &lt;T&gt; &gt;
+{
+    boolean color; //颜色
+    T key;          //关键字(键值)
+    RBNode&lt;T&gt; left;  //左子节
+    RBNode&lt;T&gt; right;  //右子节点
+    RBNode&lt;T&gt; parent; //父节点
+
+    public RBNode(T key, boolean color, RBNode&lt;T&gt; parent, RBNode&lt;T&gt; left, RBNode&lt;T&gt; right) {        
+        this.key = key;        
+        this.color = color;        
+        this.parent = parent;        
+        this.left = left;        
+        this.right = right;
+    }
+
+    public T getKey() {        
+        return key;
+    }
+
+    public String toString() {        
+        return &quot;&quot; + key + (this.color == RED? &quot;R&quot; : &quot;B&quot;);
+    }
+}
+</code></pre>
+
+<h3 id="3-2-左旋的具体实现">3.2 左旋的具体实现</h3>
+
+<p>上面对左旋的概念已经有了感性的认识了，这里就不再赘述了，我们从下面的代码中结合上面的示意图，探讨一下左旋的具体实现：</p>
+
+<pre><code class="language-c++">/*************对红黑树节点x进行左旋操作 ******************/
+/*
+ * 左旋示意图：对节点x进行左旋
+ *     p                       p
+ *    /                       /
+ *   x                       y
+ *  / \                     / \
+ * lx  y      -----&gt;       x  ry
+ *    / \                 / \
+ *   ly ry               lx ly
+ * 左旋做了三件事：
+ * 1. 将y的左子节点赋给x的右子节点,并将x赋给y左子节点的父节点(y左子节点非空时)
+ * 2. 将x的父节点p(非空时)赋给y的父节点，同时更新p的子节点为y(左或右)
+ * 3. 将y的左子节点设为x，将x的父节点设为y
+ */
+private void leftRotate(RBNode&lt;T&gt; x) 
+{
+    //1. 将y的左子节点赋给x的右子节点，并将x赋给y左子节点的父节点(y左子节点非空时)
+    RBNode&lt;T&gt; y=x.right;
+    x.right=y.left;
+    if (y.left != null) y.left.parent=x;
+    //2. 将x的父节点p(非空时)赋给y的父节点，同时更新p的子节点为y(左或右)
+    y.parent=x.parent;
+
+    if (x.parent==null) {
+        this .root=y;
+        //如果x的父节点为空，则将y设为父节点
+    }
+
+    else {
+        if (x==x.parent.left) //如果x是左子节点
+        x.parent.left=y;
+        //则也将y设为左子节点
+        else x.parent.right=y;
+        //否则将y设为右子节点
+    }
+
+    //3. 将y的左子节点设为x，将x的父节点设为y
+    y.left=x;
+    x.parent=y;
+}
+</code></pre>
+
+<h3 id="3-3-右旋具体实现">3.3 右旋具体实现</h3>
+
+<p>上面对右旋的概念已经有了感性的认识了，这里也不再赘述了，我们从下面的代码中结合上面的示意图，探讨一下右旋的具体实现：</p>
+
+<pre><code class="language-c++">/*************对红黑树节点y进行右旋操作 ******************/
+/*
+ * 左旋示意图：对节点y进行右旋
+ *        p                   p
+ *       /                   /
+ *      y                   x
+ *     / \                 / \
+ *    x  ry   -----&gt;      lx  y
+ *   / \                     / \
+ * lx  rx                   rx ry
+
+ * 右旋做了三件事：
+ * 1. 将x的右子节点赋给y的左子节点,并将y赋给x右子节点的父节点(x右子节点非空时)
+ * 2. 将y的父节点p(非空时)赋给x的父节点，同时更新p的子节点为x(左或右)
+ * 3. 将x的右子节点设为y，将y的父节点设为x
+ */
+private void rightRotate(RBNode&lt;T&gt; y) 
+{
+    //1. 将y的左子节点赋给x的右子节点，并将x赋给y左子节点的父节点(y左子节点非空时)
+    RBNode&lt;T&gt; x=y.left;
+    y.left=x.right;
+    if (x.right !=null) x.right.parent=y;
+    //2. 将x的父节点p(非空时)赋给y的父节点，同时更新p的子节点为y(左或右)
+    x.parent=y.parent;
+
+    if (y.parent==null) {
+        this .root=x;
+        //如果x的父节点为空，则将y设为父节点
+    }
+
+    else {
+        if (y==y.parent.right) //如果x是左子节点
+        y.parent.right=x;
+        //则也将y设为左子节点
+        else y.parent.left=x;
+        //否则将y设为右子节点
+    }
+
+    //3. 将y的左子节点设为x，将x的父节点设为y
+    x.right=y;
+    y.parent=x;
+}
+</code></pre>
+
+<h3 id="3-4-插入操作">3.4 插入操作</h3>
+
+<p>分析完了红-黑树中主要的旋转操作，接下来我们开始分析常见的插入、删除等操作了。这里先分析插入操作。 由于红-黑树是二叉搜索树的改进，所以插入操作的前半工作时相同的，即先找到待插入的位置，再将节点插入，先来看看插入的前半段代码：</p>
+
+<pre><code class="language-c++">/*********************** 向红黑树中插入节点 **********************/
+public void insert(T key) 
+{
+    RBNode&lt;T&gt; node=new RBNode&lt;T&gt;(key, RED, null, null, null);
+    if (node !=null) 
+        insert(node);
+}
+
+//将节点插入到红黑树中，这个过程与二叉搜索树是一样的
+private void insert(RBNode&lt;T&gt; node) 
+{
+    RBNode&lt;T&gt; current=null;
+    //表示最后node的父节点
+    RBNode&lt;T&gt; x=this.root;
+
+    //用来向下搜索用的
+    //1. 找到插入的位置
+    while (x !=null) {
+        current=x;
+        int cmp=node.key.compareTo(x.key);
+        if (cmp &lt; 0) x=x.left;
+        else x=x.right;
+    }
+
+    node.parent=current;
+
+    //找到了位置，将当前current作为node的父节点
+    //2. 接下来判断node是插在左子节点还是右子节点
+    if (current !=null) {
+        int cmp=node.key.compareTo(current.key);
+        if (cmp &lt; 0) current.left=node;
+        else current.right=node;
+    } else {
+        this .root=node;
+    }
+
+    //3. 将它重新修整为一颗红黑树
+    insertFixUp(node);
+}
+</code></pre>
+
+<p>这与二叉搜索树中实现的思路一模一样，这里不再赘述，主要看看方法里面最后一步insertFixUp操作。因为插入后可能会导致树的不平衡，insertFixUp方法里主要是分情况讨论，分析何时变色，何时左旋，何时右旋。我们先从理论上分析具体的情况，然后再看insertFixUp方法的具体实现。</p>
+
+<p>如果是第一次插入，由于原树为空，所以只会违反红-黑树的规则2，所以只要把根节点涂黑即可；如果插入节点的父节点是黑色的，那不会违背红-黑树的规则，什么也不需要做；但是遇到如下三种情况时，我们就要开始变色和旋转了：</p>
+
+<ul>
+<li><p>1.插入节点的父节点和其叔叔节点（祖父节点的另一个子节点）均为红色的；</p></li>
+
+<li><p>2.插入节点的父节点是红色，叔叔节点是黑色，且插入节点是其父节点的右子节点；</p></li>
+
+<li><p>3.插入节点的父节点是红色，叔叔节点是黑色，且插入节点是其父节点的左子节点。</p></li>
+</ul>
+
+<p>下面我们先挨个分析这三种情况都需要如何操作，然后再给出实现代码。</p>
+
+<p>对于情况1：<strong>插入节点的父节点和其叔叔节点（祖父节点的另一个子节点）均为红色的。</strong>此时，肯定存在祖父节点，但是不知道父节点是其左子节点还是右子节点，但是由于对称性，我们只要讨论出一边的情况，另一种情况自然也与之对应。这里考虑父节点是祖父节点的左子节点的情况，如下左图所示：</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/githubio/C-img/rbtree/case1.webp" alt="case1" /></p>
+
+<p>于这种情况，我们要做的操作有：将当前节点(4)的父节点(5)和叔叔节点(8)涂黑，将祖父节点(7)涂红，变成上右图所示的情况。再将当前节点指向其祖父节点，再次从新的当前节点开始算法（具体等下看下面的程序）。这样上右图就变成了情况2了。</p>
+
+<p>对于情况2：<strong>插入节点的父节点是红色，叔叔节点是黑色，且插入节点是其父节点的右子节点。</strong>我们要做的操作有：将当前节点(7)的父节点(2)作为新的节点，以新的当前节点为支点做左旋操作。完成后如左下图所示，这样左下图就变成情况3了。</p>
+
+<p><img src="https://res.cloudinary.com/flhonker/image/upload/githubio/C-img/rbtree/case2.webp" alt="case2" /></p>
+
+<p>对于情况3：<strong>插入节点的父节点是红色，叔叔节点是黑色，且插入节点是其父节点的左子节点。</strong>我们要做的操作有：将当前节点的父节点(7)涂黑，将祖父节点(11)涂红，在祖父节点为支点做右旋操作。最后把根节点涂黑，整个红-黑树重新恢复了平衡，如右上图所示。至此，插入操作完成！</p>
+
+<p>我们可以看出，如果是从情况1开始发生的，必然会走完情况2和3，也就是说这是一整个流程，当然咯，实际中可能不一定会从情况1发生，如果从情况2开始发生，那再走个情况3即可完成调整，如果直接只要调整情况3，那么前两种情况均不需要调整了。故变色和旋转之间的先后关系可以表示为：变色-&gt;左旋-&gt;右旋。</p>
+
+<p>至此，我们完成了全部的插入操作。下面我们看看insertFixUp方法中的具体实现（可以结合上面的分析图，更加利与理解）：</p>
+
+<pre><code class="language-c++">private void insertFixUp(RBNode&lt;T&gt; node) 
+{
+    RBNode&lt;T&gt; parent,
+    gparent;
+
+    //定义父节点和祖父节点  
+    //需要修整的条件：父节点存在，且父节点的颜色是红色  
+    while (((parent=parentOf(node)) !=null) &amp;&amp; isRed(parent)) {
+        gparent=parentOf(parent);
+
+        //获得祖父节点  
+        //若父节点是祖父节点的左子节点，下面else与其相反  
+        if (parent==gparent.left) {
+            RBNode&lt;T&gt; uncle=gparent.right;
+
+            //获得叔叔节点  
+            //case1: 叔叔节点也是红色  
+            if (uncle !=null &amp;&amp; isRed(uncle)) {
+                setBlack(parent);
+                //把父节点和叔叔节点涂黑  
+                setBlack(uncle);
+                setRed(gparent);
+                //把祖父节点涂红  
+                node=gparent;
+                //将位置放到祖父节点处  
+                continue;
+                //继续while，重新判断  
+            }
+
+            //case2: 叔叔节点是黑色，且当前节点是右子节点  
+            if (node==parent.right) {
+                leftRotate(parent);
+                //从父节点处左旋  
+                RBNode&lt;T&gt; tmp=parent;
+                //然后将父节点和自己调换一下，为下面右旋做准备  
+                parent=node;
+                node=tmp;
+            }
+
+            //case3: 叔叔节点是黑色，且当前节点是左子节点  
+            setBlack(parent);
+            setRed(gparent);
+            rightRotate(gparent);
+        } else {
+            //若父节点是祖父节点的右子节点,与上面的完全相反，本质一样的  
+            RBNode&lt;T&gt; uncle=gparent.left;
+
+            //case1: 叔叔节点也是红色  
+            if (uncle !=null &amp; isRed(uncle)) {
+                setBlack(parent);
+                setBlack(uncle);
+                setRed(gparent);
+                node=gparent;
+                continue;
+            }
+
+            //case2: 叔叔节点是黑色的，且当前节点是左子节点  
+            if (node==parent.left) {
+                rightRotate(parent);
+                RBNode&lt;T&gt; tmp=parent;
+                parent=node;
+                node=tmp;
+            }
+
+            //case3: 叔叔节点是黑色的，且当前节点是右子节点  
+            setBlack(parent);
+            setRed(gparent);
+            leftRotate(gparent);
+        }
+    }
+
+    //将根节点设置为黑色  
+    setBlack(this .root);
+}
+
+private void insertFixUp(RBNode&lt;T&gt; node) 
+{
+    RBNode&lt;T&gt; parent,
+    gparent;
+
+    //定义父节点和祖父节点  
+    //需要修整的条件：父节点存在，且父节点的颜色是红色  
+    while (((parent=parentOf(node)) !=null) &amp;&amp; isRed(parent)) {
+        gparent=parentOf(parent);
+
+        //获得祖父节点  
+        //若父节点是祖父节点的左子节点，下面else与其相反  
+        if (parent==gparent.left) {
+            RBNode&lt;T&gt; uncle=gparent.right;
+
+            //获得叔叔节点  
+            //case1: 叔叔节点也是红色  
+            if (uncle !=null &amp;&amp; isRed(uncle)) {
+                setBlack(parent);
+                //把父节点和叔叔节点涂黑  
+                setBlack(uncle);
+                setRed(gparent);
+                //把祖父节点涂红  
+                node=gparent;
+                //将位置放到祖父节点处  
+                continue;
+                //继续while，重新判断  
+            }
+
+            //case2: 叔叔节点是黑色，且当前节点是右子节点  
+            if (node==parent.right) {
+                leftRotate(parent);
+                //从父节点处左旋  
+                RBNode&lt;T&gt; tmp=parent;
+                //然后将父节点和自己调换一下，为下面右旋做准备  
+                parent=node;
+                node=tmp;
+            }
+
+            //case3: 叔叔节点是黑色，且当前节点是左子节点  
+            setBlack(parent);
+            setRed(gparent);
+            rightRotate(gparent);
+        } else {
+            //若父节点是祖父节点的右子节点,与上面的完全相反，本质一样的  
+            RBNode&lt;T&gt; uncle=gparent.left;
+
+            //case1: 叔叔节点也是红色  
+            if (uncle !=null &amp; isRed(uncle)) {
+                setBlack(parent);
+                setBlack(uncle);
+                setRed(gparent);
+                node=gparent;
+                continue;
+            }
+
+            //case2: 叔叔节点是黑色的，且当前节点是左子节点  
+            if (node==parent.left) {
+                rightRotate(parent);
+                RBNode&lt;T&gt; tmp=parent;
+                parent=node;
+                node=tmp;
+            }
+
+            //case3: 叔叔节点是黑色的，且当前节点是右子节点  
+            setBlack(parent);
+            setRed(gparent);
+            leftRotate(gparent);
+        }
+    }
+
+    //将根节点设置为黑色  
+    setBlack(this .root);
+}
+
+private void insertFixUp(RBNode&lt;T&gt; node) 
+{
+    RBNode&lt;T&gt; parent,
+    gparent;
+
+    //定义父节点和祖父节点  
+    //需要修整的条件：父节点存在，且父节点的颜色是红色  
+    while (((parent=parentOf(node)) !=null) &amp;&amp; isRed(parent)) {
+        gparent=parentOf(parent);
+
+        //获得祖父节点  
+        //若父节点是祖父节点的左子节点，下面else与其相反  
+        if (parent==gparent.left) {
+            RBNode&lt;T&gt; uncle=gparent.right;
+
+            //获得叔叔节点  
+            //case1: 叔叔节点也是红色  
+            if (uncle !=null &amp;&amp; isRed(uncle)) {
+                setBlack(parent);
+                //把父节点和叔叔节点涂黑  
+                setBlack(uncle);
+                setRed(gparent);
+                //把祖父节点涂红  
+                node=gparent;
+                //将位置放到祖父节点处  
+                continue;
+                //继续while，重新判断  
+            }
+
+            //case2: 叔叔节点是黑色，且当前节点是右子节点  
+            if (node==parent.right) {
+                leftRotate(parent);
+                //从父节点处左旋  
+                RBNode&lt;T&gt; tmp=parent;
+                //然后将父节点和自己调换一下，为下面右旋做准备  
+                parent=node;
+                node=tmp;
+            }
+
+            //case3: 叔叔节点是黑色，且当前节点是左子节点  
+            setBlack(parent);
+            setRed(gparent);
+            rightRotate(gparent);
+        } else {
+            //若父节点是祖父节点的右子节点,与上面的完全相反，本质一样的  
+            RBNode&lt;T&gt; uncle=gparent.left;
+
+            //case1: 叔叔节点也是红色  
+            if (uncle !=null &amp; isRed(uncle)) {
+                setBlack(parent);
+                setBlack(uncle);
+                setRed(gparent);
+                node=gparent;
+                continue;
+            }
+
+            //case2: 叔叔节点是黑色的，且当前节点是左子节点  
+            if (node==parent.left) {
+                rightRotate(parent);
+                RBNode&lt;T&gt; tmp=parent;
+                parent=node;
+                node=tmp;
+            }
+
+            //case3: 叔叔节点是黑色的，且当前节点是右子节点  
+            setBlack(parent);
+            setRed(gparent);
+            leftRotate(gparent);
+        }
+    }
+
+    //将根节点设置为黑色  
+    setBlack(this .root);
+}
+</code></pre>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-08-30-career-icbcsdc%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/" data-toggle="tooltip" data-placement="top" title="ICBCSDC暑期实习总结">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2999-01-01-plan-%E4%B8%8B%E6%9C%9F%E9%A2%84%E5%91%8A/" data-toggle="tooltip" data-placement="top" title="Blog Plan"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-08-16-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D%E5%A4%9A%E7%BA%BF%E7%A8%8B/">GUI截图文本搜索定位(多线程)</a></li>
+                    
+                    <li><a href="/posts/2018-08-14-alg-gui%E6%88%AA%E5%9B%BE%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E5%AE%9A%E4%BD%8D/">GUI截图文本搜索定位</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Sep 7, 2018</h4>
+    </section>
+    <h5 id="wc">5300 Words|Read in about 11 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/c&#43;&#43;/">c&#43;&#43;</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

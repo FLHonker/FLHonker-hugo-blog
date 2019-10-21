@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> 控件截图预处理与去边框算法 - Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me</title>
+  <meta name="description" content="Frank&#39;s Blog|Standing on the Shoulder of Giants.|frankliu624.me" />
+  <meta property="og:title" content="控件截图预处理与去边框算法" />
+  <meta name="twitter:title" content="控件截图预处理与去边框算法" />
+  <meta name="description" content="控件截图预处理与去边框算法 恕我在该系列博客中不能粘贴大量代码和截图，该项目为公司内部模块开发实际案例，我们主要谈论问题的解决思路和算法设计方">
+  <meta property="og:description" content="控件截图预处理与去边框算法 恕我在该系列博客中不能粘贴大量代码和截图，该项目为公司内部模块开发实际案例，我们主要谈论问题的解决思路和算法设计方">
+  <meta name="twitter:description" content="控件截图预处理与去边框算法 恕我在该系列博客中不能粘贴大量代码和截图，该项目为公司内部模块开发实际案例，我们主要谈论问题的解决思路和算法设计方">
+  <meta name="author" content="Frank Liu(flhonker)"/>
+  <link href='https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/favicon/jetpacktocat.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/share_img/happy.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@FrankLi17399372" />
+  <meta name="twitter:creator" content="@FrankLi17399372" />
+  <meta property="og:url" content="https://flhonker.github.io/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank Liu" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://flhonker.github.io/posts/2018-07-28-alg-%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%9B%BE%E9%A2%84%E5%A4%84%E7%90%86%E4%B8%8E%E5%8E%BB%E8%BE%B9%E6%A1%86%E7%AE%97%E6%B3%95/" />
+  <link rel="alternate" href="https://flhonker.github.io/index.xml" type="application/rss+xml" title="Frank Liu">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://flhonker.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://flhonker.github.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d82288793e5427ef06ad25f2ba778391";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<link rel="stylesheet" href="https://flhonker.github.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123407007-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://flhonker.github.io">Frank Liu</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/categories/algorithm">algorithm</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/go">Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/opencv">opencv</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/linux">Linux</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/career">Career</a>
+                
+                
+                  <a href="https://flhonker.github.io/categories/c&#43;&#43;">C&#43;&#43;</a>
+                
+                
+                  <a href="https://flhonker.github.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://docs.opencv.org/">OpenCV docs</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-26-centos7-linux%E6%89%A9%E5%B1%95%E6%A0%B9%E5%88%86%E5%8C%BA">CentOS7扩展根分区操作手册</a>
+                
+                
+                  <a href="http://www.gohugo.org/doc/">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-04-27--linux-linux%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80">Linux命令基础</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/FLHonker/Cplus-engineer">Cplus-engineer</a>
+                
+                
+                  <a href="https://github.com/FLHonker/fl-bash">fl-bash</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80">Cwheel</a>
+                
+                
+                  <a href="https://flhonker.github.io/2018-07-03-blockchain-go%E6%89%93%E9%80%A0%E5%8C%BA%E5%9D%97%E9%93%BE1">go-BlockChain</a>
+                
+                
+                  <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD">E2E Tessting OCR</a>
+                
+                
+                  <a href="https://github.com/FLHonker/flhonker-hugo">Frank&#39;s Hugo Blog</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg"></span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Frank Liu" href="https://flhonker.github.io">
+            <img class="avatar-img" src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/frank1-Circle.jpg" alt="Frank Liu" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "fa0222a12d4979dee33b5ddd9b791436");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">控件截图预处理与去边框算法</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Sat Jul 28, 2018</h4>
+    </section>
+    <h5 id="wc">5800 Words|Read in about 12 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/opencv/">opencv</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#控件截图预处理与去边框算法">控件截图预处理与去边框算法</a>
+<ul>
+<li><a href="#opencv闪亮登场">opencv闪亮登场</a></li>
+<li><a href="#图像预处理">图像预处理</a></li>
+<li><a href="#去边框算法">去边框算法</a></li>
+<li><a href="#2018-08-16-自适应阈值算法的设计">2018.08.16 自适应阈值算法的设计</a></li>
+<li><a href="#2018-08-16-对去边框算法的改进">2018.08.16 对去边框算法的改进</a>
+<ul>
+<li><a href="#去除边框外部空白区域">去除边框外部空白区域</a></li>
+<li><a href="#获取边框范围">获取边框范围</a></li>
+</ul></li>
+<li><a href="#思考">思考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h1 id="控件截图预处理与去边框算法">控件截图预处理与去边框算法</h1>
+
+<blockquote>
+<p>恕我在该系列博客中不能粘贴大量代码和截图，该项目为公司内部模块开发实际案例，我们主要谈论问题的解决思路和算法设计方法以及对计算机视觉的理解，不针对具体实现，也不涉及核心技术。就当是Frank的计算机视觉开发感悟，O(∩_∩)O哈哈~</p>
+</blockquote>
+
+<h2 id="opencv闪亮登场">opencv闪亮登场</h2>
+
+<p><a href="https://opencv.org/"><img src="https://opencv.org/assets/theme/logo.png" alt="opencvicon" /></a></p>
+
+<p>由于本项目OCR模块完全使用tesseract的接口，它就像一个黑盒，输入图片，输出识别出的文本。tesseract-OCR的识别算法是封装好的，提供了不同语言的训练字库，也可以使用自己训练的字库。我们既然把OCR核心完全交给了tesseract，那么我们就无需再自行设计识别算法。</p>
+
+<p>前两周，他们把精力都放在了对字库的训练上，使用几百个文本框和按钮的截图进行训练。然而，有多少智能，就有多少人工。由于带有背景和边框的控件截图对文本识别率影响较大，每次都要手工修改很多文本。即使经过了大量样本的训练，对识别率的提高并不明显。况且，中文字形复杂多样，在识别上本身就是个难题。我们的测试软件应用场景以账号和数字居多，因此，我们先搞数字的识别和训练，做好了之后再加入中文识别。</p>
+
+<p>第三周，Frank加入团队～</p>
+
+<p>以Frank的风格，这种项目，第一想到的肯定不是什么tesseract，什么训练字库，那一定是opencv呀！没办法，老大他们之前没想到用opencv，一些前期的图片处理都是用Java做的，不敢恭维。既然tesseract是老大钦定的，那我们能做的肯定是图像预处理方面的优化喽。——我也不知道，下意识地就感悟到了这个重点，O(∩_∩)O哈哈~</p>
+
+<p>根据以前做图像识别的经验，在文字识别方面，肯定是“白纸黑字”最最容易被机器识别啦。那么，我们的控件截图绝大部分是浅黑色边框、灰色渐变背景、黑字，还有最外面截图带上的白边。我们要做的就是把背景、边框都去除，以消除对文字识别的干扰。在这里，大致思索一下，后面肯定不只这么简单，一定会遇到特殊情况需要更复杂的解决方案。是时候有请opencv了。
+经过一番折腾，终于帮大家都搭建好了<code>IntelliJ IDEA + JDK1.8 + opencv3.4</code>的开发环境。不过这里要吐槽一下，opencv、的java接口属实垃圾，像是被阉割版，缺这少那。如果大家用opencv，建议使用C++或者python，不要用java这种二货。</p>
+
+<h2 id="图像预处理">图像预处理</h2>
+
+<p>对！这正是重点，这就是提高识别率的方法。其目标就是：去除干扰文字的外围因素，尽可能达到“白纸黑字”的效果，且字迹能够不失真。</p>
+
+<p>第一步，肯定是灰度处理，二值化。这里而言，灰度图只是中间产品，对我们没有用，直接threshold二值化就好。先预估设置一个二值化阈值(120)，输出二值化图片，惊呆了！文本框截图的边框、灰色背景全都去除了，只剩下“白纸黑字”。难道。。。这就是终极解决方案？不存在的，这只是个典型图，有的图就不行了。还得老老实实继续处理。</p>
+
+<p>经过反复测试不同二值化阈值，发现灰色背景都可以靠二值化去除，就是边框会有的保留，有的去除。一开始，他们还都认为边框不会影响识别率，因为只用仅二值化处理的图片世界效果已经比较好了。但是以Frank的经验和感觉来讲，不去边框，早晚出事。最终，发现边框的害处了。有的数字紧贴左侧或者右侧边框，就会把边框识别成“1”，有的下边框穿过数字，识别不准确。好了，啥也别说了，去边框！</p>
+
+<h2 id="去边框算法">去边框算法</h2>
+
+<p>去边框的算法，是我根据灵感发挥出来的，也是基于所识别的截图的共同特点：边框占据整张图的80%宽高。算法描述如下：</p>
+
+<ol>
+<li>二值化，阈值=140；（这个阈值是根据大部分截图的灰度分布测试得出的，有一定缺陷）</li>
+<li>获得图片宽高: width = src.cols(), height = src.rows();</li>
+<li>从图片高度的一半处开始分别向上向下扫描每一行像素；</li>
+<li>统计每一行中黑色像素点(0)的个数计算所占整行的比率，如果黑色点比率开始出现高于80%，则认为到达上下边框线处，记录上下高度坐标y_down, y_top;</li>
+<li>同理，再从图片宽度的一半处分别向左向右扫描每一列像素，统计每一列中黑色像素点所占比率，如果开始出现高于90%（这里为避免数字“1”的干扰，设高一点），则认为到达了左右边框线，记录左右坐标x_left, x_right;</li>
+<li>根据获得的四角坐标，可以使用Rect从原图取得中间文本区域，存入Mat矩阵，就可以用于后续处理和识别了。</li>
+</ol>
+
+<p>这个算法，是不是很简单，也很高效？不用很复杂的计算，只是，可能缺少了一点通用性和灵活性。</p>
+
+<h2 id="2018-08-16-自适应阈值算法的设计">2018.08.16 自适应阈值算法的设计</h2>
+
+<p>使用固定的阈值不是长久办法，后来加了一批新截图，GUI颜色对比度非常小，文字颜色和背景差异不大，使用固定阈值根本无法将背景与文字分离。于是，我们考虑既然每张图中都是背景色占绝大部分，文字和边框灰度值接近，占其次，其余的噪点等占小部分。并且三种元素之间的灰度值都是有区分边界的。那么，我们就可以根据这个特点，统计灰度图各个等级的像素点个数，从分布特征，选择背景色和文字中间的灰度值作为阈值，进行二值化分离它们。这样就可以根据不同前景色、背景色灰度差异的图片实现自适应阈值的计算，达到较佳的二值化分离效果。这样的话，还可以解决另外一个难题，就是去边框时进行黑色像素统计时阈值取舍的问题：如果取高了，有的边框失真变成虚线或被截短就达不到70%或80%；取低了的话，就会被数字“1”干扰，产生误截取。如果我们可以获取自适应阈值，就可以衍生出一个相对调高一点的阈值，将一张副本图二值化后专门用于去边框。因为阈值越高，保留的深色部分越多，就不会使边框失真，那么就能如愿使用我们的基于像素统计的去边框算法。</p>
+
+<p>按这样设计的话，我们整个的预处理流程应该是这样的：</p>
+
+<ol>
+<li>灰度化；</li>
+<li>基于直方图统计法，计算自适应阈值thresh_adp，并略微调高生成一个新阈值thresh_high；</li>
+<li>使用自适应阈值thresh_adp对原图进行二值化处理记为bin1，使用高阈值thresh_high对原图副本二值化记为bin2；</li>
+<li>将bin2输入获取边框范围的模块，计算得出边框的内边界区域rect；（注意不再是“去边框”， 而只是获取边框范围返回，原先的去边框算法略微调整即可）</li>
+<li>使用边框内区域rect对bin1进行截取，获得内部文字区域；</li>
+<li>然后，就可以输入tesseract-OCR模块进行识别。</li>
+</ol>
+
+<p>了解了新的预处理流程，我们接下来详细介绍自适应阈值算法的实现：</p>
+
+<pre><code class="language-java">    /**
+     * 针对不同背景色和前景色、后景色对比度的图片，使用直方图统计分析法，计算出前景色与背景色明确分界的阈值，
+     * 返回供二值化处理，得到较为清晰无失真的“白底黑字”图。
+     * @param src, dst
+     * @return
+     */
+    private static int myAdaptiveThreshold(Mat src, Mat dst) {
+        //转换到灰度图
+        Mat gray = new Mat(src.size(), CvType.CV_8UC1);
+        Imgproc.cvtColor(src, gray, Imgproc.COLOR_BGR2GRAY);
+        //获取直方图
+        List&lt;Mat&gt; mlist = new ArrayList&lt;&gt;();
+        mlist.add(gray);
+        Mat hist = new Mat(256,1, CvType.CV_8U,new Scalar(0));
+        MatOfInt mint = new MatOfInt();
+        // 直方图统计
+        Imgproc.calcHist(mlist, new MatOfInt(0),new Mat(),hist,new MatOfInt(256),new MatOfFloat(0f,256f));
+
+        //每隔10个像素值进行统计，得到长度为26的数组
+        int[] numint = new int[26];
+        int pixel_sum = 0;   //总的像素点个数
+
+        for(int k = 0; k &lt; 25; k++)
+        {
+            numint[k] = 0;
+            for(int tmp = 0; tmp &lt; 10; tmp++)
+            {
+                int rowi = k*10 + tmp;
+                numint[k] += (int)hist.get(rowi,0)[0];
+            }
+            pixel_sum += numint[k];
+        }
+
+        numint[25] = 0;
+        for(int tmp = 0; tmp &lt; 6; tmp++)
+        {
+            numint[25] += hist.get(250+tmp,0)[0];
+        }
+
+        pixel_sum += numint[25];
+
+        //对数组numint每间隔5个进行相加统计
+        int[] sums = {0,0,0,0,0};
+        int m = 0;
+        for( ;m &lt; numint.length-4; m++)
+        {
+            sums[0] = numint[m];
+            sums[1] = numint[m+1];
+            sums[2] = numint[m+2];
+            sums[3] = numint[m+3];
+            sums[4] = numint[m+4];
+            int sum = sums[0]+sums[1]+sums[2]+sums[3]+sums[4];
+            double rate =  sum*1.0/pixel_sum;
+            // 如果像素所占比例超过51%，则认为是背景色区域
+            if(rate &gt; 0.51)
+            {
+                break;
+            }
+        }
+
+        //判断背景颜色，浅色像素数&lt;深色像素数反转
+        if(m &lt;= 10)
+        {
+            Core.bitwise_not(gray, gray);
+            m = 21-m;
+        }
+
+        // 在从5个一组的域内选出3个占最大比重的子区域
+        int sub1 = sums[0]+sums[1]+sums[2];
+        int sub2 = sums[1]+sums[2]+sums[3];
+        int sub3 = sums[2]+sums[3]+sums[4];
+        // 取得子区域的起始索引号
+        int index=1;
+        int temp = sub1;
+        if(temp &lt; sub2)
+        {
+            index = 2;
+            temp = sub2;
+        }
+        if(temp &lt; sub3)
+        {
+            index = 3;
+        }
+        int thresh = (m + index - 5)*10;     // 根据直方图索引号计算出的合适阈值
+        gray.copyTo(dst);   // 将灰度图（有可能是反转之后的，反正是我们需要的“白底黑字”就对了）通过src带出，供后续处理
+
+        return thresh;   // 返回计算出的合适阈值
+    }
+</code></pre>
+
+<p>虽然看起来很抽象，但是其实就是用到了统计学原理，这就是基础知识的重要性。</p>
+
+<p>对了，关于这一部分代码：</p>
+
+<pre><code class="language-java">//判断背景颜色，浅色像素数&lt;深色像素数反转
+if(m &lt;= 10)
+{
+    Core.bitwise_not(gray, gray);
+    m = 21-m;
+}
+</code></pre>
+
+<p>这个是用来解决深色背景浅色字图片的识别的，可以将其反转为“浅底深字”。至于原理，听我慢慢道来。这还是无意中发现的，子啊这个直方图统计中尤其奏效且简单。之前的是灿标使用统计方法扫描截图二值化后中间一行，统计黑色像素个数，如果黑色占多数就说明是“深底浅字”，需要反转，这样有些侥幸和牵强。</p>
+
+<p>这里的<code>m</code>是3个一组的背景色范围分组在直方图中的索引号，一共22组[0-21]，以10为分界线，小于10的就说明是深色背景，需要反转。反转后，m的序号也得反转。</p>
+
+<h2 id="2018-08-16-对去边框算法的改进">2018.08.16 对去边框算法的改进</h2>
+
+<p>前面一部分也提到过，之前我们的去边框算法存在阈值取舍难的问题，究其主要原因，是因为（1）有的图片截图时保留了周围较大的空白区域，导致统计边框黑色像素比率时无法满足占比行列70%或80%的最低要求；（2）二值化阈值较低时，有的边框变成虚线或被截断，容易与离上下边框线较近的“1”混淆。
+为此，我们基于两方面进行改进：</p>
+
+<ol>
+<li>在进行获取边框范围（去边框）前，先使用扫描与统计法去除边框外部的多余空白区域，避免计算黑色像素比率时受其影响。</li>
+<li>不仅仅靠黑色像素所占比率判断左右边框，还应满足其最上或最下连续2-3个像素全黑的条件，因为“1”是不可能达到的。</li>
+</ol>
+
+<p>这样一来，我们的去边框算法就被拆分成两部分了：</p>
+
+<ul>
+<li>去除外部空白区域;</li>
+<li>获取边框范围（原来的去边框核心算法不变，修改接口和返回值）</li>
+</ul>
+
+<h3 id="去除边框外部空白区域">去除边框外部空白区域</h3>
+
+<p>这个算法还是基于黑色像素点统计，描述如下：</p>
+
+<ol>
+<li>分别从左、从右，向图片中间扫描1/4宽度的范围，统计每一列中的黑色像素个数；</li>
+<li>如果<strong>开始出现</strong>黑色像素点个数大于1，就认为到达了左右边界线外侧，记录左右坐标为left、right；</li>
+<li>基于获得的左右边界，将原图重新标记范围，左右限制大小限制在left和right之间，缩小后续扫描范围；</li>
+<li>同样，分别从上、从下，向图片中间扫描1/4高度的范围，统计每一行中的黑色像素个数；</li>
+<li>如果<strong>开始出现</strong>黑色像素点个数大于1，就认为到达了上下边界，记录上下坐标为top、bot；</li>
+<li>根据上下左右边界范围，另外再向外侧扩展2像素，使用Rec对原图进行截取。向外扩展是因为我们的left、right、top和bot其实是恰好落在边界线上的（如果有的话），现在去除为时过早，应当保留。如果边界线在整张图的最外一圈，那么向外扩展时就要注意不要越界。</li>
+</ol>
+
+<p>实现代码如下：</p>
+
+<pre><code class="language-java">    /**
+     * 去除二值化图的边框外部白色区域，便于使用统计法去边框
+     * @param bin
+     * @param dst
+     */
+    private static void removeOutsideWhite(Mat bin, Mat dst) {
+        // 定义表示截取范围的四个边界变量
+        int left = 0, right = bin.width() -1, top = 0, bot = bin.height() -1;
+        int black_sum = 0;  //黑色像素点数量
+        // 从左向右扫描每一列至距离左边界1/4
+        for( ; left &lt; bin.width() / 4; left++) {
+            black_sum = 0;   //reset
+            for(int j = 0; j &lt; bin.height(); j++) {
+                if(bin.get(j, left)[0] &lt; 0.001)    //如果为黑色
+                    black_sum++;
+            }
+            // 如果开始出现黑色像素，就说明到了边界，break，记录left左边界坐标
+            if(black_sum &gt; 1) {
+                break;
+            }
+        }
+
+        // 从右向左扫描每一列至距离右边界1/4
+        for( ; right &gt; bin.width()*3 / 4; right--) {
+            black_sum = 0;   //reset
+            for(int j = 0; j &lt; bin.height(); j++) {
+                if(bin.get(j, right)[0] &lt; 0.001)    //如果为黑色
+                    black_sum++;
+            }
+            // 如果开始出现黑色像素，就说明到了边界，break，记录right右边界坐标
+            if(black_sum &gt; 1) {
+                break;
+            }
+        }
+
+        // 对截取到左右边界的图进行行像素扫描
+
+        // 从上到下扫描每一行至距离上边界1/4
+        for( ; top &lt; bin.height() / 4; top++) {
+            black_sum = 0;  //reset
+            for(int j = left; j &lt; right; j++) {   // 注意: j=left, 不是j=0
+                if(bin.get(top, j)[0] &lt; 0.001)    //如果为黑色
+                    black_sum++;
+            }
+            // 如果开始出现黑色像素，就说明到了上边界，break，记录top边界坐标
+            if(black_sum &gt; 1) {
+                break;
+            }
+        }
+
+        // 从下到上扫描每一行至距离下边界1/4
+        for( ; bot &gt; bin.height()*3 / 4; bot--) {
+            black_sum = 0;  //reset
+            for(int j = left; j &lt; right; j++) {   // 注意: j=left, 不是j=0
+                if(bin.get(top, j)[0] &lt; 0.001)    //如果为黑色
+                    black_sum++;
+            }
+            // 如果开始出现黑色像素，就说明到了下边界，break，记录bot边界坐标
+            if(black_sum &gt; 1) {
+                break;
+            }
+        }
+
+        // 外扩2个像素，防止越界
+        left = Math.max(left -2, 0);
+        right = Math.min(right +2, bin.width() -1);
+        top = Math.max(top -2, 0);
+        bot = Math.min(bot +2, bin.height() -1);
+
+        // 截取
+        Rect rect = new Rect(left, top+1, right-left, bot-top);
+        dst = new Mat(bin, rect);  //截取后的图存入dst带
+    }
+</code></pre>
+
+<h3 id="获取边框范围">获取边框范围</h3>
+
+<p>此算法与前面的<a href="#去边框算法">去边框算法</a>本质是样的，只是免去了根据Rect截取截取一步，而是将Rect返回，交由调用方进行截取。因为改进自适应阈值后，获取边框模块传入的不再是原图使用自适应阈值二值化后的bin1，而是使用高一些的阈值二值化后的图bin2，返回Rect后在bin1上截取。使用自适应阈值thresh_adp处理原图可以去除背景和很多干扰噪点，使用高阈值thresh_high处理可以尽可能保留完整边框用于计算准确的边框范围。</p>
+
+<pre><code class="language-java">    /**
+     * 获得边框算法
+     * @param bin 传入二值化图像
+     * @return borders
+     */
+    private static Rect getBorders(Mat bin) {
+        int dst_cols = bin.cols();
+        int dst_rows = bin.rows();
+        int half_cols = dst_cols/2;
+        //int tmp_cols = (int)(dst_cols*0.8);
+        int half_rows = dst_rows/2;
+        // 从中间行向上扫描每一行像素点，进行黑色像素数的统计
+        int top = half_rows;
+        for (; top &gt;= 0; top--)
+        {
+            double arr_resultsx[] = new double[dst_cols];
+            double arr[] = {};
+            for(int j=0; j &lt; dst_cols; j++)
+            {
+                arr = bin.get(top, j);
+                arr_resultsx[j] = arr[0];
+            }
+            int black_sum = 0;
+            // 统计一行的黑色像素数
+            for(int k=0; k &lt; arr_resultsx.length; k++)
+            {
+                if(arr_resultsx[k]-0.0 &lt; 0.001)
+                {
+                    black_sum++;
+                }
+            }
+            if (black_sum * 1.0 &gt; dst_cols * BLACK_RATE_ROW)
+            {
+                break;
+            }
+        }
+
+        // 从中间行向下扫描每一行像素点，进行黑色像素数的统计
+        int bot = half_rows;
+        for (; bot &lt; dst_rows; bot++)
+        {
+            double arr_resultsx[] = new double[dst_cols];
+            double arry[] = {};
+            for(int j = 0; j &lt; dst_cols; j++)
+            {
+                arry = bin.get(bot, j);
+                arr_resultsx[j] = arry[0];
+            }
+            int black_sum = 0;
+            // 统计一行的黑色像素数
+            for(int k = 0; k &lt; arr_resultsx.length; k++)
+            {
+                if(arr_resultsx[k]-0.0 &lt; 0.001)
+                {
+                    black_sum++;
+                }
+            }
+            if (black_sum * 1.0 &gt; dst_cols * BLACK_RATE_ROW)
+            {
+                break;
+            }
+        }
+
+        Rect rectx = new Rect(0, top+1, dst_cols, bot-top-1);
+        Mat row_img = new Mat(bin, rectx);  //去除上下边框后的图
+
+        // 获得新图的大小属性
+        dst_cols = rectx.width;
+        dst_rows = rectx.height;
+        half_cols = dst_cols/2;
+
+        // 从中间列向左扫描每一列像素点，进行黑色像素数的统计
+        int left = half_cols;
+        for ( ; left &gt;= 0; left--)
+        {
+            double arr_resultsy[] = new double[dst_rows];
+            double arr[] = {};
+            for(int j = 0; j &lt; dst_rows; j++)
+            {
+                arr = row_img.get(j, left);
+                arr_resultsy[j] = arr[0];
+            }
+            int black_sum = 0;
+            // 统计一列的黑色像素数
+            for(int k = 0; k &lt; arr_resultsy.length; k++)
+            {
+                if(arr_resultsy[k]-0.0 &lt; 0.001)
+                {
+                    black_sum++;
+                }
+            }
+            // 如果黑色像素数超过阈值，则进行上下边界附近的检测，目的是区分数值边界线与“1”
+            if (black_sum * 1.0 &gt; dst_rows * BLACK_RATE_COL)
+            {
+                // 检测目标列的上下各2个像素点，判断竖直边界线是否有一侧最顶部或最底部有连续黑色像素分布，如果有才是真正的边界线
+                if(bin.get(top+1, left)[0] &lt; 0.001 &amp;&amp; bin.get(top+2, left)[0] &lt; 0.001 ||
+                        bin.get(bot-1, left)[0] &lt; 0.001 &amp;&amp; bin.get(bot-2, left)[0] &lt; 0.001) {
+                    break;
+                }
+            }
+        }
+
+        // 从中间列向右扫描每一列像素点，进行黑色像素数的统计
+        int right = half_cols;
+        for ( ; right &lt; dst_cols; right++)
+        {
+            double arr_resultsy[] = new double[dst_rows];
+            double arry[] = {};
+            for(int n = 0; n &lt; dst_rows; n++)
+            {
+                arry = row_img.get(n, right);
+                arr_resultsy[n] = arry[0];
+            }
+            int black_sum = 0;
+            // 统计一列的黑色像素数
+            for(int k = 0; k &lt; arr_resultsy.length; k++)
+            {
+                if(arr_resultsy[k]-0.0 &lt; 0.01)
+                {
+                    black_sum++;
+                }
+            }
+            // 如果黑色像素数超过阈值，则进行上下边界附近的检测，目的是区分数值边界线与“1”
+            if (black_sum * 1.0 &gt; dst_rows * BLACK_RATE_COL)
+            {
+                if(bin.get(top+1, right)[0] &lt; 0.001 &amp;&amp; bin.get(top+2, right)[0] &lt; 0.001 ||
+                        bin.get(bot-1, right)[0] &lt; 0.001 &amp;&amp; bin.get(bot-2, right)[0] &lt; 0.001) {
+                    break;
+                }
+            }
+        }
+
+        Rect borders = new Rect(left+1, top+1, right-left-1, bot-top-1);    // 边界内部矩形区域
+
+        return borders;
+    }
+</code></pre>
+
+<h2 id="思考">思考</h2>
+
+<p>仔细想一下，将去除外部空白区域和获取边框范围结合起来，我们虽然做了2步，扫描了图片的上下左右各2遍，是不是有点浪费？在每一遍扫描时，我们是不是没有挖掘足够有用的信息？
+在去除空白区域的扫描中，如果到达边界线后，不是break，而是继续向前，直到走出黑色区域，这是不是一个邻域检测？是否可以根据邻域检测进一步直接获得边框范围呢？</p>
+
+<p>此项目暂时先如此，后续慢慢思考，我想应该是可以的。望读者细细品味图像处理中的技巧和思想。</p>
+
+<p>感兴趣的可以联系我随时交流：<a href="mailto:frankliu624@gmail.com">frankliu624@gmail.com</a></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://flhonker.github.io/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/" data-toggle="tooltip" data-placement="top" title="E2E软件自动化测试中的OCR功能">&larr; </a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://flhonker.github.io/posts/2018-07-31-alg-%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E5%9F%9F%E6%A3%80%E6%B5%8B%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%BA%E5%9F%9F%E6%8F%90%E5%8F%96%E7%AE%97%E6%B3%95/" data-toggle="tooltip" data-placement="top" title="基于连通域检测的文本区域提取算法"> &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/2018-07-27-career-e2e%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84ocr%E5%8A%9F%E8%83%BD/">E2E软件自动化测试中的OCR功能</a></li>
+                    
+                    <li><a href="/posts/2018-07-27-carcer-icbc%E5%AE%9E%E4%B9%A0week1/">ICBC广州研发部实习第一周经历</a></li>
+                    
+                    <li><a href="/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/">C语言造轮子（六）——哈希表</a></li>
+                    
+                    <li><a href="/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/">C语言造轮子（五）——List</a></li>
+                    
+                    <li><a href="/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/">C语言造轮子（四）——单元测试</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Sat Jul 28, 2018</h4>
+    </section>
+    <h5 id="wc">5800 Words|Read in about 12 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://flhonker.github.iotags/algorithm/">Algorithm</a> &nbsp;
+        
+        <a href="https://flhonker.github.iotags/opencv/">opencv</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ftndnxw6b2j30a004gdgb.jpg">
+          
+              <li>
+                <a href="mailto:frankliu624@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/FLHonker" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/flhonker" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/FrankLi17399372" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/Frank%20Liu" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="http://weibo.com/%e8%a5%bf%e6%96%b9%e4%bb%a5%e8%a5%bf%e7%9a%84%e6%98%82%e6%98%82%e6%ba%aa" title="weibo">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://flhonker.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://flhonker.github.io">Frank Liu(flhonker)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://flhonker.github.io">Frank Liu</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="http://www.servicemesher.com">servicemesher.com</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

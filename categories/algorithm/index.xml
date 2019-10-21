@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algorithm on Frank Liu</title>
+    <link>https://flhonker.github.io/categories/algorithm/</link>
+    <description>Recent content in Algorithm on Frank Liu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>frankliu624@gmail.com (Frank Liu(flhonker))</managingEditor>
+    <webMaster>frankliu624@gmail.com (Frank Liu(flhonker))</webMaster>
+    <lastBuildDate>Fri, 07 Sep 2018 09:11:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://flhonker.github.io/categories/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>再也不怕红黑树</title>
+      <link>https://flhonker.github.io/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/</link>
+      <pubDate>Fri, 07 Sep 2018 09:11:49 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-09-07-alg-%E5%86%8D%E4%B9%9F%E4%B8%8D%E6%80%95%E7%BA%A2%E9%BB%91%E6%A0%91/</guid>
+      <description>网上有很多红-黑树的段子，很多人都说，红-黑树只会存在于段子里，不会在面试中或者实际项目中让你实现。来看看网友都是怎么说的： 通常，如果有面试</description>
+    </item>
+    
+    <item>
+      <title>C语言造轮子（六）——哈希表</title>
+      <link>https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</link>
+      <pubDate>Tue, 10 Jul 2018 11:08:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-10-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%85%AD/</guid>
+      <description>C语言造轮子（六）——哈希表 如同“见字如晤”一般，我们通常用标签化的事物来抽象一个人，一件事，一段情……，比如迎面走来了一个女工妹子，你和工</description>
+    </item>
+    
+    <item>
+      <title>C语言造轮子（五）——List</title>
+      <link>https://flhonker.github.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</link>
+      <pubDate>Mon, 09 Jul 2018 11:08:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-09-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%94/</guid>
+      <description>C语言造轮子（五）——List “如果你有能力选择，你是会选择扼住命运的咽喉还是躺下来接受命运的蹂躏” 链表是一种迷人的数据结构，就像因果关系一</description>
+    </item>
+    
+    <item>
+      <title>C语言造轮子（四）——单元测试</title>
+      <link>https://flhonker.github.io/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</link>
+      <pubDate>Sun, 08 Jul 2018 12:00:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-08-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E5%9B%9B/</guid>
+      <description>C语言造轮子（四）——单元测试 人一旦上了年纪就变得容易追忆过去，这似乎是由于我们现在过于依赖电脑、手机把它们作为大脑最主要的外接存储器，往日</description>
+    </item>
+    
+    <item>
+      <title>C语言造轮子（三）——Trie树及应用</title>
+      <link>https://flhonker.github.io/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</link>
+      <pubDate>Sat, 07 Jul 2018 12:00:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-07-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%89/</guid>
+      <description>C语言造轮子（三）——Trie树及应用 大脑的构造其实就像数据结构那么简单，它简明扼要的记录下来每一个事件，再找一个事物作为索引，映射到大脑中</description>
+    </item>
+    
+    <item>
+      <title>C语言造轮子（二）——CMake打包</title>
+      <link>https://flhonker.github.io/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/</link>
+      <pubDate>Fri, 06 Jul 2018 12:00:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-06-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%BA%8C/</guid>
+      <description>C语言造轮子（二）——CMake打包 “爱而得其人，为至幸；爱而失其人，为次幸。”——《jojo的奇妙冒险》 这句话饱含历经重重磨难却最终还是不</description>
+    </item>
+    
+    <item>
+      <title>C语言造轮子（一）——stack</title>
+      <link>https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</link>
+      <pubDate>Sun, 01 Jul 2018 15:05:04 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-07-01-c-c%E8%AF%AD%E8%A8%80%E9%80%A0%E8%BD%AE%E5%AD%90%E4%B8%80/</guid>
+      <description>C语言造轮子（一）——stack 先吹牛，嘿嘿某些面向对象 随着互联网技术的发展，尤其是人工智能、大数据（听这些词听得耳朵都烦了）的过度火热，还</description>
+    </item>
+    
+    <item>
+      <title>面试精选：链表问题集锦</title>
+      <link>https://flhonker.github.io/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</link>
+      <pubDate>Sat, 30 Jun 2018 13:45:54 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-06-30-alg-%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</guid>
+      <description>面试精选：链表问题集锦 链表问题在面试过程中也是很重要也很基础的一部分，链表本身很灵活，很考查编程功底，所以是很值得考的地方。我将复习过程中觉</description>
+    </item>
+    
+    <item>
+      <title>字符串朴素匹配算法和KMP</title>
+      <link>https://flhonker.github.io/posts/2018-04-30-alg-kmp/</link>
+      <pubDate>Mon, 30 Apr 2018 12:11:11 +0800</pubDate>
+      <author>frankliu624@gmail.com (Frank Liu(flhonker))</author>
+      <guid>https://flhonker.github.io/posts/2018-04-30-alg-kmp/</guid>
+      <description>字符串朴素匹配算法和KMP KMP算法的核心思想是利用已经得到的部分匹配信息来进行后面的匹配过程。KMP算法分为两步，第一步是计算next数组</description>
+    </item>
+    
+  </channel>
+</rss>
